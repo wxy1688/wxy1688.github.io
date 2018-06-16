@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>ElasticSearch 智障 使用模板</title>
+  <meta property="og:title" content="ElasticSearch 智障 使用模板" />
+  <meta name="twitter:title" content="ElasticSearch 智障 使用模板" />
+  <meta name="description" content="from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body) # mapping 示例 &#34;&#34;&#34; self.es.indices.put_mapping( index=self.index, doc_type=&#34;spider_status&#34;, body={ &#34;_all&#34;: { &#34;enabled&#34;: True #准许动态插入 }, &#34;properties&#34;: { &#34;table_name&#34;: { &#34;type&#34;: &#34;keyword&#34; }, &#34;source&#34;: { &#34;type&#34;: &#34;keyword&#34; }, &#34;monitoring_time&#34;: { &#34;type&#34;: &#34;date&#34;, &#34;format&#34;: &#34;epoch_second&#34; }, &#34;total_count&#34;: { &#34;type&#34;: &#34;long&#34; }, &#34;new_count&#34;: { &#34;type&#34;: &#34;long&#34; } } }) &#34;&#34;&#34; #批量插入 def put_data(self, inputdata): &#34;&#34;&#34; 批量传入数据---写入数据库 :param inputdata: [] 列表数据 :return: 无 &#34;&#34;&#34; helpers.">
+  <meta property="og:description" content="from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body) # mapping 示例 &#34;&#34;&#34; self.es.indices.put_mapping( index=self.index, doc_type=&#34;spider_status&#34;, body={ &#34;_all&#34;: { &#34;enabled&#34;: True #准许动态插入 }, &#34;properties&#34;: { &#34;table_name&#34;: { &#34;type&#34;: &#34;keyword&#34; }, &#34;source&#34;: { &#34;type&#34;: &#34;keyword&#34; }, &#34;monitoring_time&#34;: { &#34;type&#34;: &#34;date&#34;, &#34;format&#34;: &#34;epoch_second&#34; }, &#34;total_count&#34;: { &#34;type&#34;: &#34;long&#34; }, &#34;new_count&#34;: { &#34;type&#34;: &#34;long&#34; } } }) &#34;&#34;&#34; #批量插入 def put_data(self, inputdata): &#34;&#34;&#34; 批量传入数据---写入数据库 :param inputdata: [] 列表数据 :return: 无 &#34;&#34;&#34; helpers.">
+  <meta name="twitter:description" content="from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type …">
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/post/2017-03-10-elastic-model/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/post/2017-03-10-elastic-model/" />
+  <link rel="alternate" href="http://wxy1688.github.io/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>ElasticSearch 智障 使用模板</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 10, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 3 minutes (540 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">from</span> <span class="nx">elasticsearch</span> <span class="k">import</span> <span class="nx">Elasticsearch</span>
+<span class="nx">from</span> <span class="nx">elasticsearch</span> <span class="k">import</span> <span class="nx">helpers</span>
+
+<span class="k">class</span> <span class="nx">ESutill</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">def</span> <span class="nx">__init__</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="nx">hosts</span><span class="p">,</span><span class="nx">index</span><span class="p">,</span><span class="nx">doc_type</span><span class="p">,</span><span class="nx">body</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="nx">index</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="nx">body</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">doc_type</span> <span class="o">=</span> <span class="nx">doc_type</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">hosts</span> <span class="o">=</span> <span class="nx">hosts</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">es</span> <span class="o">=</span> <span class="nx">Elasticsearch</span><span class="p">(</span><span class="nx">hosts</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">hosts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">not</span> <span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">.</span><span class="nx">indices</span><span class="p">.</span><span class="nx">exists</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span><span class="o">:</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">.</span><span class="nx">indices</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">.</span><span class="nx">indices</span><span class="p">.</span><span class="nx">put_mapping</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">index</span><span class="p">,</span><span class="nx">doc_type</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">doc_type</span><span class="p">,</span><span class="nx">body</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+
+    <span class="err">#</span> <span class="nx">mapping</span> <span class="nx">示例</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    self.es.indices.put_mapping(
+</span><span class="s2">        index=self.index,
+</span><span class="s2">        doc_type=&#34;</span><span class="nx">spider_status</span><span class="s2">&#34;,
+</span><span class="s2">        body={
+</span><span class="s2">            &#34;</span><span class="nx">_all</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">enabled</span><span class="s2">&#34;: True  #准许动态插入
+</span><span class="s2">            },
+</span><span class="s2">            &#34;</span><span class="nx">properties</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">table_name</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">type</span><span class="s2">&#34;: &#34;</span><span class="nx">keyword</span><span class="s2">&#34;
+</span><span class="s2">                },
+</span><span class="s2">                &#34;</span><span class="nx">source</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">type</span><span class="s2">&#34;: &#34;</span><span class="nx">keyword</span><span class="s2">&#34;
+</span><span class="s2">                },
+</span><span class="s2">                &#34;</span><span class="nx">monitoring_time</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">type</span><span class="s2">&#34;: &#34;</span><span class="nx">date</span><span class="s2">&#34;,
+</span><span class="s2">                    &#34;</span><span class="nx">format</span><span class="s2">&#34;: &#34;</span><span class="nx">epoch_second</span><span class="s2">&#34;
+</span><span class="s2">                },
+</span><span class="s2">                &#34;</span><span class="nx">total_count</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">type</span><span class="s2">&#34;: &#34;</span><span class="kr">long</span><span class="s2">&#34;
+</span><span class="s2">                },
+</span><span class="s2">                &#34;</span><span class="nx">new_count</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">type</span><span class="s2">&#34;: &#34;</span><span class="kr">long</span><span class="s2">&#34;
+</span><span class="s2">                }
+</span><span class="s2">            }
+</span><span class="s2">        })
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="err">#</span><span class="nx">批量插入</span>
+    <span class="nx">def</span> <span class="nx">put_data</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">inputdata</span><span class="p">)</span><span class="o">:</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        批量传入数据---写入数据库
+</span><span class="s2">        :param inputdata: [] 列表数据
+</span><span class="s2">        :return: 无
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="nx">helpers</span><span class="p">.</span><span class="nx">bulk</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">,</span> <span class="nx">inputdata</span><span class="p">)</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">.</span><span class="nx">indices</span><span class="p">.</span><span class="nx">refresh</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span>
+
+    <span class="err">#</span><span class="nx">hits查询</span>
+    <span class="nx">def</span> <span class="nx">hits_search</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="nx">body</span><span class="p">)</span><span class="o">:</span>
+
+        <span class="err">#</span><span class="nx">es</span> <span class="nx">无脑操作填空模板</span>
+        <span class="err">#</span><span class="mi">111</span><span class="err">#</span><span class="nx">简单查询</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        GET/products/p/ _search
+</span><span class="s2">        {
+</span><span class="s2">            &#34;</span><span class="nx">query</span><span class="s2">&#34;: {
+</span><span class="s2">            }
+</span><span class="s2">        }
+</span><span class="s2">
+</span><span class="s2">        GET / products / p / _search
+</span><span class="s2">        {
+</span><span class="s2">            &#34;</span><span class="nx">query</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">match</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">title</span><span class="s2">&#34;: &#34;</span><span class="nx">北京</span><span class="s2">&#34;
+</span><span class="s2">                }
+</span><span class="s2">            }
+</span><span class="s2">        }
+</span><span class="s2">        GET / products / p / _search
+</span><span class="s2">        {
+</span><span class="s2">            &#34;</span><span class="nx">query</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">multi_match</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">query</span><span class="s2">&#34;: &#34;</span><span class="nx">北京</span><span class="s2">&#34;,
+</span><span class="s2">                    &#34;</span><span class="nx">fields</span><span class="s2">&#34;: [&#34;</span><span class="nx">title</span><span class="s2">&#34;, &#34;</span><span class="nx">tag</span><span class="s2">&#34;]
+</span><span class="s2">                }
+</span><span class="s2">            }
+</span><span class="s2">        }
+</span><span class="s2">
+</span><span class="s2">        GET / products / p / _search
+</span><span class="s2">        {
+</span><span class="s2">            &#34;</span><span class="nx">query</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">range</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">price</span><span class="s2">&#34;: {
+</span><span class="s2">                        &#34;</span><span class="nx">gte</span><span class="s2">&#34;: 1000,
+</span><span class="s2">                        &#34;</span><span class="nx">lt</span><span class="s2">&#34;: 2000
+</span><span class="s2">                    }
+</span><span class="s2">                }
+</span><span class="s2">            }
+</span><span class="s2">        }
+</span><span class="s2">
+</span><span class="s2">        GET / products / p_search
+</span><span class="s2">        {
+</span><span class="s2">            &#34;</span><span class="nx">query</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">term</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">tag</span><span class="s2">&#34;: &#34;</span><span class="nx">北京</span><span class="s2">&#34;
+</span><span class="s2">                }
+</span><span class="s2">            }
+</span><span class="s2">        }
+</span><span class="s2">
+</span><span class="s2">        GET / products / p / _search
+</span><span class="s2">        {
+</span><span class="s2">            &#34;</span><span class="nx">query</span><span class="s2">&#34;: {
+</span><span class="s2">                &#34;</span><span class="nx">exists</span><span class="s2">&#34;: {
+</span><span class="s2">                    &#34;</span><span class="nx">field</span><span class="s2">&#34;: &#34;</span><span class="nx">comment</span><span class="s2">&#34;  #是否存在comment 这一列
+</span><span class="s2">                }
+</span><span class="s2">            }
+</span><span class="s2">        }
+</span><span class="s2">
+</span><span class="s2">    &#34;&#34;&#34;</span>
+        <span class="err">#</span><span class="mi">222</span>
+        <span class="err">#</span><span class="nx">bool</span> <span class="nx">组合查询</span>
+        <span class="err">#</span><span class="nx">例如搜索</span> <span class="nx">苍井空北京</span>
+        <span class="err">#</span><span class="nx">term</span> <span class="nx">精确匹配</span><span class="err">，</span><span class="nx">中间不能有空</span>  <span class="nx">所得结果</span> <span class="s2">&#34;苍井空北京&#34;</span>
+        <span class="err">#</span><span class="nx">match</span>  <span class="nx">部分匹配</span><span class="err">，</span><span class="nx">会因分词影响查询</span>  <span class="nx">返回结果</span> <span class="nx">可能是</span>  <span class="nx">苍井空</span><span class="err">，</span><span class="nx">或者北京</span><span class="err">，</span><span class="nx">或者</span> <span class="nx">苍井</span><span class="err">。</span><span class="nx">或者</span> <span class="s2">&#34;abc 仓井空 昨天 今天，明天 北京&#34;</span> <span class="nx">或者</span> <span class="s2">&#34;北京&#34;</span> <span class="p">...</span>
+        <span class="err">#</span> <span class="nx">es5</span><span class="p">.</span><span class="nx">X</span>  <span class="nx">should</span><span class="p">,</span> <span class="nx">must</span><span class="err">，</span><span class="nx">mustnot</span><span class="p">,</span> <span class="nx">filter</span> <span class="nx">同级</span>
+
+        <span class="err">#</span> <span class="nx">match</span><span class="err">/term/terms,matchall,range 同级</span>
+
+
+
+
+        <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&#34;_source&#34;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&#34;includes&#34;</span><span class="o">:</span> <span class="p">[]</span>
+            <span class="p">},</span>
+            <span class="s2">&#34;query&#34;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&#34;bool&#34;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&#34;should&#34;</span><span class="o">:</span> <span class="p">[{</span>
+                        <span class="s2">&#34;term&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;标题是 XXX中东XXX 一定匹配的就是中东&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;match&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;标题是 XXX中东XXX 由于分词影响分词后可能匹配上 中 或 东 或 中XXX东&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;terms&#34;</span><span class="o">:</span> <span class="p">{</span>
+                             <span class="s2">&#34;field&#34;</span> <span class="o">:</span> <span class="s2">&#34;make&#34;</span><span class="p">,</span>
+
+                            <span class="s2">&#34;exclude&#34;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&#34;rover&#34;</span><span class="p">,</span> <span class="s2">&#34;jensen&#34;</span><span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">}],</span>
+                    <span class="s2">&#34;must&#34;</span><span class="o">:</span> <span class="p">[{</span>
+                        <span class="s2">&#34;term&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;cpu_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;match&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;标题中含北京的&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;terms&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;memory_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">},</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;match_all&#34;</span><span class="o">:</span> <span class="p">{</span>
+
+                        <span class="p">},</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                         <span class="s2">&#34;range&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;monitoring_time&#34;</span><span class="o">:</span> <span class="p">{</span>
+                                <span class="s2">&#34;gt&#34;</span><span class="o">:</span> <span class="s2">&#34;大于&#34;</span><span class="p">,</span>
+                                <span class="s2">&#34;lt&#34;</span><span class="o">:</span> <span class="s2">&#34;小于&#34;</span><span class="p">,</span>
+                                <span class="s2">&#34;format&#34;</span><span class="o">:</span> <span class="s2">&#34;epoch_second&#34;</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+
+                    <span class="p">],</span>
+                    <span class="s2">&#34;mustnot&#34;</span><span class="o">:</span> <span class="p">[{</span>
+                        <span class="s2">&#34;term&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;cpu_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;match&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;swap_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;terms&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;memory_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">}],</span>
+                    <span class="s2">&#34;filter&#34;</span><span class="o">:</span> <span class="p">[{</span>
+                        <span class="s2">&#34;term&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;cpu_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;must&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;swap_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="p">{</span>
+                        <span class="s2">&#34;mustnot&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;memory_status&#34;</span><span class="o">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                    <span class="p">}],</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&#34;size&#34;</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span>
+            <span class="s2">&#34;sort&#34;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&#34;publish_time&#34;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;order&#34;</span><span class="o">:</span> <span class="s2">&#34;desc&#34;</span><span class="p">}},</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+        <span class="k">try</span><span class="o">:</span>
+
+            <span class="nx">data_es</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">index</span><span class="p">,</span> <span class="nx">doc_type</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">doc_type</span><span class="p">,</span> <span class="nx">body</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+            <span class="nx">result_es</span> <span class="o">=</span> <span class="nx">data_es</span><span class="p">[</span><span class="s2">&#34;hits&#34;</span><span class="p">][</span><span class="s2">&#34;hits&#34;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="nx">result_es</span>
+        <span class="nx">except</span><span class="o">:</span>
+            <span class="k">return</span> <span class="nx">None</span>
+
+        <span class="err">#</span><span class="mi">333</span>
+        <span class="err">#</span><span class="nx">分组聚合</span>
+
+        <span class="err">#</span><span class="nx">分组聚合需要分组策略</span>
+        <span class="err">#</span><span class="mi">1</span><span class="nx">按照固定区间</span>
+        <span class="err">#</span><span class="nx">按照自定义区间</span>
+        <span class="err">#</span><span class="nx">过滤聚合</span>
+        <span class="err">#</span><span class="nx">分组聚合可以有子聚合</span><span class="err">，</span><span class="nx">可以嵌套</span>
+
+        <span class="err">#</span><span class="mi">1</span><span class="nx">按值分组</span> <span class="nx">terms</span>
+        <span class="err">#</span><span class="nx">按直方图分组</span> <span class="nx">histogram</span> <span class="nx">定义区间</span><span class="err">，</span><span class="nx">date_histogram</span> <span class="nx">日期区间</span>
+        <span class="err">#</span><span class="nx">范围聚合</span> <span class="nx">range</span> <span class="p">,</span> <span class="nx">data_range</span>
+
+        <span class="err">#</span><span class="nx">过滤聚合</span> <span class="nx">filter</span><span class="p">,</span><span class="nx">filters</span>
+
+        <span class="err">#</span><span class="nx">aggs聚合查询</span>
+        <span class="nx">def</span> <span class="nx">aggs_search</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="nx">body</span><span class="p">)</span><span class="o">:</span>
+            <span class="nx">query_abnormal</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="s2">&#34;size&#34;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>   <span class="err">#</span><span class="nx">忽略详细内容</span><span class="err">，</span><span class="nx">只返回聚合结果</span> <span class="nx">max</span><span class="p">,</span><span class="nx">min</span><span class="err">，</span><span class="nx">avg</span><span class="p">,</span><span class="nx">value_count</span><span class="p">(</span><span class="nx">count</span><span class="p">(</span><span class="o">*</span><span class="p">)),</span> <span class="nx">cardinality</span><span class="p">(</span><span class="nx">count</span><span class="p">(</span><span class="nx">distinct</span><span class="p">(</span><span class="o">**</span><span class="p">)))</span>
+                <span class="s2">&#34;query&#34;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&#34;bool&#34;</span><span class="o">:</span> <span class="p">{</span>
+                        <span class="s2">&#34;must&#34;</span><span class="o">:</span> <span class="p">[{</span>
+                            <span class="s2">&#34;match_all&#34;</span><span class="o">:</span> <span class="p">{}</span>
+                        <span class="p">},</span> <span class="p">{</span>
+                            <span class="s2">&#34;range&#34;</span><span class="o">:</span> <span class="p">{</span>
+                                <span class="s2">&#34;monitoring_time&#34;</span><span class="o">:</span> <span class="p">{</span>
+                                    <span class="s2">&#34;gt&#34;</span><span class="o">:</span> <span class="s2">&#34;大于&#34;</span><span class="p">,</span>
+                                    <span class="s2">&#34;lt&#34;</span><span class="o">:</span> <span class="s2">&#34;小于&#34;</span><span class="p">,</span>
+                                    <span class="s2">&#34;format&#34;</span><span class="o">:</span> <span class="s2">&#34;epoch_second&#34;</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}],</span>
+                        <span class="s2">&#34;must_not&#34;</span><span class="o">:</span> <span class="p">[]</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&#34;_source&#34;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="err">#</span> <span class="nx">填排除哪些列</span>
+                    <span class="s2">&#34;excludes&#34;</span><span class="o">:</span> <span class="p">[]</span>
+                <span class="p">},</span>
+                <span class="s2">&#34;aggs&#34;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="err">#</span><span class="nx">此处为填空题</span>
+                    <span class="s2">&#34;groupby spider_time as nickname(按 filed 里面 的spider_time  分组，给分组 取一个别名)&#34;</span><span class="o">:</span> <span class="p">{</span>
+                        <span class="err">#</span><span class="nx">以日期直方图显示</span>
+                        <span class="s2">&#34;date_histogram&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="s2">&#34;field&#34;</span><span class="o">:</span> <span class="s2">&#34;spider_time&#34;</span><span class="p">,</span> <span class="err">#</span> <span class="nx">填列名</span><span class="err">，</span><span class="nx">按列分组聚合</span>
+                            <span class="s2">&#34;interval&#34;</span><span class="o">:</span> <span class="s2">&#34;1d&#34;</span><span class="p">,</span>
+                            <span class="s2">&#34;time_zone&#34;</span><span class="o">:</span> <span class="s2">&#34;Asia/Shanghai&#34;</span><span class="p">,</span>
+                            <span class="s2">&#34;min_doc_count&#34;</span><span class="o">:</span> <span class="mi">1</span>
+                        <span class="p">},</span>
+                        <span class="s2">&#34;aggs&#34;</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="err">#</span> <span class="nx">此处为填空题</span>
+                            <span class="s2">&#34;groupby price as nickname(按照 filed 里面 的price   分组，给分组 取一个别名)&#34;</span><span class="o">:</span> <span class="p">{</span>
+                                <span class="err">#</span><span class="nx">平均值</span>
+                                <span class="s2">&#34;avg&#34;</span><span class="o">:</span> <span class="p">{</span>
+                                    <span class="s2">&#34;field&#34;</span><span class="o">:</span> <span class="s2">&#34;price&#34;</span><span class="p">,</span> <span class="err">#</span><span class="nx">填列名</span><span class="err">，</span><span class="nx">按列分组聚合</span>
+                                    <span class="s2">&#34;size&#34;</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>    <span class="err">#</span> <span class="nx">返回多少个</span>
+                                    <span class="s2">&#34;order&#34;</span><span class="o">:</span> <span class="p">{</span>
+                                        <span class="s2">&#34;time(填XX列)&#34;</span><span class="o">:</span> <span class="s2">&#34;desc&#34;</span>  <span class="err">#</span> <span class="nx">按照XX列</span> <span class="nx">排序</span>
+                                    <span class="p">}</span>
+                                <span class="p">},</span>
+
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+
+            <span class="k">try</span><span class="o">:</span>
+
+                <span class="nx">data_es</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">es</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">index</span><span class="p">,</span> <span class="nx">doc_type</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">doc_type</span><span class="p">,</span> <span class="nx">body</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+
+                <span class="err">#</span><span class="nx">示范</span>  <span class="nx">返回哪个桶的值</span>
+                <span class="nx">result_es</span> <span class="o">=</span> <span class="nx">data_es</span><span class="p">[</span><span class="s2">&#34;aggregations&#34;</span><span class="p">][</span><span class="s2">&#34;groupby spider_time as nickname(填桶的别名)&#34;</span><span class="p">][</span><span class="s2">&#34;buckets&#34;</span><span class="p">]</span>
+                <span class="k">return</span> <span class="nx">result_es</span>
+            <span class="nx">except</span><span class="o">:</span>
+                <span class="k">return</span> <span class="nx">None</span>
+</code></pre></div>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/" data-toggle="tooltip" data-placement="top" title="Confd&#43;etcd实现高可用自动发现">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://wxy1688.github.io/post/2017-03-13-rpc/" data-toggle="tooltip" data-placement="top" title="golang net/rpc">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

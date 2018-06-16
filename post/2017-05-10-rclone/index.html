@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>使用 rclone 将文件同步至 Google Dirve</title>
+  <meta property="og:title" content="使用 rclone 将文件同步至 Google Dirve" />
+  <meta name="twitter:title" content="使用 rclone 将文件同步至 Google Dirve" />
+  <meta name="description" content="首先是下载文件 yum install unzip wget -y wget -O https://downloads.rclone.org/rclone-current-linux-amd64.zip unzip rclone-current-linux-amd64.zip cd rclone-*-linux-amd64 然后复制文件到相关路径 cp rclone /usr/bin/ chown root:root /usr/bin/rclone chmod 755 /usr/bin/rclone 新建一个配置 rclone config n) New remote d) Delete remote q) Quit config e/n/d/q&gt; n name&gt; google(你的配置名称,此处随意填写但之后需要用到) Type of storage to configure. Choose a number from below, or type in your own value 1 / Amazon Drive \ &#34;amazon cloud drive&#34; 2 / Amazon S3 (also Dreamhost, Ceph, Minio) \ &#34;s3&#34; 3 / Backblaze B2 \ &#34;b2&#34; 4 / Dropbox \ &#34;dropbox&#34; 5 / Encrypt/Decrypt a remote \ &#34;crypt&#34; 6 / Google Cloud Storage (this is not Google Drive) \ &#34;google cloud storage&#34; 7 / Google Drive \ &#34;drive&#34; 8 / Hubic \ &#34;hubic&#34; 9 / Local Disk \ &#34;local&#34; 10 / Microsoft OneDrive \ &#34;onedrive&#34; 11 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH) \ &#34;swift&#34; 12 / SSH/SFTP Connection \ &#34;sftp&#34; 13 / Yandex Disk \ &#34;yandex&#34; Storage&gt; 7(根据网盘类型选择Google Dirve) Google Application Client Id - leave blank normally.">
+  <meta property="og:description" content="首先是下载文件 yum install unzip wget -y wget -O https://downloads.rclone.org/rclone-current-linux-amd64.zip unzip rclone-current-linux-amd64.zip cd rclone-*-linux-amd64 然后复制文件到相关路径 cp rclone /usr/bin/ chown root:root /usr/bin/rclone chmod 755 /usr/bin/rclone 新建一个配置 rclone config n) New remote d) Delete remote q) Quit config e/n/d/q&gt; n name&gt; google(你的配置名称,此处随意填写但之后需要用到) Type of storage to configure. Choose a number from below, or type in your own value 1 / Amazon Drive \ &#34;amazon cloud drive&#34; 2 / Amazon S3 (also Dreamhost, Ceph, Minio) \ &#34;s3&#34; 3 / Backblaze B2 \ &#34;b2&#34; 4 / Dropbox \ &#34;dropbox&#34; 5 / Encrypt/Decrypt a remote \ &#34;crypt&#34; 6 / Google Cloud Storage (this is not Google Drive) \ &#34;google cloud storage&#34; 7 / Google Drive \ &#34;drive&#34; 8 / Hubic \ &#34;hubic&#34; 9 / Local Disk \ &#34;local&#34; 10 / Microsoft OneDrive \ &#34;onedrive&#34; 11 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH) \ &#34;swift&#34; 12 / SSH/SFTP Connection \ &#34;sftp&#34; 13 / Yandex Disk \ &#34;yandex&#34; Storage&gt; 7(根据网盘类型选择Google Dirve) Google Application Client Id - leave blank normally.">
+  <meta name="twitter:description" content="首先是下载文件 yum install unzip wget -y wget -O https://downloads.rclone.org/rclone-current-linux-amd64.zip unzip rclone-current-linux-amd64.zip cd rclone-*-linux-amd64 然后复制文件到相关路径 cp rclone /usr/bin/ chown …">
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/post/2017-05-10-rclone/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/post/2017-05-10-rclone/" />
+  <link rel="alternate" href="http://wxy1688.github.io/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>使用 rclone 将文件同步至 Google Dirve</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 10, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (395 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h2 id="首先是下载文件">首先是下载文件</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">yum install unzip wget -y
+wget -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
+unzip rclone-current-linux-amd64.zip
+cd rclone-*-linux-amd64</code></pre></div>
+<h2 id="然后复制文件到相关路径">然后复制文件到相关路径</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">cp rclone /usr/bin/
+chown root:root /usr/bin/rclone
+chmod 755 /usr/bin/rclone</code></pre></div>
+<h2 id="新建一个配置">新建一个配置</h2>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="nx">rclone</span> <span class="nx">config</span>
+    <span class="nx">n</span><span class="p">)</span> <span class="nx">New</span> <span class="nx">remote</span>
+    <span class="nx">d</span><span class="p">)</span> <span class="nx">Delete</span> <span class="nx">remote</span>
+    <span class="nx">q</span><span class="p">)</span> <span class="nx">Quit</span> <span class="nx">config</span>
+    <span class="nx">e</span><span class="err">/n/d/q&gt; n</span>
+    <span class="nx">name</span><span class="o">&gt;</span> <span class="nx">google</span><span class="p">(</span><span class="nx">你的配置名称</span><span class="p">,</span><span class="nx">此处随意填写但之后需要用到</span><span class="p">)</span>
+    <span class="nx">Type</span> <span class="k">of</span> <span class="nx">storage</span> <span class="nx">to</span> <span class="nx">configure</span><span class="p">.</span>
+    <span class="nx">Choose</span> <span class="nx">a</span> <span class="nx">number</span> <span class="nx">from</span> <span class="nx">below</span><span class="p">,</span> <span class="nx">or</span> <span class="nx">type</span> <span class="k">in</span> <span class="nx">your</span> <span class="nx">own</span> <span class="nx">value</span>
+     <span class="mi">1</span> <span class="err">/ Amazon Drive</span>
+       <span class="err">\</span> <span class="s2">&#34;amazon cloud drive&#34;</span>
+     <span class="mi">2</span> <span class="err">/ Amazon S3 (also Dreamhost, Ceph, Minio)</span>
+       <span class="err">\</span> <span class="s2">&#34;s3&#34;</span>
+     <span class="mi">3</span> <span class="err">/ Backblaze B2</span>
+       <span class="err">\</span> <span class="s2">&#34;b2&#34;</span>
+     <span class="mi">4</span> <span class="err">/ Dropbox</span>
+       <span class="err">\</span> <span class="s2">&#34;dropbox&#34;</span>
+     <span class="mi">5</span> <span class="err">/ Encrypt/Decrypt a remote</span>
+       <span class="err">\</span> <span class="s2">&#34;crypt&#34;</span>
+     <span class="mi">6</span> <span class="err">/ Google Cloud Storage (this is not Google Drive)</span>
+       <span class="err">\</span> <span class="s2">&#34;google cloud storage&#34;</span>
+     <span class="mi">7</span> <span class="err">/ Google Drive</span>
+       <span class="err">\</span> <span class="s2">&#34;drive&#34;</span>
+     <span class="mi">8</span> <span class="err">/ Hubic</span>
+       <span class="err">\</span> <span class="s2">&#34;hubic&#34;</span>
+     <span class="mi">9</span> <span class="err">/ Local Disk</span>
+       <span class="err">\</span> <span class="s2">&#34;local&#34;</span>
+    <span class="mi">10</span> <span class="err">/ Microsoft OneDrive</span>
+       <span class="err">\</span> <span class="s2">&#34;onedrive&#34;</span>
+    <span class="mi">11</span> <span class="err">/ Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)</span>
+       <span class="err">\</span> <span class="s2">&#34;swift&#34;</span>
+    <span class="mi">12</span> <span class="err">/ SSH/SFTP Connection</span>
+       <span class="err">\</span> <span class="s2">&#34;sftp&#34;</span>
+    <span class="mi">13</span> <span class="err">/ Yandex Disk</span>
+       <span class="err">\</span> <span class="s2">&#34;yandex&#34;</span>
+    <span class="nx">Storage</span><span class="o">&gt;</span> <span class="mi">7</span><span class="p">(</span><span class="nx">根据网盘类型选择Google</span> <span class="nx">Dirve</span><span class="p">)</span>
+    <span class="nx">Google</span> <span class="nx">Application</span> <span class="nx">Client</span> <span class="nx">Id</span> <span class="o">-</span> <span class="nx">leave</span> <span class="nx">blank</span> <span class="nx">normally</span><span class="p">.</span>
+    <span class="nx">client_id</span><span class="o">&gt;</span><span class="nx">此处留空</span>
+    <span class="nx">Google</span> <span class="nx">Application</span> <span class="nx">Client</span> <span class="nx">Secret</span> <span class="o">-</span> <span class="nx">leave</span> <span class="nx">blank</span> <span class="nx">normally</span><span class="p">.</span>
+    <span class="nx">client_secret</span><span class="o">&gt;</span><span class="nx">此处留空</span>
+    <span class="nx">Remote</span> <span class="nx">config</span>
+    <span class="nx">Use</span> <span class="nx">auto</span> <span class="nx">config</span><span class="o">?</span>
+     <span class="o">*</span> <span class="nx">Say</span> <span class="nx">Y</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">sure</span>
+     <span class="o">*</span> <span class="nx">Say</span> <span class="nx">N</span> <span class="k">if</span> <span class="nx">you</span> <span class="nx">are</span> <span class="nx">working</span> <span class="nx">on</span> <span class="nx">a</span> <span class="nx">remote</span> <span class="nx">or</span> <span class="nx">headless</span> <span class="nx">machine</span> <span class="nx">or</span> <span class="nx">Y</span> <span class="nx">didn</span><span class="s1">&#39;t work
+</span><span class="s1">    y) Yes
+</span><span class="s1">    n) No
+</span><span class="s1">    y/n&gt; n(此处一定要选择n)
+</span><span class="s1">    If your browser doesn&#39;</span><span class="nx">t</span> <span class="nx">open</span> <span class="nx">automatically</span> <span class="nx">go</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">following</span>
+    <span class="nx">link</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//accounts.google.com/o/oauth2/auth?xxxxxxxxxxxxxxxxx
+</span><span class="c1"></span><span class="nx">Log</span> <span class="k">in</span> <span class="nx">and</span> <span class="nx">authorize</span> <span class="nx">rclone</span> <span class="k">for</span> <span class="nx">access</span>
+<span class="nx">Enter</span> <span class="nx">verification</span> <span class="nx">code</span><span class="o">&gt;</span><span class="nx">xxxxxxxxxxx</span><span class="p">(</span><span class="nx">将上面给出的url复制到你的浏览器打开</span><span class="p">,</span><span class="nx">登录你的Google</span> <span class="nx">Dirve所在的google账户</span><span class="p">,</span><span class="nx">然后将得到的一串字符串粘贴到此处</span><span class="p">)</span>
+    <span class="o">--------------------</span>
+    <span class="p">[</span><span class="nx">google</span><span class="p">]</span>
+    <span class="nx">client_id</span> <span class="o">=</span>
+    <span class="nx">client_secret</span> <span class="o">=</span>
+    <span class="nx">token</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;AccessToken&#34;</span><span class="o">:</span><span class="s2">&#34;xxxx.x.xxxxx_xxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span><span class="p">,</span><span class="s2">&#34;RefreshToken&#34;</span><span class="o">:</span><span class="s2">&#34;1/xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span><span class="p">,</span><span class="s2">&#34;Expiry&#34;</span><span class="o">:</span><span class="s2">&#34;2014-03-16T13:57:58.955387075Z&#34;</span><span class="p">,</span><span class="s2">&#34;Extra&#34;</span><span class="o">:</span><span class="kc">null</span><span class="p">}</span>
+    <span class="o">--------------------</span>
+    <span class="nx">y</span><span class="p">)</span> <span class="nx">Yes</span> <span class="k">this</span> <span class="nx">is</span> <span class="nx">OK</span>
+    <span class="nx">e</span><span class="p">)</span> <span class="nx">Edit</span> <span class="k">this</span> <span class="nx">remote</span>
+    <span class="nx">d</span><span class="p">)</span> <span class="nx">Delete</span> <span class="k">this</span> <span class="nx">remote</span>
+    <span class="nx">y</span><span class="err">/e/d&gt; y(确定信息并保存)</span>
+</code></pre></div>
+
+<h2 id="列出文件和目录">列出文件和目录</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">rclone lsd google: #列出配置名为shira的网盘的目录(不会显示文件)
+rclone ls google:anime #列出配置名为shira的网盘里anime目录下的文件(会显示包括子目录内的所有文件不显示目录)</code></pre></div>
+<h2 id="文件和目录的复制剪切删除操作">文件和目录的复制剪切删除操作</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">rclone copy /root/anime google:anime #复制本地/root/anime到配置名为google的网盘的anime目录,反过来也可以
+rclone move /root/anime google:anime #剪切操作
+rclone delete google:anime #删除配置名为google的网盘的anime目录
+rclone mkdir google:anime #创建配置名为google的网盘的anime目录</code></pre></div>
+<h2 id="同步文件">同步文件</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">rclone sync /root/anime google:anime#同步本地/root/anime到配置名为google的网盘的anime目录,反过来也可以 
+rclone sync google2:donga google:anime #同步本地配置名为google2的网盘的google目录到配置名为shira的网盘的anime目录,反过来也可以</code></pre></div>
+<h2 id="rclone-常用命令">rclone 常用命令</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">rclone config – 以控制会话的形式添加rclone的配置，配置保存在.rclone.conf文件中。 
+rclone copy – 将文件从源复制到目的地址，跳过已复制完成的。 
+rclone mount-挂载
+rclone sync – 将源数据同步到目的地址，只更新目的地址的数据。 
+rclone move – 将源数据移动到目的地址。
+rclone delete – 删除指定路径下的文件内容。 
+rclone purge – 清空指定路径下所有文件数据。 
+rclone mkdir – 创建一个新目录。 
+rclone rmdir – 删除空目录。 
+rclone check – 检查源和目的地址数据是否匹配。
+rclone ls – 列出指定路径下所有的文件以及文件大小和路径。
+rclone lsd – 列出指定路径下所有的目录/容器/桶。
+rclone lsl – 列出指定路径下所有文件以及修改时间、文件大小和路径。
+rclone md5sum – 为指定路径下的所有文件产生一个md5sum文件。 
+rclone sha1sum – 为指定路径下的所有文件产生一个sha1sum文件。 
+rclone size – 获取指定路径下，文件内容的总大小。
+rclone version – 查看当前版本。 
+rclone cleanup – 清空remote。 
+rclone dedupe – 交互式查找重复文件，进行删除/重命名操作。</code></pre></div>
+<h2 id="rclone挂载网盘">Rclone挂载网盘</h2>
+
+<p>命令示例：rclone mount google:movie /root/wzfougg &ndash;allow-non-empty，此命令会把本地目录/root/wzfougg ，挂载到
+网盘（google配置文件名）目录movie 下。如果你的目标目录中有文件，可以使用参数：&ndash;allow-non-empty，但是注意它会清空原目录中的文件。</p>
+
+<h2 id="利用screen让rclone在后台运行">利用Screen让Rclone在后台运行</h2>
+
+<p>使用rclone mount 命令后，如果不守护进程的话，会话结束后rclone mount 进程就会终止。我们可以用Screen
+来让Rclone保持在后台运行。在执行Rclone挂载命令前，选择执行：执行：screen -S lnmp 创建screen会话(screen -S取别名)，挂载完成后再用
+快捷键CTRL-a d
+来暂时断开当前会话。
+最后用screen -r <screen_pid>重新连接上。</p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://wxy1688.github.io/post/2017-04-10-baota-linux/" data-toggle="tooltip" data-placement="top" title="宝塔linux 控制面板">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://wxy1688.github.io/post/2017-04-10-go-sync.map/" data-toggle="tooltip" data-placement="top" title="golang sync.map">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

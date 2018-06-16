@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/categories/</link>
+    <description>Recent content in Categories on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    
+	<atom:link href="http://wxy1688.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

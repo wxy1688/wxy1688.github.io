@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/redis/</link>
+    <description>Recent content in Redis on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Mon, 21 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redis Watch</title>
+      <link>http://wxy1688.github.io/post/2018-05-27-redis-watch/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-27-redis-watch/</guid>
+      <description>&amp;lt;?php header(&amp;#34;content-type:text/html;charset=utf-8&amp;#34;); $redis = new redis(); $result = $redis-&amp;gt;connect(&amp;#39;10.10.10.119&amp;#39;, 6379); $redis-&amp;gt;watch(&amp;#34;mywatchkey&amp;#34;); $mywatchkey = $redis-&amp;gt;get(&amp;#34;mywatchkey&amp;#34;); $rob_total = 100; //抢购数量 if($mywatchkey&amp;lt;$rob_total){ $redis-&amp;gt;multi(); //设置延迟，方便测试效果。  sleep(5); //插入抢购数据  $redis-&amp;gt;hSet(&amp;#34;mywatchlist&amp;#34;,&amp;#34;user_id_&amp;#34;.mt_rand(1, 9999),time()); $redis-&amp;gt;set(&amp;#34;mywatchkey&amp;#34;,$mywatchkey+1); $rob_result = $redis-&amp;gt;exec(); if($rob_result){ $mywatchlist = $redis-&amp;gt;hGetAll(&amp;#34;mywatchlist&amp;#34;); echo &amp;#34;抢购成功！&amp;lt;br/&amp;gt;&amp;#34;; echo &amp;#34;剩余数量：&amp;#34;.($rob_total-$mywatchkey-1).&amp;#34;&amp;lt;br/&amp;gt;&amp;#34;; echo &amp;#34;用户列表：&amp;lt;pre&amp;gt;&amp;#34;; var_dump($mywatchlist); }else{ echo &amp;#34;手气不好，再抢购！&amp;#34;;exit; } } ?&amp;gt;  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/</link>
+    <description>Recent content on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Mon, 21 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GORM</title>
+      <link>http://wxy1688.github.io/post/2018-05-21-gorm/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-21-gorm/</guid>
+      <description>%like%查询 result :=[]*dao.Product{} dao.DB().Table(&amp;#34;product&amp;#34;).Where(&amp;#34;name like ?&amp;#34;,&amp;#34;%提高%&amp;#34;).Find(&amp;amp;result) fmt.Println(result)  </description>
+    </item>
+    
+    <item>
+      <title>MySQL 乐观锁与悲观锁</title>
+      <link>http://wxy1688.github.io/post/2018-05-25-mysql/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-25-mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis Watch</title>
+      <link>http://wxy1688.github.io/post/2018-05-27-redis-watch/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-27-redis-watch/</guid>
+      <description>&amp;lt;?php header(&amp;#34;content-type:text/html;charset=utf-8&amp;#34;); $redis = new redis(); $result = $redis-&amp;gt;connect(&amp;#39;10.10.10.119&amp;#39;, 6379); $redis-&amp;gt;watch(&amp;#34;mywatchkey&amp;#34;); $mywatchkey = $redis-&amp;gt;get(&amp;#34;mywatchkey&amp;#34;); $rob_total = 100; //抢购数量 if($mywatchkey&amp;lt;$rob_total){ $redis-&amp;gt;multi(); //设置延迟，方便测试效果。  sleep(5); //插入抢购数据  $redis-&amp;gt;hSet(&amp;#34;mywatchlist&amp;#34;,&amp;#34;user_id_&amp;#34;.mt_rand(1, 9999),time()); $redis-&amp;gt;set(&amp;#34;mywatchkey&amp;#34;,$mywatchkey+1); $rob_result = $redis-&amp;gt;exec(); if($rob_result){ $mywatchlist = $redis-&amp;gt;hGetAll(&amp;#34;mywatchlist&amp;#34;); echo &amp;#34;抢购成功！&amp;lt;br/&amp;gt;&amp;#34;; echo &amp;#34;剩余数量：&amp;#34;.($rob_total-$mywatchkey-1).&amp;#34;&amp;lt;br/&amp;gt;&amp;#34;; echo &amp;#34;用户列表：&amp;lt;pre&amp;gt;&amp;#34;; var_dump($mywatchlist); }else{ echo &amp;#34;手气不好，再抢购！&amp;#34;;exit; } } ?&amp;gt;  </description>
+    </item>
+    
+    <item>
+      <title>Express</title>
+      <link>http://wxy1688.github.io/post/2018-05-02-express/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-02-express/</guid>
+      <description>const express = require(&amp;#39;express&amp;#39;); const path = require(&amp;#39;path&amp;#39;); const bodyParser = require(&amp;#39;body-parser&amp;#39;); const crypto = require(&amp;#39;crypto&amp;#39;); // 生成一个 express 实例 const app = express(); // 设置视图文件存放目录 app.set(&amp;#39;views&amp;#39;, path.join(__dirname, &amp;#39;views&amp;#39;)); app.set(&amp;#39;view engine&amp;#39;, &amp;#39;ejs&amp;#39;); // 设置静态文件存放目录 app.use(express.static(path.join(__dirname, &amp;#39;public&amp;#39;))); // 解析 urlencoded 请求体必备 app.use(bodyParser.json()); app.use(bodyParser.urlencoded({ extended: true })); // 响应首页get请求 app.get(&amp;#39;/&amp;#39;, function(req, res) { res.render(&amp;#39;index&amp;#39;, { title: &amp;#39;首页&amp;#39; }); }); app.get(&amp;#39;/login&amp;#39;, function(req, res) { res.render(&amp;#39;login&amp;#39;, { title: &amp;#39;登录&amp;#39;, user: req.session.user, page: &amp;#39;login&amp;#39; }); }); app.</description>
+    </item>
+    
+    <item>
+      <title>Coupon 商品优惠券 API</title>
+      <link>http://wxy1688.github.io/post/2018-04-10-coupon/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-04-10-coupon/</guid>
+      <description>##coupon_temp 优惠券模板
+CREATE TABLE `coupon_temp` ( `id` int(11) NOT NULL AUTO_INCREMENT, `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, `utime` timestamp NOT NULL DEFAULT &amp;#39;0000-00-00 00:00:00&amp;#39; ON UPDATE CURRENT_TIMESTAMP, `start_time` timestamp NOT NULL DEFAULT &amp;#39;0000-00-00 00:00:00&amp;#39;, `end_time` timestamp NOT NULL DEFAULT &amp;#39;0000-00-00 00:00:00&amp;#39;, `type` tinyint(1) NOT NULL, `metadata` varchar(11) DEFAULT NULL, `amount_available` bigint(16) DEFAULT NULL, `amount_off` bigint(16) DEFAULT NULL, `percent_off` bigint(16) DEFAULT NULL, `max_circulation` int(8) DEFAULT NULL, `max_user_circulation` int(8) DEFAULT NULL, `duration` bigint(16) DEFAULT NULL, `name` varchar(11) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=100003 DEFAULT CHARSET=utf8mb4;</description>
+    </item>
+    
+    <item>
+      <title>Gin API 设计</title>
+      <link>http://wxy1688.github.io/post/2018-04-01-gin/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-04-01-gin/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;reflect&amp;#34; &amp;#34;github.com/gin-gonic/gin&amp;#34; xutil &amp;#34;hdutil&amp;#34; &amp;#34;logic/pkg/dao&amp;#34; &amp;#34;logic/pkg/service&amp;#34; ) func main() { r := gin.Default() rt := r.Group(`/homeworks`) rt.POST( ``, xutil.GRequestBodyObject(reflect.TypeOf(dao.Homework{}), &amp;#34;json&amp;#34;), CreateHomework, ) rt.PUT( `/:homeworkId`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), xutil.GRequestBodyMap, UpdateHomework, ) r.GET( `/homeworksByFilter`, xutil.GQueryRequireString(&amp;#34;filter&amp;#34;), xutil.GQueryOptionalIntDefault(&amp;#34;current&amp;#34;, 1), xutil.GQueryOptionalIntDefault(&amp;#34;pageSize&amp;#34;, 10), GetHomeworkByFilter, ) rt.POST( `/notify`, xutil.GRequestBodyObject(reflect.TypeOf([]int64{}), &amp;#34;json&amp;#34;), BatchSendRemark, ) rt.GET( `/:homeworkId/thumb`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), xutil.GQueryRequireString(&amp;#34;sessionId&amp;#34;), ThumbUp, ) rt.GET( `/:homeworkId/sharetimeline`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), ShareTimeline, ) rt.GET( `/:homeworkId/sharefriend`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), ShareFriend, ) r.Run(&amp;#34;:5000&amp;#34;) } func CreateHomework(c *gin.Context) { u := c.</description>
+    </item>
+    
+    <item>
+      <title>商品订单系统API</title>
+      <link>http://wxy1688.github.io/post/2018-03-27-order-api/</link>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-03-27-order-api/</guid>
+      <description>订单 Order{ Amount:	integer ($int64) 商品总金额 = 商品单价 * 购买的商品数量 （填购买几件，1，2，3等等） CancelUrl:	string 取消订单后的回调url（不用填） Channel:	string 订单渠道 alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr） Ctime:	string ($string) 订单创建时间 默认自动生成当前时间（不用填） Id:	integer ($int64) 订单编号主键自增 （不用填） PingId:	integer ($int64) ping++ 自动生成的订单编号 （不用填） PingInfo:	string ping++ 自动生成的 支付凭证信息 （不用填） Price:	integer ($int64) 商品单价 （必填） ProductId:	integer ($int64) 商品id (必填) Status:	string 订单状态 待支付:&amp;#39;CREATED&amp;#39;,已支付:&amp;#39;PAID&amp;#39;,支付失败:&amp;#39;FAIL&amp;#39;,存在退款:&amp;#39;REFUNDED&amp;#39;,订单已取消&amp;#39;CANCELED&amp;#39; （不用填，默认是待支付，服务端根据ping++的通知 更改状态） SuccessUrl:	string 支付成功的回调url(不用填) UserId:	integer ($int64) 用户id(必填) Utime:	string ($string) 订单更改时间(默认自动生成当前时间，不用填) } 商品 Product{ Avatar:	string 商品图片(必填，例如http://img.</description>
+    </item>
+    
+    <item>
+      <title>golang 面试填坑</title>
+      <link>http://wxy1688.github.io/post/2018-03-16-job-interview-go/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-03-16-job-interview-go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python 面试填坑</title>
+      <link>http://wxy1688.github.io/post/2018-03-16-job-interview-python/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-03-16-job-interview-python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Big Image Sample</title>
+      <link>http://wxy1688.github.io/post/2018-03-08-new-media/</link>
+      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-03-08-new-media/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang nsq</title>
+      <link>http://wxy1688.github.io/post/2017-11-27-go-nsq/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-11-27-go-nsq/</guid>
+      <description>安装 brew install nsq nsqd ： 负责接收消息，存储队列和将消息发送给客户端，nsqd 可以多机器部署，当你使用客户端向一个topic发送消息时，可以配置多个nsqd地址，消息会随机的 分配到各个nsqd上，nsqd优先把消息存储到内存channel中，当内存channel满了之后，则把消息写到磁盘文件中。他监听了两个tcp端口，一个用来服务客 户端，一个用来提供http的接口 ，nsqd 启动时置顶下nsqlookupd地址即可： 在一个 shell 中，运行 nsqlookupd:
+nsqlookupd： 主要负责服务发现 负责nsqd的心跳、状态监测，给客户端、nsqadmin提供nsqd地址与状态
+➜nsqlookupd [nsqlookupd] 2017/11/27 22:48:11.186029 nsqlookupd v1.0.0-compat (built w/go1.8) [nsqlookupd] 2017/11/27 22:48:11.186266 TCP: listening on [::]:4160 [nsqlookupd] 2017/11/27 22:48:11.186314 HTTP: listening on [::]:4161 再开启一个 shell，运行 nsqd:
+➜ bin ./nsqd --lookupd-tcp-address=127.0.0.1:4160 [nsqd] 2017/11/27 22:49:11.433686 nsqd v1.0.0-compat (built w/go1.8) [nsqd] 2017/11/27 22:49:11.433755 ID: 280 [nsqd] 2017/11/27 22:49:11.433797 NSQ: persisting topic/channel metadata to nsqd.dat [nsqd] 2017/11/27 22:49:11.</description>
+    </item>
+    
+    <item>
+      <title>golang etcd watch</title>
+      <link>http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/</guid>
+      <description>package etcd import ( &amp;#34;context&amp;#34; &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;LearnEtcd/tailf&amp;#34; &amp;#34;strings&amp;#34; &amp;#34;time&amp;#34; &amp;#34;github.com/astaxie/beego/logs&amp;#34; etcd_client &amp;#34;github.com/coreos/etcd/clientv3&amp;#34; &amp;#34;github.com/coreos/etcd/mvcc/mvccpb&amp;#34; &amp;#34;LearnEtcd/Ip&amp;#34; ) type EtcdClient struct { Client *etcd_client.Client Keys []string } var ( etcdClient *EtcdClient ) func InitEtcd(addr string, key string) (collectConf []tailf.CollectConf, err error) { cli, err := etcd_client.New(etcd_client.Config{ Endpoints: []string{&amp;#34;localhost:2379&amp;#34;, &amp;#34;localhost:22379&amp;#34;, &amp;#34;localhost:32379&amp;#34;}, DialTimeout: 5 * time.Second, }) if err != nil { logs.Error(&amp;#34;connect etcd failed, err:&amp;#34;, err) return } etcdClient = &amp;amp;EtcdClient{ Client: cli, } if strings.</description>
+    </item>
+    
+    <item>
+      <title>golang kafka</title>
+      <link>http://wxy1688.github.io/post/2017-08-10-go-kafka/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-08-10-go-kafka/</guid>
+      <description>producer package kafka import ( &amp;#34;github.com/Shopify/sarama&amp;#34; &amp;#34;github.com/astaxie/beego/logs&amp;#34; ) var ( client sarama.SyncProducer ) func InitKafka(addr string) (err error) { config := sarama.NewConfig() config.Producer.RequiredAcks = sarama.WaitForAll config.Producer.Partitioner = sarama.NewRandomPartitioner config.Producer.Return.Successes = true client, err = sarama.NewSyncProducer([]string{addr}, config) if err != nil { logs.Error(&amp;#34;init kafka producer failed, err:&amp;#34;, err) return } logs.Debug(&amp;#34;init kafka succ&amp;#34;) return } func SendToKafka(data, topic string) (err error) { msg := &amp;amp;sarama.ProducerMessage{} msg.Topic = topic msg.Value = sarama.</description>
+    </item>
+    
+    <item>
+      <title>AriaNg&#43;Caddy FileManager打造自己的离线下载网盘</title>
+      <link>http://wxy1688.github.io/post/2017-06-13-ariang-filemanerger/</link>
+      <pubDate>Thu, 15 Jun 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-06-13-ariang-filemanerger/</guid>
+      <description>简单介绍 Aria2 是一个命令行下运行、多协议、多来源下载工具，支持磁力链接、BT 种子、HTTP、FTP 等下载协议，当然因为它是命令行下载工具，所以我们想下载一个东西还需要去敲命令自然是不方便，于是就有一些人根据 Aria2 的 API 开发了一些在线管理面板，可以直接在网页上面添加管理任务。
+本教程介绍的是 AriaNg，Github 项目：https://github.com/mayswind/AriaNg
+Aria2 是一个后端 (服务端) 的程序，而 AriaNg 是一个前端 (HTML+JS 静态) 控制面板，不需要和 Aria2(后端 / 服务端)放在一个服务器或者设备中，你甚至可以只在服务器上面搭建 Aria2 后端，然后访问别人建好的 AriaNg 前端面板，也可以远程操作 Aria2 后端！
+centos6 安装Aria2 wget http://repository.it4i.cz/mirrors/repoforge/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm rpm -ivh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm yum -y install aria2 # 测试 aria2c -v  配置后端 # 创建Aria2配置文件夹 mkdir /root/.aria2 &amp;amp;&amp;amp; cd /root/.aria2 # 下载Aria2配置文件、DHT文件(BT有没有速度就靠这个) wget --no-check-certificate https://softs.fun/Other/Aria2/aria2.conf wget --no-check-certificate https://softs.fun/Other/Aria2/dht.dat # 创建一个空的 Aria2 下载任务保存文件 echo &amp;#39;&amp;#39; &amp;gt; /root/.</description>
+    </item>
+    
+    <item>
+      <title>caddy nginx 对比</title>
+      <link>http://wxy1688.github.io/post/2017-06-10-caddy-nginx/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-06-10-caddy-nginx/</guid>
+      <description>Caddy 是什么？ Caddy 是一个多功能的 HTTP web服务器，并且使用Let&amp;rsquo;s Encrypt提供的免费证书，自动让网站升级到HTTPS
+Every Site on HTTPS Caddy is a general-purpose HTTP/2 web server that serves HTTPS by default. Fork Caddy On Github
+为什么要使用 Caddy 安全 Caddy 是一个默认使用https协议的web服务器 无依赖 Caddy 使用 Go 语言编写，编译好的二进制文件能够运行在任何支持Go语言的平台，不需要自己安装任何库。 使用简单 Caddy 的配置简单，不管你是新的web开发者，还是专业人士，都能够快速上手
+Caddy 一键安装脚本
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/caddy_install.sh &amp;amp;&amp;amp; chmod +x caddy_install.sh &amp;amp;&amp;amp; bash caddy_install.sh  这里我们看一下官网的例子说明 Caddy Documentation  :2015 # Host: (any), Port: 2015 localhost # Host: localhost; Port: 2015 localhost:8080 # Host: localhost; Port: 8080 example.</description>
+    </item>
+    
+    <item>
+      <title>golang sync.map</title>
+      <link>http://wxy1688.github.io/post/2017-04-10-go-sync.map/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-04-10-go-sync.map/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) func main() { list := map[string]interface{}{ &amp;#34;name&amp;#34;: &amp;#34;田馥甄&amp;#34;, &amp;#34;birthday&amp;#34;: &amp;#34;1983年3月30日&amp;#34;, &amp;#34;age&amp;#34;: 34, &amp;#34;hobby&amp;#34;: []string{&amp;#34;听音乐&amp;#34;, &amp;#34;看电影&amp;#34;, &amp;#34;电视&amp;#34;, &amp;#34;和姐妹一起讨论私人话题&amp;#34;}, &amp;#34;constellation&amp;#34;: &amp;#34;白羊座&amp;#34;, } var m sync.Map for k, v := range list { m.Store(k, v) } var wg sync.WaitGroup wg.Add(2) go func() { m.Store(&amp;#34;age&amp;#34;, 22) m.LoadOrStore(&amp;#34;tag&amp;#34;, 8888) wg.Done() }() go func() { m.Delete(&amp;#34;constellation&amp;#34;) m.Store(&amp;#34;age&amp;#34;, 18) wg.Done() }() wg.Wait() m.Range(func(key, value interface{}) bool { fmt.Println(key, value) return true }) }  </description>
+    </item>
+    
+    <item>
+      <title>使用 rclone 将文件同步至 Google Dirve</title>
+      <link>http://wxy1688.github.io/post/2017-05-10-rclone/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-05-10-rclone/</guid>
+      <description>首先是下载文件 yum install unzip wget -y wget -O https://downloads.rclone.org/rclone-current-linux-amd64.zip unzip rclone-current-linux-amd64.zip cd rclone-*-linux-amd64 然后复制文件到相关路径 cp rclone /usr/bin/ chown root:root /usr/bin/rclone chmod 755 /usr/bin/rclone 新建一个配置 rclone config n) New remote d) Delete remote q) Quit config e/n/d/q&amp;gt; n name&amp;gt; google(你的配置名称,此处随意填写但之后需要用到) Type of storage to configure. Choose a number from below, or type in your own value 1 / Amazon Drive \ &amp;#34;amazon cloud drive&amp;#34; 2 / Amazon S3 (also Dreamhost, Ceph, Minio) \ &amp;#34;s3&amp;#34; 3 / Backblaze B2 \ &amp;#34;b2&amp;#34; 4 / Dropbox \ &amp;#34;dropbox&amp;#34; 5 / Encrypt/Decrypt a remote \ &amp;#34;crypt&amp;#34; 6 / Google Cloud Storage (this is not Google Drive) \ &amp;#34;google cloud storage&amp;#34; 7 / Google Drive \ &amp;#34;drive&amp;#34; 8 / Hubic \ &amp;#34;hubic&amp;#34; 9 / Local Disk \ &amp;#34;local&amp;#34; 10 / Microsoft OneDrive \ &amp;#34;onedrive&amp;#34; 11 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH) \ &amp;#34;swift&amp;#34; 12 / SSH/SFTP Connection \ &amp;#34;sftp&amp;#34; 13 / Yandex Disk \ &amp;#34;yandex&amp;#34; Storage&amp;gt; 7(根据网盘类型选择Google Dirve) Google Application Client Id - leave blank normally.</description>
+    </item>
+    
+    <item>
+      <title>宝塔linux 控制面板</title>
+      <link>http://wxy1688.github.io/post/2017-04-10-baota-linux/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-04-10-baota-linux/</guid>
+      <description>Centos安装命令：
+yum install -y wget &amp;amp;&amp;amp; wget -O install.sh http://download.bt.cn/install/install.sh &amp;amp;&amp;amp; sh install.sh Ubuntu/Deepin安装命令：
+wget -O install.sh http://download.bt.cn/install/install-ubuntu.sh &amp;amp;&amp;amp; sudo bash install.sh 重启
+service bt restart</description>
+    </item>
+    
+    <item>
+      <title>spark dataframe</title>
+      <link>http://wxy1688.github.io/post/2017-03-24-spark-dataframe/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-24-spark-dataframe/</guid>
+      <description>from pyspark.sql import SparkSession from pyspark.sql import Row spark = SparkSession.builder.appName(&amp;#39;test&amp;#39;).getOrCreate() sc = spark.sparkContext spark.conf.set(&amp;#34;spark.sql.shuffle.partitions&amp;#34;, 6) l = [(&amp;#39;Ankit&amp;#39;,25),(&amp;#39;Jalfaizy&amp;#39;,22),(&amp;#39;saurabh&amp;#39;,20),(&amp;#39;Bala&amp;#39;,26)] rdd = sc.parallelize(l) people = rdd.map(lambda x: Row(name=x[0], age=int(x[1]))) schemaPeople = spark.createDataFrame(people) df = spark.read.format(&amp;#34;csv&amp;#34;). \ option(&amp;#34;header&amp;#34;, &amp;#34;true&amp;#34;) \ .load(&amp;#34;iris.csv&amp;#34;) df.printSchema() df.show(10) df.count() df.columns df.withColumn(&amp;#39;newWidth&amp;#39;,df.SepalWidth * 2).show() df.drop(&amp;#39;Name&amp;#39;).show() df.describe().show() df.describe(&amp;#39;Name&amp;#39;).show() #分类变量 df.select(&amp;#39;Name&amp;#39;,&amp;#39;SepalLength&amp;#39;).show() df.select(&amp;#39;Name&amp;#39;).distinct().count() ### 分组统计 groupby(colname).agg({&amp;#39;col&amp;#39;:&amp;#39;fun&amp;#39;,&amp;#39;col2&amp;#39;:&amp;#39;fun2&amp;#39;}) df.groupby(&amp;#39;Name&amp;#39;).agg({&amp;#39;SepalWidth&amp;#39;:&amp;#39;mean&amp;#39;,&amp;#39;SepalLength&amp;#39;:&amp;#39;max&amp;#39;}).show() ### 自定义的汇总方法 import pyspark.sql.functions as fn df.agg(fn.count(&amp;#39;SepalWidth&amp;#39;).alias(&amp;#39;width_count&amp;#39;), fn.countDistinct(&amp;#39;id&amp;#39;).alias(&amp;#39;distinct_id_count&amp;#39;)).collect() ### 数据集拆成两部分 trainDF, testDF = df.randomSplit([0.6, 0.</description>
+    </item>
+    
+    <item>
+      <title>spark2.x</title>
+      <link>http://wxy1688.github.io/post/2017-03-23-spark-01/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-23-spark-01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Photoswipe Gallery Sample</title>
+      <link>http://wxy1688.github.io/post/2017-03-20-photoswipe-gallery-sample/</link>
+      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-20-photoswipe-gallery-sample/</guid>
+      <description>&lt;p&gt;Beautiful Hugo adds a few custom shortcodes created by &lt;a href=&#34;https://www.liwen.id.au/heg/&#34;&gt;Li-Wen Yip&lt;/a&gt; and &lt;a href=&#34;https://github.com/GjjvdBurg/HugoPhotoSwipe&#34;&gt;Gert-Jan van den Berg&lt;/a&gt; for making galleries with &lt;a href=&#34;http://photoswipe.com&#34;&gt;PhotoSwipe&lt;/a&gt; .&lt;/p&gt;
+
+
+
+&lt;div class=&#34;gallery caption-position-bottom caption-effect-fade hover-effect-zoom hover-transition&#34; itemscope itemtype=&#34;http://schema.org/ImageGallery&#34;&gt;
+	  
+  
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://wxy1688.github.io/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34; &gt;
+  &lt;figure  itemprop=&#34;associatedMedia&#34; itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+    &lt;div class=&#34;img&#34; style=&#34;background-image: url(&#39;/img/hexagon-thumb.jpg&#39;);&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://wxy1688.github.io/img/hexagon-thumb.jpg&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://wxy1688.github.io/img/hexagon.jpg&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+  
+
+&lt;div class=&#34;box&#34; &gt;
+  &lt;figure  itemprop=&#34;associatedMedia&#34; itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+    &lt;div class=&#34;img&#34; style=&#34;background-image: url(&#39;/img/sphere-thumb.jpg&#39;);&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://wxy1688.github.io/img/sphere-thumb.jpg&#34; alt=&#34;Sphere&#34;/&gt;
+    &lt;/div&gt;
+      &lt;figcaption&gt;
+          &lt;p&gt;Sphere&lt;/p&gt;
+      &lt;/figcaption&gt;
+    &lt;a href=&#34;http://wxy1688.github.io/img/sphere.jpg&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+  
+
+&lt;div class=&#34;box&#34; &gt;
+  &lt;figure  itemprop=&#34;associatedMedia&#34; itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+    &lt;div class=&#34;img&#34; style=&#34;background-image: url(&#39;/img/triangle-thumb.jpg&#39;);&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://wxy1688.github.io/img/triangle-thumb.jpg&#34; alt=&#34;This is a long comment about a triangle&#34;/&gt;
+    &lt;/div&gt;
+      &lt;figcaption&gt;
+          &lt;p&gt;Triangle&lt;/p&gt;
+      &lt;/figcaption&gt;
+    &lt;a href=&#34;http://wxy1688.github.io/img/triangle.jpg&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>go-colly</title>
+      <link>http://wxy1688.github.io/post/2017-10-18-go-colly/</link>
+      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-10-18-go-colly/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; ) type Collector struct { // UserAgent is the User-Agent string used by HTTP requests 	UserAgent string // MaxDepth limits the recursion depth of visited URLs. 	// Set it to 0 for infinite recursion (default). 	MaxDepth int } func UserAgent(ua string) func(*Collector) { return func(c *Collector) { c.UserAgent = ua } } func (c *Collector) Init() { c.UserAgent = &amp;#34;colly - https://github.com/gocolly/colly&amp;#34; c.</description>
+    </item>
+    
+    <item>
+      <title>golang jsonrpc</title>
+      <link>http://wxy1688.github.io/post/2017-03-14-jsonrpc/</link>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-14-jsonrpc/</guid>
+      <description>client package main import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net/rpc/jsonrpc&amp;#34; &amp;#34;time&amp;#34; ) type Args struct { A, B int } type Arith int func main() { // Create a new jsonrpc client 	// 	// NewClient returns a new rpc.Client to handle requests to the 	// set of services at the other end of the connection. 	// 	// Client will use json as the server&amp;#39;s specified codec 	// to encode requests and decode responses.</description>
+    </item>
+    
+    <item>
+      <title>golang net/rpc</title>
+      <link>http://wxy1688.github.io/post/2017-03-13-rpc/</link>
+      <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-13-rpc/</guid>
+      <description>client package main import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net/rpc&amp;#34; ) type Args struct { A, B int } type Quotient struct { Quo, Rem int } func main() { client, err := rpc.DialHTTP(&amp;#34;tcp&amp;#34;, &amp;#34;127.0.0.1:1234&amp;#34;) if err != nil { log.Fatal(&amp;#34;dialing:&amp;#34;, err) } // Synchronous call 	args := &amp;amp;Args{7, 8} var reply int err = client.Call(&amp;#34;Arith.Multiply&amp;#34;, args, &amp;amp;reply) if err != nil { log.Fatal(&amp;#34;arith error:&amp;#34;, err) } fmt.Printf(&amp;#34;Arith: %d*%d=%d\n&amp;#34;, args.A, args.</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch 智障 使用模板</title>
+      <link>http://wxy1688.github.io/post/2017-03-10-elastic-model/</link>
+      <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-10-elastic-model/</guid>
+      <description>from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body) # mapping 示例 &amp;#34;&amp;#34;&amp;#34; self.es.indices.put_mapping( index=self.index, doc_type=&amp;#34;spider_status&amp;#34;, body={ &amp;#34;_all&amp;#34;: { &amp;#34;enabled&amp;#34;: True #准许动态插入 }, &amp;#34;properties&amp;#34;: { &amp;#34;table_name&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;keyword&amp;#34; }, &amp;#34;source&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;keyword&amp;#34; }, &amp;#34;monitoring_time&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;date&amp;#34;, &amp;#34;format&amp;#34;: &amp;#34;epoch_second&amp;#34; }, &amp;#34;total_count&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;long&amp;#34; }, &amp;#34;new_count&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;long&amp;#34; } } }) &amp;#34;&amp;#34;&amp;#34; #批量插入 def put_data(self, inputdata): &amp;#34;&amp;#34;&amp;#34; 批量传入数据---写入数据库 :param inputdata: [] 列表数据 :return: 无 &amp;#34;&amp;#34;&amp;#34; helpers.</description>
+    </item>
+    
+    <item>
+      <title>Confd&#43;etcd实现高可用自动发现</title>
+      <link>http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/</link>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/</guid>
+      <description>Confd是一个轻量级的配置管理工具。通过查询Etcd，结合配置模板引擎，保持本地配置最新，同时具备定期探测机制，配置变更自动reload。其后端支持的 数据类型有：etcd、consul、vault、environment variables、redis、zookeeper、dynamodb、stackengine、rancher。不过一般使用Confd和 etcd的配合使用比较多。其常用架构如下： 一、简单配置 1、配置etcd数据 具体步骤这里略过，这里只配置两条数据
+etcdctl set /myapp/database/url www.qq.com etcdctl set /myapp/database/user rob 2、confd安装 confd比较简单就一个文件，拿过来就可以执行，可以从github上下载：https://github.com/kelseyhightower/confd/releases ，并将其放到 /usr/local/bin目录下即可。不过使用前需要创建相应的配置目录：
+[root@etcd1 bin]# mkdir -p /etc/confd/{conf.d,templates} 3、创建confd配置文件 vim /etc/confd/conf.d/myconfig.toml [template] src = &amp;#34;myconfig.conf.tmpl&amp;#34; dest = &amp;#34;/tmp/myconfig.conf&amp;#34; keys = [ &amp;#34;/myapp/database/url&amp;#34;, &amp;#34;/myapp/database/user&amp;#34;, ] 4、创建模板文件 vim /etc/confd/templates/myconfig.conf.tmpl [myconfig] database_url = {{getv &amp;#34;/myapp/database/url&amp;#34;}} database_user = {{getv &amp;#34;/myapp/database/user&amp;#34;}} 5、执行生成配置文件 confd -onetime -backend etcd -node http://127.0.0.1:2379 #只一次 confd -interval=60 -backend etcd -node http://127.0.0.1:2379 &amp;amp; #按时间轮询 6、验证文件生成 [root@etcd1 tmp]# cat /tmp/myconfig.</description>
+    </item>
+    
+    <item>
+      <title>Big Image Sample</title>
+      <link>http://wxy1688.github.io/post/2017-03-07-bigimg-sample/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-07-bigimg-sample/</guid>
+      <description>&lt;p&gt;The image banners at the top of the page are refered to as &amp;ldquo;bigimg&amp;rdquo; in this theme. They are optional, and one more more can be specified. If more than one is specified, the images rotate every 10 seconds. In the front matter, bigimgs are specified using an array of hashes.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Math Sample</title>
+      <link>http://wxy1688.github.io/post/2017-03-05-math-sample/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-05-math-sample/</guid>
+      <description>&lt;p&gt;KaTeX can be used to generate complex math formulas server-side.&lt;/p&gt;
+
+&lt;p&gt;$$
+\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
+$$&lt;/p&gt;
+
+&lt;p&gt;Additional details can be found on &lt;a href=&#34;https://github.com/Khan/KaTeX&#34;&gt;GitHub&lt;/a&gt; or on the &lt;a href=&#34;http://tiddlywiki.com/plugins/tiddlywiki/katex/&#34;&gt;Wiki&lt;/a&gt;.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>spark basic</title>
+      <link>http://wxy1688.github.io/post/2017-02-15-spark-basic/</link>
+      <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-15-spark-basic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spark sql优化原理图</title>
+      <link>http://wxy1688.github.io/post/2017-02-12-spark-pic/</link>
+      <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-12-spark-pic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spark streaming</title>
+      <link>http://wxy1688.github.io/post/2017-02-11-sparkstreaming/</link>
+      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-11-sparkstreaming/</guid>
+      <description>from pyspark.sql import SparkSession from pyspark.streaming.kafka import KafkaUtils from pyspark.streaming import StreamingContext if __name__ == &amp;#39;__main__&amp;#39;: topic =&amp;#34;test&amp;#34; spark = SparkSession.builder.appName(&amp;#34;Python Spark &amp;#34;).master(&amp;#34;local[2]&amp;#34;).getOrCreate() sc = spark.sparkContext ssc = StreamingContext(sc, 10) kvs = KafkaUtils.createDirectStream(ssc,[topic],{&amp;#34;metadata.broker.list&amp;#34;:&amp;#34;127.0.0.1:9092&amp;#34;}) lines = kvs.map(lambda x: x[1]) counts = lines.flatMap(lambda line: line.split(&amp;#34; &amp;#34;)) \ .map(lambda word: (word, 1)) \ .reduceByKey(lambda a, b: a + b) counts.pprint() ssc.start() ssc.awaitTermination() </description>
+    </item>
+    
+    <item>
+      <title>sparksql</title>
+      <link>http://wxy1688.github.io/post/2017-02-10-sparksql/</link>
+      <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-10-sparksql/</guid>
+      <description>from pyspark.sql import SparkSession if __name__ == &amp;#39;__main__&amp;#39;: spark = SparkSession.builder.appName(&amp;#34;Python Spark &amp;#34;).master(&amp;#34;local[2]&amp;#34;).getOrCreate() jdbcDF = spark.read.format(&amp;#34;jdbc&amp;#34;).option(&amp;#34;url&amp;#34;, &amp;#34;jdbc:mysql://localhost:3306/video&amp;#34;).option(&amp;#34;driver&amp;#34;,&amp;#34;com.mysql.jdbc.Driver&amp;#34;).option(&amp;#34;dbtable&amp;#34;, &amp;#34;baidu&amp;#34;).option(&amp;#34;user&amp;#34;, &amp;#34;root&amp;#34;).option(&amp;#34;password&amp;#34;, &amp;#34;123456&amp;#34;).load() jdbcDF.show() </description>
+    </item>
+    
+    <item>
+      <title>python hadoop</title>
+      <link>http://wxy1688.github.io/post/2017-02-09-python-hadoop/</link>
+      <pubDate>Thu, 09 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-09-python-hadoop/</guid>
+      <description>pip install mrjob from mrjob.job import MRJob class MRWordFrequencyCount(MRJob): def mapper(self, _, line): yield &amp;#34;chars&amp;#34;, len(line) yield &amp;#34;words&amp;#34;, len(line.split()) yield &amp;#34;lines&amp;#34;, 1 def reducer(self, key, values): yield key, sum(values) if __name__ == &amp;#39;__main__&amp;#39;: MRWordFrequencyCount.run()  </description>
+    </item>
+    
+    <item>
+      <title>pandas basic</title>
+      <link>http://wxy1688.github.io/post/2016-12-20-pandas-pic/</link>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-12-20-pandas-pic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas 分组聚合</title>
+      <link>http://wxy1688.github.io/post/2016-11-23-python-pandas03/</link>
+      <pubDate>Wed, 23 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-23-python-pandas03/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas to sql</title>
+      <link>http://wxy1688.github.io/post/2016-11-21-pandas_to_sql/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-21-pandas_to_sql/</guid>
+      <description>## pandas json 转sql，直接存入mysql import requests import pandas as pd from sqlalchemy import create_engine yconnect = create_engine(&amp;#39;mysql+pymysql://root:123456@localhost:3306/video?charset=utf8&amp;#39;) if __name__ == &amp;#39;__main__&amp;#39;: url = &amp;#34;http://app.video.baidu.com/app?word=北京&amp;amp;pn=1&amp;amp;rn=50&amp;amp;order=1&amp;#34; r = requests.get(url) data = r.json()[&amp;#34;result&amp;#34;] df = pd.DataFrame(data) del df[&amp;#39;nsclick_v&amp;#39;] # 表名baidu,数据库名video, 如果表以存在，追加数据 pd.io.sql.to_sql(df, &amp;#39;baidu&amp;#39;, yconnect, schema=&amp;#39;video&amp;#39;, if_exists=&amp;#39;append&amp;#39;)  </description>
+    </item>
+    
+    <item>
+      <title>APScheduler</title>
+      <link>http://wxy1688.github.io/post/2015-06-10-python-apscheduler/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-06-10-python-apscheduler/</guid>
+      <description>定时任务框架APScheduler学习详解 APScheduler简介
+APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型 的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。
+APScheduler有四种组成部分： 触发器(trigger)包含调度逻辑，每一个作业有它自己的触发器，用于决定接下来哪一个作业会运行。除了他们自己初始配置意外，触发器完全是无状态的。
+作业存储(job store)存储被调度的作业，默认的作业存储是简单地把作业保存在内存中，其他的作业存储是将作业保存在数据库中。一个作业的数据讲在保 存在持久化作业存储时被序列化，并在加载时被反序列化。调度器不能分享同一个作业存储。
+执行器(executor)处理作业的运行，他们通常通过在作业中提交制定的可调用对象到一个线程或者进城池来进行。当作业完成时，执行器将会通知调度器。
+调度器(scheduler)是其他的组成部分。你通常在应用只有一个调度器，应用的开发者通常不会直接处理作业存储、调度器和触发器，相反，调度器提供了 处理这些的合适的接口。配置作业存储和执行器可以在调度器中完成，例如添加、修改和移除作业。　简单应用：
+import time from apscheduler.schedulers.blocking import BlockingScheduler
+def my_job(): print time.strftime(&amp;lsquo;%Y-%m-%d %H:%M:%S&amp;rsquo;, time.localtime(time.time()))
+sched = BlockingScheduler() sched.add_job(my_job, &amp;lsquo;interval&amp;rsquo;, seconds=5) sched.start() 上面的例子表示每隔5s执行一次my_job函数，输出当前时间信息
+操作作业 1. 添加作业 上面是通过add_job()来添加作业，另外还有一种方式是通过scheduled_job()修饰器来修饰函数
+import time from apscheduler.schedulers.blocking import BlockingScheduler
+sched = BlockingScheduler()
+@sched.scheduled_job(&amp;lsquo;interval&amp;rsquo;, seconds=5) def my_job(): print time.strftime(&amp;lsquo;%Y-%m-%d %H:%M:%S&amp;rsquo;, time.localtime(time.time()))
+sched.start() 2. 移除作业
+job = scheduler.add_job(myfunc, &amp;lsquo;interval&amp;rsquo;, minutes=2) job.remove() ###如果有多个任务序列的话可以给每个任务设置ID号，可以根据ID号选择清除对象，且remove放到start前才有效 sched.add_job(myfunc, &amp;lsquo;interval&amp;rsquo;, minutes=2, id=&amp;lsquo;my_job_id&amp;rsquo;) sched.remove_job(&amp;lsquo;my_job_id&amp;rsquo;) 3.</description>
+    </item>
+    
+    <item>
+      <title>golang set</title>
+      <link>http://wxy1688.github.io/post/2016-11-20-golang-set/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-20-golang-set/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) type IntSet struct { mu sync.RWMutex m map[int]struct{} } func NewIntSet() *IntSet { return &amp;amp;IntSet{m: make(map[int]struct{})} } // 给定回调函数对原始内容进行遍历 func (this *IntSet) Iterator(f func (v int)) { this.mu.RLock() for k, _ := range this.m { f(k) } this.mu.RUnlock() } // 设置键 func (this *IntSet) Add(item int) *IntSet { this.mu.Lock() this.m[item] = struct{}{} this.mu.Unlock() return this } // 批量添加设置键 func (this *IntSet) BatchAdd(items []int) *IntSet { this.</description>
+    </item>
+    
+    <item>
+      <title>pandas to dict</title>
+      <link>http://wxy1688.github.io/post/2016-11-20-python-pandas01/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-20-python-pandas01/</guid>
+      <description>python pandas to dict import pandas as pd import json b = [{&amp;#39;source&amp;#39;: &amp;#39;baidu&amp;#39;, &amp;#39;num&amp;#39;: 61}, {&amp;#39;source&amp;#39;: &amp;#39;cctv&amp;#39;, &amp;#39;num&amp;#39;: 14}, {&amp;#39;source&amp;#39;: &amp;#39;cntv&amp;#39;, &amp;#39;num&amp;#39;: 3}, {&amp;#39;source&amp;#39;: &amp;#39;cntv&amp;#39;, &amp;#39;num&amp;#39;: 1}, {&amp;#39;source&amp;#39;: &amp;#39;cntv&amp;#39;, &amp;#39;num&amp;#39;: 1}] if __name__ == &amp;#39;__main__&amp;#39;: df =pd.DataFrame(b) c = df[&amp;#34;num&amp;#34;].groupby(df[&amp;#39;source&amp;#39;]).sum()[:5] gg = pd.DataFrame(c) pandas_to_dict = gg.to_dict() pandas_to_json = gg.to_json() x = {&amp;#39;baidu&amp;#39;: 61, &amp;#39;cctv&amp;#39;: 14, &amp;#39;cntv&amp;#39;: 5} y = {&amp;#34;微信&amp;#34;: 0, &amp;#34;微博&amp;#34;: 0,&amp;#34;头条&amp;#34;: 0} #合并两个字典 z = dict(x,**y) print(z) q= [] dd ={&amp;#39;微信&amp;#39;: 40, &amp;#39;微博&amp;#39;: 0, &amp;#39;头条&amp;#39;: 156, &amp;#39;baidu&amp;#39;: 610, &amp;#39;cntv&amp;#39;: 10} for v in dd: q.</description>
+    </item>
+    
+    <item>
+      <title>爬虫 pyquery goquery css匹配语法 智障使用模板</title>
+      <link>http://wxy1688.github.io/post/2016-09-11-pyquery-goquery/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-09-11-pyquery-goquery/</guid>
+      <description>pyquery 用法模板 主要分为 1类匹配 写法 doc(.class)， 2 id 匹配 写法doc(#id), 3标签匹配 A B=&amp;#34;C&amp;#34; 写法doc(A[B=&amp;#34;C&amp;#34;]) 4值匹配 A=&amp;#34;B&amp;#34; 写法 B = doc(&amp;#34;xxx&amp;#34;).attr(&amp;#34;A&amp;#34;) 或B = doc(&amp;#34;xxx&amp;#34;).attr.A 5遍历相同类型。 for x in doc(&amp;#34;yyyy&amp;#34;).items() import requests from pyquery import PyQuery as pq r = requests.get(&amp;#34;http://video.infolz.com/&amp;#34;) r.encoding=&amp;#34;utf-8&amp;#34; r1 = requests.get(&amp;#34;http://www.infolz.com/2016/1213/303.shtml&amp;#34;) &amp;#34;&amp;#34;&amp;#34; &amp;lt;object class=&amp;#34;cmstopVideo&amp;#34; width=&amp;#34;650&amp;#34; height=&amp;#34;519&amp;#34; data=&amp;#34;https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&amp;amp;amp;v=20161117&amp;amp;amp;vid=v0354ryo54j&amp;amp;amp;auto=0&amp;#34; type=&amp;#34;application/x-shockwave-flash&amp;#34;&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;src&amp;#34; value=&amp;#34;https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&amp;amp;amp;v=20161117&amp;amp;amp;vid=v0354ryo54j&amp;amp;amp;auto=0&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;allowfullscreen&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;allowscriptaccess&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;wmode&amp;#34; value=&amp;#34;Transparent&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;/object&amp;gt; &amp;#34;&amp;#34;&amp;#34; 1单层查找 a &amp;gt; b 横跨多层查找用空格 a b 2选择类 .</description>
+    </item>
+    
+    <item>
+      <title>Gin&#43;Mysql简单的Restful风格的API</title>
+      <link>http://wxy1688.github.io/post/2016-11-12-gin&#43;mysql-api/</link>
+      <pubDate>Sat, 12 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-12-gin&#43;mysql-api/</guid>
+      <description>数据库 CREATE TABLE `person` ( `id` int(11) NOT NULL AUTO_INCREMENT, `first_name` varchar(40) NOT NULL DEFAULT &amp;#39;&amp;#39;, `last_name` varchar(40) NOT NULL DEFAULT &amp;#39;&amp;#39;, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8; 组织项目 在项目根目录创建下面三个文件夹，apis，databases和models，并在文件夹内创建文件。此时我们的目录结果如下： myql.go的包代码如下： package database import ( &amp;#34;database/sql&amp;#34; _ &amp;#34;github.com/go-sql-driver/mysql&amp;#34; &amp;#34;log&amp;#34; ) var SqlDB *sql.DB func init() { var err error SqlDB, err = sql.Open(&amp;#34;mysql&amp;#34;, &amp;#34;root:@tcp(127.0.0.1:3306)/test?parseTime=true&amp;#34;) if err != nil { log.Fatal(err.Error()) } err = SqlDB.Ping() if err != nil { log.</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch 入门</title>
+      <link>http://wxy1688.github.io/post/2016-10-15-elasticsearch01/</link>
+      <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-10-15-elasticsearch01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang heap interface实现</title>
+      <link>http://wxy1688.github.io/post/2016-09-15-go-heap/</link>
+      <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-09-15-go-heap/</guid>
+      <description>package main import ( &amp;#34;container/heap&amp;#34; &amp;#34;fmt&amp;#34; ) // An IntHeap is a min-heap of ints. type IntHeap []int func (h IntHeap) Len() int { return len(h) } func (h IntHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i] } func (h IntHeap) Less(i, j int) bool { return h[i] &amp;lt; h[j] } // The following two IntHeap methods Push and Pop use pointer receivers // because they modify the slice&amp;#39;s length, not just its contents.</description>
+    </item>
+    
+    <item>
+      <title>pykafa</title>
+      <link>http://wxy1688.github.io/post/2016-09-14-pykafka/</link>
+      <pubDate>Wed, 14 Sep 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-09-14-pykafka/</guid>
+      <description>from kafka import KafkaProducer from kafka import KafkaConsumer from kafka.errors import KafkaError import json class Kafka_consumer(): &amp;#39;&amp;#39;&amp;#39; 使用Kafka—python的消费模块 &amp;#39;&amp;#39;&amp;#39; def __init__(self, kafkahost, kafkaport, kafkatopic, groupid): self.kafkaHost = kafkahost self.kafkaPort = kafkaport self.kafkatopic = kafkatopic self.groupid = groupid self.consumer = KafkaConsumer(self.kafkatopic, group_id = self.groupid, bootstrap_servers = &amp;#39;{kafka_host}:{kafka_port}&amp;#39;.format( kafka_host=self.kafkaHost, kafka_port=self.kafkaPort ), auto_offset_reset=&amp;#39;earliest&amp;#39;,enable_auto_commit=False) def consume_data(self): try: for message in self.consumer: # print json.loads(message.value) yield message except KeyboardInterrupt, e: print e def main(): &amp;#39;&amp;#39;&amp;#39; 测试consumer和producer :return: &amp;#39;&amp;#39;&amp;#39; ##测试消费模块 #消费模块的返回格式为 # ConsumerRecord( # topic=u&amp;#39;ranktest&amp;#39;, # partition=0, # offset=202, # timestamp=None, # timestamp_type=None, # key=None, # value=&amp;#39;&amp;#34;{abetst}:{null}---0&amp;#34;&amp;#39;, # checksum=-1868164195, #\serialized_key_size=-1, # serialized_value_size=21) consumer = Kafka_consumer(&amp;#39;127.</description>
+    </item>
+    
+    <item>
+      <title>Kafka架构介绍</title>
+      <link>http://wxy1688.github.io/post/2016-09-12-kafka/</link>
+      <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-09-12-kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ansible自动化运维01</title>
+      <link>http://wxy1688.github.io/post/2016-08-21-ansible/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-08-21-ansible/</guid>
+      <description>安装 brew install ansible [centos] yum install ansible 新建默认配置文件路径 mkdir /etc/ansible cd /etc/ansible vi ansible.cfg vi host ansible.cfg 示例 [defaults] inventory = /etc/ansible/hosts forks = 5 #设置默认情况下Ansible最多能有多少个进程同时工作，默认设置最多5个进程并行处理。 default_sudo_user = root host_key_checking = False #log_path = /var/log/ansible.log private_key_file = /Users/andy/.ssh/id_rsa #本地密钥存放路径 [ssh_connection] ssh_args = -o StrictHostKeyChecking=no hosts 示例 Ansible执行命令常用Option ansible aliyun -m command -a &amp;#34;echo hello&amp;#34; ad-hoc 用法 ansible app -m pip -a &amp;#34;name=django state=present&amp;#34; ansible 192.168.10.10 -m conmand -a &amp;#34;service ntpd status&amp;#34; 用:作分隔符，指定多台机器做变更 ansible 192.</description>
+    </item>
+    
+    <item>
+      <title>alfred&#43;qiniu 在markdown中愉快的贴图</title>
+      <link>http://wxy1688.github.io/post/2016-06-05-alfred&#43;qshell-01/</link>
+      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-06-05-alfred&#43;qshell-01/</guid>
+      <description> qiniu-image-tool是一个mac上提升markdown贴图体验的实用小工具，可以自定义快捷键，一键上传图片或截图至七牛云，获取图片的markdown引用至 剪贴板，并自动粘贴到当前编辑器
+安装qshell qshell是一个基于七牛API服务的命令行工具，qiniu-image-tool即使用脚本执行qshell指令实现账户信息设置及文件的上传操作。官方文档对qshell的 安装和使用有非常详细的教程，这里不再赘述。为了防止出现异常情况，这里强制要求将qshell_darwin_amd64文件重命名为qshell并移至 usr/local/bin目录下。安装完成后在任意目录执行/usr/local/bin/qshell -v如果显示当前qshell版本号表明安装成功
+配置workflow环境变量 点击上图标出的环境变量图标，可以看到下图所示的四个配置项 这四个配置项都与七牛账号相关： AccessKey &amp;amp; SecretKey 这是qshell操作个人账号的账号凭证，登陆七牛账号后在个人面板-&amp;gt;密钥管理中查看，或者直接访问https://portal.qiniu.com/user/key查看。 bucket &amp;amp; bucketDomain 在对象存储-&amp;gt;存储空间列表中选择或新建一个存储空间即bucket，点击该bucket在右边看到一个测试域名，该域名即bucketDomain是图片上传后的访问域名 </description>
+    </item>
+    
+    <item>
+      <title>Code Sample</title>
+      <link>http://wxy1688.github.io/post/2016-03-08-code-sample/</link>
+      <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-03-08-code-sample/</guid>
+      <description>&lt;p&gt;The following are two code samples using syntax highlighting.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>golang redispool</title>
+      <link>http://wxy1688.github.io/post/2016-02-15-golang-redispool/</link>
+      <pubDate>Mon, 15 Feb 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-02-15-golang-redispool/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.com/garyburd/redigo/redis&amp;#34; ) var pool *redis.Pool func init() { pool = &amp;amp;redis.Pool{ MaxIdle: 16, MaxActive: 0, IdleTimeout: 300, Dial: func() (redis.Conn, error) { return redis.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;localhost:6379&amp;#34;) }, } } func main() { c := pool.Get() defer c.Close() _, err := c.Do(&amp;#34;Set&amp;#34;, &amp;#34;abc&amp;#34;, 100) if err != nil { fmt.Println(err) return } r, err := redis.Int(c.Do(&amp;#34;Get&amp;#34;, &amp;#34;abc&amp;#34;)) if err != nil { fmt.Println(&amp;#34;get abc failed,&amp;#34;, err) return } fmt.</description>
+    </item>
+    
+    <item>
+      <title>python elasticsearch</title>
+      <link>http://wxy1688.github.io/post/2015-07-14-python-elastic-utils/</link>
+      <pubDate>Tue, 14 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-14-python-elastic-utils/</guid>
+      <description>from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body)  </description>
+    </item>
+    
+    <item>
+      <title>pymysql 模板</title>
+      <link>http://wxy1688.github.io/post/2015-07-13-python-mysql-utils/</link>
+      <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-13-python-mysql-utils/</guid>
+      <description>import pymysql # MySQL 建立连接 class MySQLPipeline(object): def __init__(self, host, port, user, password, db): self.mysql_host = host self.mysql_port = port self.mysql_user = user self.mysql_password = password self.mysql_db = db # 创建MYSQL数据库链接对象 self.conn = pymysql.connect(host=self.mysql_host, user=self.mysql_user, password=self.mysql_password, db=self.mysql_db, charset=&amp;#34;utf8&amp;#34;) # 查询数据 def searching(self, sql): try: with self.conn as cur: cur.execute(sql) logger.info(&amp;#34;sql查询成功&amp;#34;) return cur except Exception as e: print(e) logger.error(e) return None #增删改 def processing(self, sql): try: with self.conn as cur: cur.execute(sql) logger.</description>
+    </item>
+    
+    <item>
+      <title>python redis utils</title>
+      <link>http://wxy1688.github.io/post/2015-07-12-python-redis-utils/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-12-python-redis-utils/</guid>
+      <description>import redis class RedisPipline(): def __init__(self): self.pool = redis.ConnectionPool(host=redis_host, port=redis_port, password=redis_password, db=redis_db) self.redis_conn = redis.Redis(connection_pool=self.pool) # set def set_data(self, key, data): self.redis_conn.set(key, data) # get def get_data(self, key): return self.redis_conn.get(key) # rpush def rpush_data(self, key, data): self.redis_conn.rpush(key, json.dumps(data)) # lpop def lpop_data(self, key): self.redis_conn.lpop(key) # 删除key def delete_key(self, key): if self.redis_conn.exists(key): self.redis_conn.delete(key) </description>
+    </item>
+    
+    <item>
+      <title>pyspider 常用模板</title>
+      <link>http://wxy1688.github.io/post/2015-07-10-pyspider-01/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-10-pyspider-01/</guid>
+      <description>from pyspider.libs.base_handler import * import time import re class Handler(BaseHandler): crawl_config = { &amp;#34;User-Agent&amp;#34;: &amp;#34;Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A366 Safari/600.1.4&amp;#34; } @every(minutes=24 * 60) def on_start(self): self.crawl( &amp;#39;http://www.yntv.cn/page_list_text/picindex.html?sectionid=425&amp;amp;page=1&amp;amp;title=%E7%B2%BE%E5%BD%A9%E8%A7%86%E9%A2%91&amp;#39;, callback=self.index_page, fetch_type=&amp;#39;js&amp;#39;) self.crawl( &amp;#39;http://www.yntv.cn/page_list_text/picindex.html?sectionid=429&amp;amp;page=1&amp;amp;title=%E7%83%AD%E6%92%AD%E5%89%A7%E5%9C%BA&amp;#39;, callback=self.index_page, fetch_type=&amp;#39;js&amp;#39;) @config(age=23 * 60 * 60) def index_page(self, response): for x, y in zip(response.doc(&amp;#39;.video_item_img&amp;#39;).items(), response.doc(&amp;#39;.item_img&amp;#39;).items()): href = x(&amp;#39;a&amp;#39;).attr.href self.crawl(href, callback=self.detail_page, fetch_type=&amp;#39;js&amp;#39;, save={&amp;#39;p&amp;#39;: y.attr.src}, js_script=&amp;#39;&amp;#39;&amp;#39; function() { return video } &amp;#39;&amp;#39;&amp;#39;) @config(priority=10) def detail_page(self, response): try: a = re.</description>
+    </item>
+    
+    <item>
+      <title>vagrant 入门</title>
+      <link>http://wxy1688.github.io/post/2014-11-10-vagrant/</link>
+      <pubDate>Fri, 12 Jun 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014-11-10-vagrant/</guid>
+      <description>基础镜像 centos7 http://pan.baidu.com/s/1o7BSmoU centos6 http://pan.baidu.com/s/1o81Zb9C ubuntu http://pan.baidu.com/s/1pLzVhnP 添加本地box vagrant box add 自定义你的box名称 box路径 vagrant box add my_first_box D:/centos-7.0-x86_64.box 查看已添加的box vagrant box list 删除box vagrant box remove your_box_name vagrant虚拟机优化 虚拟机名称 config.vm.hostname = &amp;#34;test&amp;#34; 虚拟机主机名 vb.name = &amp;#34;ubuntu_test&amp;#34; 配置虚拟机内存 vb.memory = &amp;#34;512&amp;#34; 配置虚拟机CPU vb.cpus = 1 完整示例 先复制一份Vagrantfile为Vagrantfile.bak作为备份 Vagrantfile Vagrant.configure(&amp;#34;2&amp;#34;) do |config| config.vm.box = &amp;#34;centos&amp;#34; config.vm.network &amp;#34;forwarded_port&amp;#34;, guest:80, host:80 config.vm.network &amp;#34;forwarded_port&amp;#34;, guest:8080, host:8080 config.vm.synced_folder &amp;#34;/Users/andy/data&amp;#34;, &amp;#39;/data&amp;#39;, :smb =&amp;gt; true config.vm.network &amp;#34;private_network&amp;#34;, ip: &amp;#34;192.</description>
+    </item>
+    
+    <item>
+      <title>Flake it till you make it</title>
+      <link>http://wxy1688.github.io/post/2015-02-26-flake-it-till-you-make-it/</link>
+      <pubDate>Thu, 26 Feb 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-02-26-flake-it-till-you-make-it/</guid>
+      <description>Under what circumstances should we step off a path? When is it essential that we finish what we start? If I bought a bag of peanuts and had an allergic reaction, no one would fault me if I threw it out. If I ended a relationship with a woman who hit me, no one would say that I had a commitment problem. But if I walk away from a seemingly secure route because my soul has other ideas, I am a flake?</description>
+    </item>
+    
+    <item>
+      <title>Test markdown</title>
+      <link>http://wxy1688.github.io/post/2015-02-20-test-markdown/</link>
+      <pubDate>Fri, 20 Feb 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-02-20-test-markdown/</guid>
+      <description>You can write regular markdown here and Jekyll will automatically convert it to a nice webpage. I strongly encourage you to take 5 minutes to learn how to write in markdown - it&amp;rsquo;ll teach you how to transform regular text into bold/italics/headings/tables/etc.
+Here is some bold text
+Here is a secondary heading Here&amp;rsquo;s a useless table:
+   Number Next number Previous number     Five Six Four   Ten Eleven Nine   Seven Eight Six   Two Three One    How about a yummy crepe?</description>
+    </item>
+    
+    <item>
+      <title>To be</title>
+      <link>http://wxy1688.github.io/post/2015-02-13-hamlet-monologue/</link>
+      <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-02-13-hamlet-monologue/</guid>
+      <description>When he himself might his quietus make With a bare bodkin? Who would fardels bear, To grunt and sweat under a weary life, But that the dread of something after death, The undiscovered country, from whose bourn No traveller returns, puzzles the will, And makes us rather bear those ills we have Than fly to others that we know not of? Thus conscience does make cowards of us all, And thus the native hue of resolution Is sicklied o&amp;rsquo;er with the pale cast of thought, And enterprise of great pitch and moment With this regard their currents turn awry And lose the name of action.</description>
+    </item>
+    
+    <item>
+      <title>mysql 安装配置</title>
+      <link>http://wxy1688.github.io/post/2014-07-10-mysql-setup/</link>
+      <pubDate>Thu, 10 Jul 2014 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014-07-10-mysql-setup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python retrying 重试装饰器</title>
+      <link>http://wxy1688.github.io/post/2014.05-10-python-retring/</link>
+      <pubDate>Sat, 10 May 2014 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014.05-10-python-retring/</guid>
+      <description>python retrying chache def login_required(view_func): &amp;#34;&amp;#34;&amp;#34;检验用户的登录状态&amp;#34;&amp;#34;&amp;#34; @wraps(view_func) # 不改变原有函数的签名文档 def wrapper(*args, **kwargs): user_id = session.get(&amp;#34;user_id&amp;#34;) if user_id is not None: # 表示用户已经登录 # 使用g对象保存user_id，在视图函数中可以直接使用 g.user_id = user_id return view_func(*args, **kwargs) else: # 用户未登录 resp = { &amp;#34;errno&amp;#34;: RET.SESSIONERR, &amp;#34;errmsg&amp;#34;: &amp;#34;用户未登录&amp;#34; } return jsonify(resp) return wrapper # 构建装饰器 def wraps(func): @functools.wraps(func) def decorator( *args, **kwargs): print(&amp;#34;开始验证&amp;#34;) print(&amp;#34;%scalled&amp;#34; % func.__name__) result = func(*args, **kwargs) print(&amp;#34;验证完毕&amp;#34;) print(&amp;#34;%send&amp;#34; % func.__name__) return result return decorator @wraps def connnet_db(): print(&amp;#34;searching&amp;#34;) def singleton(fun): instances = {} def decorator(*args,**kwargs): if fun not in instances: print(111,fun) instances[fun] = fun(*args,**kwargs) return instances[fun] else: print(&amp;#34;已存在&amp;#34;) return decorator def singleton(fun): cache = {} def decorator(*args,**kwargs): if fun not in cache: print(111,fun) cache[fun] = fun(*args,**kwargs) return cache[fun] else: print(&amp;#34;已存在&amp;#34;) return decorator @singleton def fib(i): if i &amp;lt; 2: return 1 return fib(i-1) + fib(i-2) if __name__ == &amp;#39;__main__&amp;#39;: for i in range(10): test() import requests from tenacity import * ## 爬虫专用 def scraping(url): r = requests.</description>
+    </item>
+    
+    <item>
+      <title>vagrant 入门</title>
+      <link>http://wxy1688.github.io/post/2014-04-10-mac/</link>
+      <pubDate>Thu, 10 Apr 2014 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014-04-10-mac/</guid>
+      <description> Mac系统如何显示隐藏文件？ 在终端（Terminal）输入如下命令，即可显示隐藏文件和文件夹
+显示全部文件 defaults write com.apple.finder AppleShowAllFiles -bool true osascript -e &amp;#39;tell application &amp;#34;Finder&amp;#34; to quit&amp;#39; 不显示全部文件 defaults write com.apple.finder AppleShowAllFiles -bool false osascript -e &amp;#39;tell application &amp;#34;Finder&amp;#34; to quit&amp;#39;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2016-05-10-beego-01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-05-10-beego-01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2016-12-01-go-websocket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-12-01-go-websocket/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2016-12-10-gin-web-development-01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-12-10-gin-web-development-01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2016-9-12-beego/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-9-12-beego/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2017-01-11-go-kafka/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-01-11-go-kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2017-03-01-go-context/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-01-go-context/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2017-03-01-go-design-patterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-01-go-design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2017-03-10-spark-dockerfile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-10-spark-dockerfile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2017-05-10-rpcx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-05-10-rpcx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2017-11-01-springboot-01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-11-01-springboot-01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://wxy1688.github.io/post/2018-05-03-javascript/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-03-javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>http://wxy1688.github.io/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/page/about/</guid>
+      <description>My name is Andy Wu. I have the following qualities:
+ 后端工程师 极客，热爱学习，热爱开源,涉猎范围广 理念:Keep It Simple and Stupid  我的技能树 Python Golang Java
+DB: mysql, mongodb,redis,elasticsearch,etcd
+Web: Gin,Beego,Flask,Django,SpringBoot
+MQ: Kafka
+任务调度：Celery,APScheduler
+大数据：Spark/Pyspark,Pandas,ELK Stack, Hadoop,Hive,Flume
+爬虫：Scarpy,Pyspider,Colly,Pholcus,Pyquery,Goquery
+DevOps: Docker,Ansible,Vagrant</description>
+    </item>
+    
+  </channel>
+</rss>

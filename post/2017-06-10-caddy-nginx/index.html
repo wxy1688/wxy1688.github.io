@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>caddy nginx 对比</title>
+  <meta property="og:title" content="caddy nginx 对比" />
+  <meta name="twitter:title" content="caddy nginx 对比" />
+  <meta name="description" content="Caddy 是什么？ Caddy 是一个多功能的 HTTP web服务器，并且使用Let&rsquo;s Encrypt提供的免费证书，自动让网站升级到HTTPS
+Every Site on HTTPS Caddy is a general-purpose HTTP/2 web server that serves HTTPS by default. Fork Caddy On Github
+为什么要使用 Caddy 安全 Caddy 是一个默认使用https协议的web服务器 无依赖 Caddy 使用 Go 语言编写，编译好的二进制文件能够运行在任何支持Go语言的平台，不需要自己安装任何库。 使用简单 Caddy 的配置简单，不管你是新的web开发者，还是专业人士，都能够快速上手
+Caddy 一键安装脚本
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/caddy_install.sh &amp;&amp; chmod &#43;x caddy_install.sh &amp;&amp; bash caddy_install.sh  这里我们看一下官网的例子说明 Caddy Documentation  :2015 # Host: (any), Port: 2015 localhost # Host: localhost; Port: 2015 localhost:8080 # Host: localhost; Port: 8080 example.">
+  <meta property="og:description" content="Caddy 是什么？ Caddy 是一个多功能的 HTTP web服务器，并且使用Let&rsquo;s Encrypt提供的免费证书，自动让网站升级到HTTPS
+Every Site on HTTPS Caddy is a general-purpose HTTP/2 web server that serves HTTPS by default. Fork Caddy On Github
+为什么要使用 Caddy 安全 Caddy 是一个默认使用https协议的web服务器 无依赖 Caddy 使用 Go 语言编写，编译好的二进制文件能够运行在任何支持Go语言的平台，不需要自己安装任何库。 使用简单 Caddy 的配置简单，不管你是新的web开发者，还是专业人士，都能够快速上手
+Caddy 一键安装脚本
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/caddy_install.sh &amp;&amp; chmod &#43;x caddy_install.sh &amp;&amp; bash caddy_install.sh  这里我们看一下官网的例子说明 Caddy Documentation  :2015 # Host: (any), Port: 2015 localhost # Host: localhost; Port: 2015 localhost:8080 # Host: localhost; Port: 8080 example.">
+  <meta name="twitter:description" content="Caddy 是什么？ Caddy 是一个多功能的 HTTP web服务器，并且使用Let&rsquo;s Encrypt提供的免费证书，自动让网站升级到HTTPS
+Every Site on HTTPS Caddy is a general-purpose HTTP/2 web server that serves HTTPS by default. Fork Caddy On Github
+为什 …">
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/post/2017-06-10-caddy-nginx/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/post/2017-06-10-caddy-nginx/" />
+  <link rel="alternate" href="http://wxy1688.github.io/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>caddy nginx 对比</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 10, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 4 minutes (670 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>Caddy 是什么？
+Caddy 是一个多功能的 HTTP web服务器，并且使用Let&rsquo;s Encrypt提供的免费证书，自动让网站升级到HTTPS</p>
+
+<p>Every Site on HTTPS
+Caddy is a general-purpose HTTP/2 web server that serves HTTPS by default.
+Fork Caddy On Github</p>
+
+<p>为什么要使用 Caddy
+安全
+Caddy 是一个默认使用https协议的web服务器
+无依赖
+Caddy 使用 Go 语言编写，编译好的二进制文件能够运行在任何支持Go语言的平台，不需要自己安装任何库。
+使用简单
+Caddy 的配置简单，不管你是新的web开发者，还是专业人士，都能够快速上手</p>
+
+<p>Caddy 一键安装脚本</p>
+<div class="highlight"><pre class="chroma">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/caddy_install.sh &amp;&amp; chmod +x caddy_install.sh &amp;&amp; bash caddy_install.sh</pre></div>
+<dl>
+<dt>这里我们看一下官网的例子说明 Caddy Documentation</dt>
+</dl>
+
+<p>:2015                    # Host: (any), Port: 2015
+localhost                # Host: localhost; Port: 2015
+localhost:8080           # Host: localhost; Port: 8080
+example.com              # Host: example.com; Ports: 80-&gt;443
+<a href="http://example.com">http://example.com</a>       # Host: example.com; Port: 80
+<a href="https://example.com">https://example.com</a>      # Host: example.com; Ports: 80-&gt;443
+<a href="http://example.com:1234">http://example.com:1234</a>  # Host: example.com; Port: 1234
+<a href="https://example.com:80">https://example.com:80</a>   # Error! HTTPS on port 80
+*.example.com            # Hosts: *.example.com; Port: 2015
+example.com/foo/         # Host: example.com; Ports: 80, 443; Path: /foo/
+/foo/                    # Host: (any), Port: 2015, Path: /foo/
+通过上面这些例子，就可以大概了解到Caddy的域名适配规则。</p>
+
+<p>这个是我的所有站点的配置，可以看出来相比Nginx简单了很多:
+log 用于记录访问日志
+gzip 用于启用gzip压缩
+proxy 用于支持反向代理
+websocket 用于支持websocket协议
+所有的插件文档，可以 Caddy Documentation 从官方文档上看到，都有详细的配置说明，简单易上手。
+使用 caddy -conf Caddyfile 就可以使用配置文件来启动，确保80和443端口没有被服务占用。
+Caddyfile 文件:</p>
+<div class="highlight"><pre class="chroma">diamondfsd.com {  # 启动 http 和 https，访问 http 会自动转跳到 https
+        log access_log.log  # 日志
+        gzip  # 使用gzip压缩
+        proxy / http://127.0.0.1:3999 { # 路径转发
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+        }
+}
+
+
+http://api.diamondfsd.com https://api.diamondfsd.com {  # 同时启用 http 和 https 不会自动转跳
+        gzip
+        proxy / http://127.0.0.1:4999 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+        }
+}
+
+hook.diamondfsd.com {
+        proxy / http://127.0.0.1:9000 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+        }
+}
+
+http://file.diamondfsd.com {
+        proxy / http://127.0.0.1:22222
+}
+
+https://file.diamondfsd.com {  
+        root /data/file-upload  # 指定静态文件根目录
+}
+
+yd.diamondfsd.com { 
+        gzip
+        root /data/ydig
+        proxy /ws http://127.0.0.1:9001 {  # 转发所有 /ws 为 websocket
+                websocket
+        }
+}
+
+8.diamondfsd.com {
+        gzip
+        root /data/quaver
+}
+在对比同等情况下 nginx 的配置:
+
+# For more information on configuration, see:
+#   * Official English Documentation: http://nginx.org/en/docs/
+#   * Official Russian Documentation: http://nginx.org/ru/docs/
+
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
+                      &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
+                      &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+    
+    gzip on;
+    gzip_min_length 1k;
+    gzip_buffers 16 64k;
+    gzip_http_version 1.1;
+    gzip_comp_level 6;
+    gzip_types application/json application/xml text/plain application/javascript text/css image/jpeg image/gif image/png text/javascript;
+    gzip_vary on;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    
+    server {
+        listen 80;
+        server_name diamondfsd.com www.diamondfsd.com;
+        rewrite ^(.*) https://$server_name$1 permanent;
+    }
+
+    server {
+		server_name diamondfsd.com www.diamondfsd.com;
+		listen 443;
+		ssl on;
+		ssl_certificate /etc/letsencrypt/live/diamondfsd.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/diamondfsd.com/privkey.pem;
+		
+		location / {
+		   proxy_pass http://127.0.0.1:3999;
+		   proxy_http_version 1.1;
+		   proxy_set_header X_FORWARDED_PROTO https;
+		   proxy_set_header X-Real-IP $remote_addr;
+			   proxy_set_header X-Forwarded-For $remote_addr;
+		   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			   proxy_set_header Host $host;
+		}
+    }
+
+
+
+    server {
+		server_name api.diamondfsd.com;
+		listen 443;
+		ssl on;
+		ssl_certificate /etc/letsencrypt/live/api.diamondfsd.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/api.diamondfsd.com/privkey.pem;
+		
+		location / {
+		   proxy_pass http://127.0.0.1:4999;
+		   proxy_http_version 1.1;
+		   proxy_set_header X_FORWARDED_PROTO https;
+			   proxy_set_header X-Real-IP $remote_addr;
+			   proxy_set_header X-Forwarded-For $remote_addr;
+			   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			   proxy_set_header Host $host;
+
+		}
+    }
+
+    server {
+     	server_name api.diamondfsd.com;
+		listen 80;
+        location / {
+           proxy_pass http://127.0.0.1:4999;
+           proxy_http_version 1.1;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header Host $host;
+        }
+    }
+  
+    server {
+        server_name hook.diamondfsd.com;
+        listen 80;
+        location / {
+           proxy_pass http://127.0.0.1:9000;
+           proxy_http_version 1.1;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header Host $host;
+        }
+
+    } 
+
+    server {
+       server_name file.diamondfsd.com;
+       listen 80;
+       location / {
+           proxy_pass http://127.0.0.1:22222;
+           proxy_http_version 1.1;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header Host $host;
+       }
+    }
+ 
+    server {
+		server_name file.diamondfsd.com;
+		listen 443;
+		ssl on;
+		ssl_certificate /etc/letsencrypt/live/file.diamondfsd.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/file.diamondfsd.com/privkey.pem;
+		
+		root /data/file-upload; 
+		expires max;
+        access_log /data/file-domain.log;
+    }
+
+    server {
+        listen 80;
+        server_name yd.diamondfsd.com;
+        rewrite ^(.*) https://$server_name$1 permanent;
+    } 
+    
+    server {
+		server_name yd.diamondfsd.com;
+		listen 443;
+		ssl on;
+		ssl_certificate /etc/letsencrypt/live/yd.diamondfsd.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/yd.diamondfsd.com/privkey.pem;
+		   
+		location /ws/ {
+		   proxy_pass http://127.0.0.1:9001;
+		   proxy_http_version 1.1;
+		   proxy_set_header Host $host;
+		   proxy_set_header Upgrade $http_upgrade;
+		   proxy_set_header Connection &#34;upgrade&#34;;
+		}
+
+		root /data/ydig;
+		expires max;
+		access_log /data/ydig-domain.log;
+    } 
+
+    server {
+        listen 80;
+        server_name about.diamondfsd.com;
+        rewrite ^(.*) https://$server_name$1 permanent;
+    }
+
+    server {
+		server_name about.diamondfsd.com;
+		listen 443;
+		ssl on;
+		ssl_certificate /etc/letsencrypt/live/about.diamondfsd.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/about.diamondfsd.com/privkey.pem;
+
+		root /data/about-me;
+		expires max;
+		access_log /data/about-me-domain.log;
+    }
+    server {
+        server_name 8.diamondfsd.com;
+		listen 80;
+        rewrite ^(.*) https://$server_name$1 permanent;
+    }
+    server {
+		server_name 8.diamondfsd.com;
+		listen 443;
+		ssl on;
+		ssl_certificate /etc/letsencrypt/live/8.diamondfsd.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/8.diamondfsd.com/privkey.pem;
+
+		root /data/quaver;
+		expires max;
+		access_log /data/quaver-domain.log;
+    }
+}</pre></div>
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://wxy1688.github.io/post/2017-04-10-go-sync.map/" data-toggle="tooltip" data-placement="top" title="golang sync.map">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://wxy1688.github.io/post/2017-06-13-ariang-filemanerger/" data-toggle="tooltip" data-placement="top" title="AriaNg&#43;Caddy FileManager打造自己的离线下载网盘">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

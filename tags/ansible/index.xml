@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ansible on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/ansible/</link>
+    <description>Recent content in Ansible on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Sun, 21 Aug 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ansible自动化运维01</title>
+      <link>http://wxy1688.github.io/post/2016-08-21-ansible/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-08-21-ansible/</guid>
+      <description>安装 brew install ansible [centos] yum install ansible 新建默认配置文件路径 mkdir /etc/ansible cd /etc/ansible vi ansible.cfg vi host ansible.cfg 示例 [defaults] inventory = /etc/ansible/hosts forks = 5 #设置默认情况下Ansible最多能有多少个进程同时工作，默认设置最多5个进程并行处理。 default_sudo_user = root host_key_checking = False #log_path = /var/log/ansible.log private_key_file = /Users/andy/.ssh/id_rsa #本地密钥存放路径 [ssh_connection] ssh_args = -o StrictHostKeyChecking=no hosts 示例 Ansible执行命令常用Option ansible aliyun -m command -a &amp;#34;echo hello&amp;#34; ad-hoc 用法 ansible app -m pip -a &amp;#34;name=django state=present&amp;#34; ansible 192.168.10.10 -m conmand -a &amp;#34;service ntpd status&amp;#34; 用:作分隔符，指定多台机器做变更 ansible 192.</description>
+    </item>
+    
+  </channel>
+</rss>

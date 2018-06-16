@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pyspider on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/pyspider/</link>
+    <description>Recent content in Pyspider on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Fri, 10 Jul 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/pyspider/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pyspider 常用模板</title>
+      <link>http://wxy1688.github.io/post/2015-07-10-pyspider-01/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-10-pyspider-01/</guid>
+      <description>from pyspider.libs.base_handler import * import time import re class Handler(BaseHandler): crawl_config = { &amp;#34;User-Agent&amp;#34;: &amp;#34;Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A366 Safari/600.1.4&amp;#34; } @every(minutes=24 * 60) def on_start(self): self.crawl( &amp;#39;http://www.yntv.cn/page_list_text/picindex.html?sectionid=425&amp;amp;page=1&amp;amp;title=%E7%B2%BE%E5%BD%A9%E8%A7%86%E9%A2%91&amp;#39;, callback=self.index_page, fetch_type=&amp;#39;js&amp;#39;) self.crawl( &amp;#39;http://www.yntv.cn/page_list_text/picindex.html?sectionid=429&amp;amp;page=1&amp;amp;title=%E7%83%AD%E6%92%AD%E5%89%A7%E5%9C%BA&amp;#39;, callback=self.index_page, fetch_type=&amp;#39;js&amp;#39;) @config(age=23 * 60 * 60) def index_page(self, response): for x, y in zip(response.doc(&amp;#39;.video_item_img&amp;#39;).items(), response.doc(&amp;#39;.item_img&amp;#39;).items()): href = x(&amp;#39;a&amp;#39;).attr.href self.crawl(href, callback=self.detail_page, fetch_type=&amp;#39;js&amp;#39;, save={&amp;#39;p&amp;#39;: y.attr.src}, js_script=&amp;#39;&amp;#39;&amp;#39; function() { return video } &amp;#39;&amp;#39;&amp;#39;) @config(priority=10) def detail_page(self, response): try: a = re.</description>
+    </item>
+    
+  </channel>
+</rss>

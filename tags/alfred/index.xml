@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alfred on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/alfred/</link>
+    <description>Recent content in Alfred on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Sun, 05 Jun 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/alfred/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>alfred&#43;qiniu 在markdown中愉快的贴图</title>
+      <link>http://wxy1688.github.io/post/2016-06-05-alfred&#43;qshell-01/</link>
+      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-06-05-alfred&#43;qshell-01/</guid>
+      <description> qiniu-image-tool是一个mac上提升markdown贴图体验的实用小工具，可以自定义快捷键，一键上传图片或截图至七牛云，获取图片的markdown引用至 剪贴板，并自动粘贴到当前编辑器
+安装qshell qshell是一个基于七牛API服务的命令行工具，qiniu-image-tool即使用脚本执行qshell指令实现账户信息设置及文件的上传操作。官方文档对qshell的 安装和使用有非常详细的教程，这里不再赘述。为了防止出现异常情况，这里强制要求将qshell_darwin_amd64文件重命名为qshell并移至 usr/local/bin目录下。安装完成后在任意目录执行/usr/local/bin/qshell -v如果显示当前qshell版本号表明安装成功
+配置workflow环境变量 点击上图标出的环境变量图标，可以看到下图所示的四个配置项 这四个配置项都与七牛账号相关： AccessKey &amp;amp; SecretKey 这是qshell操作个人账号的账号凭证，登陆七牛账号后在个人面板-&amp;gt;密钥管理中查看，或者直接访问https://portal.qiniu.com/user/key查看。 bucket &amp;amp; bucketDomain 在对象存储-&amp;gt;存储空间列表中选择或新建一个存储空间即bucket，点击该bucket在右边看到一个测试域名，该域名即bucketDomain是图片上传后的访问域名 </description>
+    </item>
+    
+  </channel>
+</rss>

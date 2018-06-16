@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/mac/</link>
+    <description>Recent content in Mac on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Thu, 10 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vagrant 入门</title>
+      <link>http://wxy1688.github.io/post/2014-04-10-mac/</link>
+      <pubDate>Thu, 10 Apr 2014 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014-04-10-mac/</guid>
+      <description> Mac系统如何显示隐藏文件？ 在终端（Terminal）输入如下命令，即可显示隐藏文件和文件夹
+显示全部文件 defaults write com.apple.finder AppleShowAllFiles -bool true osascript -e &amp;#39;tell application &amp;#34;Finder&amp;#34; to quit&amp;#39; 不显示全部文件 defaults write com.apple.finder AppleShowAllFiles -bool false osascript -e &amp;#39;tell application &amp;#34;Finder&amp;#34; to quit&amp;#39;</description>
+    </item>
+    
+  </channel>
+</rss>

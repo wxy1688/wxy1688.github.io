@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>大王派我来搬砖</title>
+  <meta property="og:title" content="大王派我来搬砖" />
+  <meta name="twitter:title" content="大王派我来搬砖" />
+  <meta name="description" content=" Python Golang Java DevOps Programmer ">
+  <meta property="og:description" content=" Python Golang Java DevOps Programmer ">
+  <meta name="twitter:description" content=" Python Golang Java DevOps Programmer ">
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/" />
+  <link rel="alternate" href="http://wxy1688.github.io/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="page-heading">
+              <h1>大王派我来搬砖</h1>
+                
+                  
+                    <hr class="small">
+                    <span class="page-subheading">Build a beautiful and simple website in minutes</span>
+                  
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+  <div role="main" class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+          <div class="well">
+            
+
+<h2 id="python-golang-java-devops-programmer">Python Golang Java DevOps Programmer</h2>
+
+          </div>
+        
+
+        <div class="posts-list">
+          
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-20-photoswipe-gallery-sample/">
+                <h2 class="post-title">Photoswipe Gallery Sample</h2>
+                
+                  <h3 class="post-subtitle">
+                  Making a Gallery
+                  </h3>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 20, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (215 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>Beautiful Hugo adds a few custom shortcodes created by <a href="https://www.liwen.id.au/heg/">Li-Wen Yip</a> and <a href="https://github.com/GjjvdBurg/HugoPhotoSwipe">Gert-Jan van den Berg</a> for making galleries with <a href="http://photoswipe.com">PhotoSwipe</a> .</p>
+
+
+
+<div class="gallery caption-position-bottom caption-effect-fade hover-effect-zoom hover-transition" itemscope itemtype="http://schema.org/ImageGallery">
+	  
+  
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img" style="background-image: url('/img/hexagon-thumb.jpg');">
+      <img itemprop="thumbnail" src="/img/hexagon-thumb.jpg" />
+    </div>
+    <a href="/img/hexagon.jpg" itemprop="contentUrl"></a>
+  </figure>
+</div>
+  
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img" style="background-image: url('/img/sphere-thumb.jpg');">
+      <img itemprop="thumbnail" src="/img/sphere-thumb.jpg" alt="Sphere"/>
+    </div>
+      <figcaption>
+          <p>Sphere</p>
+      </figcaption>
+    <a href="/img/sphere.jpg" itemprop="contentUrl"></a>
+  </figure>
+</div>
+  
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img" style="background-image: url('/img/triangle-thumb.jpg');">
+      <img itemprop="thumbnail" src="/img/triangle-thumb.jpg" alt="This is a long comment about a triangle"/>
+    </div>
+      <figcaption>
+          <p>Triangle</p>
+      </figcaption>
+    <a href="/img/triangle.jpg" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+</div>
+
+<p></p>
+                  <a href="http://wxy1688.github.io/post/2017-03-20-photoswipe-gallery-sample/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/example/">example</a>&nbsp;
+                
+                  #<a href="http://wxy1688.github.io//tags/photoswipe/">photoswipe</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-10-18-go-colly/">
+                <h2 class="post-title">go-colly</h2>
+                
+                  <h3 class="post-subtitle">
+                  装饰器
+                  </h3>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 20, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (100 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  package main import ( &#34;fmt&#34; ) type Collector struct { // UserAgent is the User-Agent string used by HTTP requests 	UserAgent string // MaxDepth limits the recursion depth of visited URLs. 	// Set it to 0 for infinite recursion (default). 	MaxDepth int } func UserAgent(ua string) func(*Collector) { return func(c *Collector) { c.UserAgent = ua } } func (c *Collector) Init() { c.UserAgent = &#34;colly - https://github.com/gocolly/colly&#34; c.
+                  <a href="http://wxy1688.github.io/post/2017-10-18-go-colly/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-14-jsonrpc/">
+                <h2 class="post-title">golang jsonrpc</h2>
+                
+                  <h3 class="post-subtitle">
+                  golang 标准库
+                  </h3>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 14, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 3 minutes (616 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  client package main import ( &#34;fmt&#34; &#34;log&#34; &#34;net/rpc/jsonrpc&#34; &#34;time&#34; ) type Args struct { A, B int } type Arith int func main() { // Create a new jsonrpc client 	// 	// NewClient returns a new rpc.Client to handle requests to the 	// set of services at the other end of the connection. 	// 	// Client will use json as the server&#39;s specified codec 	// to encode requests and decode responses.
+                  <a href="http://wxy1688.github.io/post/2017-03-14-jsonrpc/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-13-rpc/">
+                <h2 class="post-title">golang net/rpc</h2>
+                
+                  <h3 class="post-subtitle">
+                  golang 标准库
+                  </h3>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 13, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (229 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  client package main import ( &#34;fmt&#34; &#34;log&#34; &#34;net/rpc&#34; ) type Args struct { A, B int } type Quotient struct { Quo, Rem int } func main() { client, err := rpc.DialHTTP(&#34;tcp&#34;, &#34;127.0.0.1:1234&#34;) if err != nil { log.Fatal(&#34;dialing:&#34;, err) } // Synchronous call 	args := &amp;Args{7, 8} var reply int err = client.Call(&#34;Arith.Multiply&#34;, args, &amp;reply) if err != nil { log.Fatal(&#34;arith error:&#34;, err) } fmt.Printf(&#34;Arith: %d*%d=%d\n&#34;, args.A, args.
+                  <a href="http://wxy1688.github.io/post/2017-03-13-rpc/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-10-elastic-model/">
+                <h2 class="post-title">ElasticSearch 智障 使用模板</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 10, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 3 minutes (540 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body) # mapping 示例 &#34;&#34;&#34; self.es.indices.put_mapping( index=self.index, doc_type=&#34;spider_status&#34;, body={ &#34;_all&#34;: { &#34;enabled&#34;: True #准许动态插入 }, &#34;properties&#34;: { &#34;table_name&#34;: { &#34;type&#34;: &#34;keyword&#34; }, &#34;source&#34;: { &#34;type&#34;: &#34;keyword&#34; }, &#34;monitoring_time&#34;: { &#34;type&#34;: &#34;date&#34;, &#34;format&#34;: &#34;epoch_second&#34; }, &#34;total_count&#34;: { &#34;type&#34;: &#34;long&#34; }, &#34;new_count&#34;: { &#34;type&#34;: &#34;long&#34; } } }) &#34;&#34;&#34; #批量插入 def put_data(self, inputdata): &#34;&#34;&#34; 批量传入数据---写入数据库 :param inputdata: [] 列表数据 :return: 无 &#34;&#34;&#34; helpers.
+                  <a href="http://wxy1688.github.io/post/2017-03-10-elastic-model/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/elasticsearch/">elasticsearch</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/">
+                <h2 class="post-title">Confd&#43;etcd实现高可用自动发现</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 8, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (251 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  Confd是一个轻量级的配置管理工具。通过查询Etcd，结合配置模板引擎，保持本地配置最新，同时具备定期探测机制，配置变更自动reload。其后端支持的 数据类型有：etcd、consul、vault、environment variables、redis、zookeeper、dynamodb、stackengine、rancher。不过一般使用Confd和 etcd的配合使用比较多。其常用架构如下： 一、简单配置 1、配置etcd数据 具体步骤这里略过，这里只配置两条数据
+etcdctl set /myapp/database/url www.qq.com etcdctl set /myapp/database/user rob 2、confd安装 confd比较简单就一个文件，拿过来就可以执行，可以从github上下载：https://github.com/kelseyhightower/confd/releases ，并将其放到 /usr/local/bin目录下即可。不过使用前需要创建相应的配置目录：
+[root@etcd1 bin]# mkdir -p /etc/confd/{conf.d,templates} 3、创建confd配置文件 vim /etc/confd/conf.d/myconfig.toml [template] src = &#34;myconfig.conf.tmpl&#34; dest = &#34;/tmp/myconfig.conf&#34; keys = [ &#34;/myapp/database/url&#34;, &#34;/myapp/database/user&#34;, ] 4、创建模板文件 vim /etc/confd/templates/myconfig.conf.tmpl [myconfig] database_url = {{getv &#34;/myapp/database/url&#34;}} database_user = {{getv &#34;/myapp/database/user&#34;}} 5、执行生成配置文件 confd -onetime -backend etcd -node http://127.0.0.1:2379 #只一次 confd -interval=60 -backend etcd -node http://127.0.0.1:2379 &amp; #按时间轮询 6、验证文件生成 [root@etcd1 tmp]# cat /tmp/myconfig.
+                  <a href="http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/etcd/">etcd</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-07-bigimg-sample/">
+                <h2 class="post-title">Big Image Sample</h2>
+                
+                  <h3 class="post-subtitle">
+                  Using Multiple Images
+                  </h3>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 7, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (191 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>The image banners at the top of the page are refered to as &ldquo;bigimg&rdquo; in this theme. They are optional, and one more more can be specified. If more than one is specified, the images rotate every 10 seconds. In the front matter, bigimgs are specified using an array of hashes.</p>
+
+<p></p>
+                  <a href="http://wxy1688.github.io/post/2017-03-07-bigimg-sample/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/example/">example</a>&nbsp;
+                
+                  #<a href="http://wxy1688.github.io//tags/bigimg/">bigimg</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-03-05-math-sample/">
+                <h2 class="post-title">Math Sample</h2>
+                
+                  <h3 class="post-subtitle">
+                  Using KaTeX
+                  </h3>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 5, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (120 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>KaTeX can be used to generate complex math formulas server-side.</p>
+
+<p>$$
+\phi = \frac{(1+\sqrt{5})}{2} = 1.6180339887\cdots
+$$</p>
+
+<p>Additional details can be found on <a href="https://github.com/Khan/KaTeX">GitHub</a> or on the <a href="http://tiddlywiki.com/plugins/tiddlywiki/katex/">Wiki</a>.
+</p>
+                  <a href="http://wxy1688.github.io/post/2017-03-05-math-sample/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/example/">example</a>&nbsp;
+                
+                  #<a href="http://wxy1688.github.io//tags/math/">math</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-02-15-spark-basic/">
+                <h2 class="post-title">spark basic</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 15, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 0 minutes (0 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p><img src="http://oq1xuulg6.bkt.clouddn.com/屏幕快照%202018-02-23%2014.18.31.png" alt="" /></p>
+
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/spark/">spark</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-02-12-spark-pic/">
+                <h2 class="post-title">spark sql优化原理图</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 12, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 0 minutes (0 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p><img src="http://oq1xuulg6.bkt.clouddn.com/c1d3a02874639319ec93852194a547da.png" alt="" /></p>
+
+<p><img src="http://oq1xuulg6.bkt.clouddn.com/c0803e4f5be0977d25c3309980a524e5.png" alt="" /></p>
+
+<p><img src="http://oq1xuulg6.bkt.clouddn.com/680c5358a8f527282d833f5623d75527.png" alt="" /></p>
+
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://wxy1688.github.io//tags/spark/">spark</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+        </div>
+
+        
+          <ul class="pager main-pager">
+            
+              <li class="previous">
+                <a href="/page/2/">&larr; Newer Posts</a>
+              </li>
+            
+            
+              <li class="next">
+                <a href="/page/4/">Older Posts &rarr;</a>
+              </li>
+            
+          </ul>
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

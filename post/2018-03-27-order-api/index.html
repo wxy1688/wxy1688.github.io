@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>商品订单系统API</title>
+  <meta property="og:title" content="商品订单系统API" />
+  <meta name="twitter:title" content="商品订单系统API" />
+  <meta name="description" content="订单 Order{ Amount:	integer ($int64) 商品总金额 = 商品单价 * 购买的商品数量 （填购买几件，1，2，3等等） CancelUrl:	string 取消订单后的回调url（不用填） Channel:	string 订单渠道 alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr） Ctime:	string ($string) 订单创建时间 默认自动生成当前时间（不用填） Id:	integer ($int64) 订单编号主键自增 （不用填） PingId:	integer ($int64) ping&#43;&#43; 自动生成的订单编号 （不用填） PingInfo:	string ping&#43;&#43; 自动生成的 支付凭证信息 （不用填） Price:	integer ($int64) 商品单价 （必填） ProductId:	integer ($int64) 商品id (必填) Status:	string 订单状态 待支付:&#39;CREATED&#39;,已支付:&#39;PAID&#39;,支付失败:&#39;FAIL&#39;,存在退款:&#39;REFUNDED&#39;,订单已取消&#39;CANCELED&#39; （不用填，默认是待支付，服务端根据ping&#43;&#43;的通知 更改状态） SuccessUrl:	string 支付成功的回调url(不用填) UserId:	integer ($int64) 用户id(必填) Utime:	string ($string) 订单更改时间(默认自动生成当前时间，不用填) } 商品 Product{ Avatar:	string 商品图片(必填，例如http://img.">
+  <meta property="og:description" content="订单 Order{ Amount:	integer ($int64) 商品总金额 = 商品单价 * 购买的商品数量 （填购买几件，1，2，3等等） CancelUrl:	string 取消订单后的回调url（不用填） Channel:	string 订单渠道 alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr） Ctime:	string ($string) 订单创建时间 默认自动生成当前时间（不用填） Id:	integer ($int64) 订单编号主键自增 （不用填） PingId:	integer ($int64) ping&#43;&#43; 自动生成的订单编号 （不用填） PingInfo:	string ping&#43;&#43; 自动生成的 支付凭证信息 （不用填） Price:	integer ($int64) 商品单价 （必填） ProductId:	integer ($int64) 商品id (必填) Status:	string 订单状态 待支付:&#39;CREATED&#39;,已支付:&#39;PAID&#39;,支付失败:&#39;FAIL&#39;,存在退款:&#39;REFUNDED&#39;,订单已取消&#39;CANCELED&#39; （不用填，默认是待支付，服务端根据ping&#43;&#43;的通知 更改状态） SuccessUrl:	string 支付成功的回调url(不用填) UserId:	integer ($int64) 用户id(必填) Utime:	string ($string) 订单更改时间(默认自动生成当前时间，不用填) } 商品 Product{ Avatar:	string 商品图片(必填，例如http://img.">
+  <meta name="twitter:description" content="订单 Order{ Amount:	integer ($int64) 商品总金额 = 商品单价 * 购买的商品数量 （填购买几件，1，2，3等等） CancelUrl:	string 取消订单后的回调url（不用填） Channel:	string 订单渠道 alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr） Ctime:	string …">
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/post/2018-03-27-order-api/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/post/2018-03-27-order-api/" />
+  <link rel="alternate" href="http://wxy1688.github.io/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>商品订单系统API</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 27, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (145 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h2 id="订单">订单</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">Order{
+Amount:	integer ($int64)   商品总金额 = 商品单价 * 购买的商品数量  （填购买几件，1，2，3等等）
+CancelUrl:	string         取消订单后的回调url（不用填）
+Channel:	string         订单渠道  alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr）
+Ctime:	string ($string)   订单创建时间  默认自动生成当前时间（不用填）
+Id:	integer ($int64)       订单编号主键自增 （不用填）
+PingId:	integer ($int64)   ping++ 自动生成的订单编号 （不用填）
+PingInfo:	string         ping++ 自动生成的 支付凭证信息 （不用填）
+Price:	integer ($int64)   商品单价  （必填）
+ProductId:	integer ($int64) 商品id (必填)
+Status:	string               订单状态 待支付:&#39;CREATED&#39;,已支付:&#39;PAID&#39;,支付失败:&#39;FAIL&#39;,存在退款:&#39;REFUNDED&#39;,订单已取消&#39;CANCELED&#39; 
+                            （不用填，默认是待支付，服务端根据ping++的通知 更改状态）
+SuccessUrl:	string           支付成功的回调url(不用填)
+UserId:	integer ($int64)     用户id(必填)
+Utime:	string ($string)     订单更改时间(默认自动生成当前时间，不用填)
+}</code></pre></div>
+<h2 id="商品">商品</h2>
+<div class="highlight"><pre class="chroma"><code class="language-angular2html" data-lang="angular2html">Product{
+Avatar:	string  商品图片(必填，例如http://img.pipacoding.com/assets/pc/courseIcons/1.png)
+Content:	string 商品内容(必填，例如 适合完成入门课的小朋友学习)
+Ctime:	string ($string) 商品创建时间  默认自动生成当前时间（不用填）
+Id:	integer ($int64)     商品id主键（不用填，自动生成）
+InventoryCount:	integer ($int64)   商品剩余库存(不用填)
+Name:	string                      商品名称(必填，如核桃编程营初级班)
+Price:	integer ($int64)            商品单价(必填 如99)
+Tags:	string                      商品标签( 可选，)
+Title:	string                      商品标题(必填，如 第12期(3.23开课))
+Utime:	string ($string)  商品更新时间  默认自动生成当前时间（不用填）
+
+}</code></pre></div>
+<p><img src="http://oq1xuulg6.bkt.clouddn.com/808adc2961a233fa7765b66b5ceaeb69.png" alt="" /></p>
+
+<h2 id="product-api">product API</h2>
+
+<h3 id="按id查询">按id查询</h3>
+
+<p>GET
+/product/{id}
+<img src="http://oq1xuulg6.bkt.clouddn.com/0efe0e42e0e10560d4c927cbcb3e7f1b.jpg" alt="" /></p>
+
+<p>按 条件查询
+例如
+GET
+/product/productByFilter/current=1&amp;pageSize=10
+<img src="http://oq1xuulg6.bkt.clouddn.com/b8c7ec4969dde453a4bd2b889aa8d622.jpg" alt="" /></p>
+
+<h3 id="按id-修改">按id 修改</h3>
+
+<p>PUT
+/product/{id}
+<img src="http://oq1xuulg6.bkt.clouddn.com/aabf92c34cd92cd59240f51f0b65fe6a.jpg" alt="" /></p>
+
+<h3 id="新增商品">新增商品</h3>
+
+<p>POST
+/Product</p>
+
+<p><img src="http://oq1xuulg6.bkt.clouddn.com/9bbf8fa2640228c8b41cfdffbd585d69.jpg" alt="" /></p>
+
+<h2 id="oeder-api">oeder API</h2>
+
+<h3 id="按id查询-1">按id查询</h3>
+
+<p>GET
+/order/{id}
+<img src="http://oq1xuulg6.bkt.clouddn.com/adbc1cfa381a8cc77618667530ebb8cc.jpg" alt="" /></p>
+
+<h3 id="新增订单">新增订单</h3>
+
+<p>POST
+/Order
+<img src="http://oq1xuulg6.bkt.clouddn.com/0dea075ab2e2394f4e553c66f4a4f82f.jpg" alt="" /></p>
+
+<h3 id="修改订单-退款审批">修改订单/退款审批</h3>
+
+<p>PUT
+/order/{id}
+<img src="http://oq1xuulg6.bkt.clouddn.com/c0e594fa05f928e4eb628732f6030e2d.jpg" alt="" /></p>
+
+<h3 id="按条件查询订单">按条件查询订单</h3>
+
+<p>GET
+/product/productByFilter/current=1&amp;pageSize=10
+<img src="http://oq1xuulg6.bkt.clouddn.com/2e2feb2147cb80af8fcd3707f86b201e.jpg" alt="" /></p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://wxy1688.github.io/post/2018-03-16-job-interview-go/" data-toggle="tooltip" data-placement="top" title="golang 面试填坑">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://wxy1688.github.io/post/2018-04-01-gin/" data-toggle="tooltip" data-placement="top" title="Gin API 设计">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

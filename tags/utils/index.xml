@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Utils on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/utils/</link>
+    <description>Recent content in Utils on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Sun, 20 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/utils/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>爬虫 pyquery goquery css匹配语法 智障使用模板</title>
+      <link>http://wxy1688.github.io/post/2016-09-11-pyquery-goquery/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-09-11-pyquery-goquery/</guid>
+      <description>pyquery 用法模板 主要分为 1类匹配 写法 doc(.class)， 2 id 匹配 写法doc(#id), 3标签匹配 A B=&amp;#34;C&amp;#34; 写法doc(A[B=&amp;#34;C&amp;#34;]) 4值匹配 A=&amp;#34;B&amp;#34; 写法 B = doc(&amp;#34;xxx&amp;#34;).attr(&amp;#34;A&amp;#34;) 或B = doc(&amp;#34;xxx&amp;#34;).attr.A 5遍历相同类型。 for x in doc(&amp;#34;yyyy&amp;#34;).items() import requests from pyquery import PyQuery as pq r = requests.get(&amp;#34;http://video.infolz.com/&amp;#34;) r.encoding=&amp;#34;utf-8&amp;#34; r1 = requests.get(&amp;#34;http://www.infolz.com/2016/1213/303.shtml&amp;#34;) &amp;#34;&amp;#34;&amp;#34; &amp;lt;object class=&amp;#34;cmstopVideo&amp;#34; width=&amp;#34;650&amp;#34; height=&amp;#34;519&amp;#34; data=&amp;#34;https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&amp;amp;amp;v=20161117&amp;amp;amp;vid=v0354ryo54j&amp;amp;amp;auto=0&amp;#34; type=&amp;#34;application/x-shockwave-flash&amp;#34;&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;src&amp;#34; value=&amp;#34;https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&amp;amp;amp;v=20161117&amp;amp;amp;vid=v0354ryo54j&amp;amp;amp;auto=0&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;allowfullscreen&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;allowscriptaccess&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;param name=&amp;#34;wmode&amp;#34; value=&amp;#34;Transparent&amp;#34;/&amp;gt;&amp;amp;#13; &amp;lt;/object&amp;gt; &amp;#34;&amp;#34;&amp;#34; 1单层查找 a &amp;gt; b 横跨多层查找用空格 a b 2选择类 .</description>
+    </item>
+    
+    <item>
+      <title>pymysql 模板</title>
+      <link>http://wxy1688.github.io/post/2015-07-13-python-mysql-utils/</link>
+      <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-13-python-mysql-utils/</guid>
+      <description>import pymysql # MySQL 建立连接 class MySQLPipeline(object): def __init__(self, host, port, user, password, db): self.mysql_host = host self.mysql_port = port self.mysql_user = user self.mysql_password = password self.mysql_db = db # 创建MYSQL数据库链接对象 self.conn = pymysql.connect(host=self.mysql_host, user=self.mysql_user, password=self.mysql_password, db=self.mysql_db, charset=&amp;#34;utf8&amp;#34;) # 查询数据 def searching(self, sql): try: with self.conn as cur: cur.execute(sql) logger.info(&amp;#34;sql查询成功&amp;#34;) return cur except Exception as e: print(e) logger.error(e) return None #增删改 def processing(self, sql): try: with self.conn as cur: cur.execute(sql) logger.</description>
+    </item>
+    
+    <item>
+      <title>python redis utils</title>
+      <link>http://wxy1688.github.io/post/2015-07-12-python-redis-utils/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-12-python-redis-utils/</guid>
+      <description>import redis class RedisPipline(): def __init__(self): self.pool = redis.ConnectionPool(host=redis_host, port=redis_port, password=redis_password, db=redis_db) self.redis_conn = redis.Redis(connection_pool=self.pool) # set def set_data(self, key, data): self.redis_conn.set(key, data) # get def get_data(self, key): return self.redis_conn.get(key) # rpush def rpush_data(self, key, data): self.redis_conn.rpush(key, json.dumps(data)) # lpop def lpop_data(self, key): self.redis_conn.lpop(key) # 删除key def delete_key(self, key): if self.redis_conn.exists(key): self.redis_conn.delete(key) </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/golang/</link>
+    <description>Recent content in Golang on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Mon, 21 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GORM</title>
+      <link>http://wxy1688.github.io/post/2018-05-21-gorm/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-21-gorm/</guid>
+      <description>%like%查询 result :=[]*dao.Product{} dao.DB().Table(&amp;#34;product&amp;#34;).Where(&amp;#34;name like ?&amp;#34;,&amp;#34;%提高%&amp;#34;).Find(&amp;amp;result) fmt.Println(result)  </description>
+    </item>
+    
+    <item>
+      <title>MySQL 乐观锁与悲观锁</title>
+      <link>http://wxy1688.github.io/post/2018-05-25-mysql/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-05-25-mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coupon 商品优惠券 API</title>
+      <link>http://wxy1688.github.io/post/2018-04-10-coupon/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-04-10-coupon/</guid>
+      <description>##coupon_temp 优惠券模板
+CREATE TABLE `coupon_temp` ( `id` int(11) NOT NULL AUTO_INCREMENT, `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, `utime` timestamp NOT NULL DEFAULT &amp;#39;0000-00-00 00:00:00&amp;#39; ON UPDATE CURRENT_TIMESTAMP, `start_time` timestamp NOT NULL DEFAULT &amp;#39;0000-00-00 00:00:00&amp;#39;, `end_time` timestamp NOT NULL DEFAULT &amp;#39;0000-00-00 00:00:00&amp;#39;, `type` tinyint(1) NOT NULL, `metadata` varchar(11) DEFAULT NULL, `amount_available` bigint(16) DEFAULT NULL, `amount_off` bigint(16) DEFAULT NULL, `percent_off` bigint(16) DEFAULT NULL, `max_circulation` int(8) DEFAULT NULL, `max_user_circulation` int(8) DEFAULT NULL, `duration` bigint(16) DEFAULT NULL, `name` varchar(11) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=100003 DEFAULT CHARSET=utf8mb4;</description>
+    </item>
+    
+    <item>
+      <title>Gin API 设计</title>
+      <link>http://wxy1688.github.io/post/2018-04-01-gin/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-04-01-gin/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;reflect&amp;#34; &amp;#34;github.com/gin-gonic/gin&amp;#34; xutil &amp;#34;hdutil&amp;#34; &amp;#34;logic/pkg/dao&amp;#34; &amp;#34;logic/pkg/service&amp;#34; ) func main() { r := gin.Default() rt := r.Group(`/homeworks`) rt.POST( ``, xutil.GRequestBodyObject(reflect.TypeOf(dao.Homework{}), &amp;#34;json&amp;#34;), CreateHomework, ) rt.PUT( `/:homeworkId`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), xutil.GRequestBodyMap, UpdateHomework, ) r.GET( `/homeworksByFilter`, xutil.GQueryRequireString(&amp;#34;filter&amp;#34;), xutil.GQueryOptionalIntDefault(&amp;#34;current&amp;#34;, 1), xutil.GQueryOptionalIntDefault(&amp;#34;pageSize&amp;#34;, 10), GetHomeworkByFilter, ) rt.POST( `/notify`, xutil.GRequestBodyObject(reflect.TypeOf([]int64{}), &amp;#34;json&amp;#34;), BatchSendRemark, ) rt.GET( `/:homeworkId/thumb`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), xutil.GQueryRequireString(&amp;#34;sessionId&amp;#34;), ThumbUp, ) rt.GET( `/:homeworkId/sharetimeline`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), ShareTimeline, ) rt.GET( `/:homeworkId/sharefriend`, xutil.GPathRequireInt(&amp;#34;homeworkId&amp;#34;), ShareFriend, ) r.Run(&amp;#34;:5000&amp;#34;) } func CreateHomework(c *gin.Context) { u := c.</description>
+    </item>
+    
+    <item>
+      <title>商品订单系统API</title>
+      <link>http://wxy1688.github.io/post/2018-03-27-order-api/</link>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2018-03-27-order-api/</guid>
+      <description>订单 Order{ Amount:	integer ($int64) 商品总金额 = 商品单价 * 购买的商品数量 （填购买几件，1，2，3等等） CancelUrl:	string 取消订单后的回调url（不用填） Channel:	string 订单渠道 alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr） Ctime:	string ($string) 订单创建时间 默认自动生成当前时间（不用填） Id:	integer ($int64) 订单编号主键自增 （不用填） PingId:	integer ($int64) ping++ 自动生成的订单编号 （不用填） PingInfo:	string ping++ 自动生成的 支付凭证信息 （不用填） Price:	integer ($int64) 商品单价 （必填） ProductId:	integer ($int64) 商品id (必填) Status:	string 订单状态 待支付:&amp;#39;CREATED&amp;#39;,已支付:&amp;#39;PAID&amp;#39;,支付失败:&amp;#39;FAIL&amp;#39;,存在退款:&amp;#39;REFUNDED&amp;#39;,订单已取消&amp;#39;CANCELED&amp;#39; （不用填，默认是待支付，服务端根据ping++的通知 更改状态） SuccessUrl:	string 支付成功的回调url(不用填) UserId:	integer ($int64) 用户id(必填) Utime:	string ($string) 订单更改时间(默认自动生成当前时间，不用填) } 商品 Product{ Avatar:	string 商品图片(必填，例如http://img.</description>
+    </item>
+    
+    <item>
+      <title>golang nsq</title>
+      <link>http://wxy1688.github.io/post/2017-11-27-go-nsq/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-11-27-go-nsq/</guid>
+      <description>安装 brew install nsq nsqd ： 负责接收消息，存储队列和将消息发送给客户端，nsqd 可以多机器部署，当你使用客户端向一个topic发送消息时，可以配置多个nsqd地址，消息会随机的 分配到各个nsqd上，nsqd优先把消息存储到内存channel中，当内存channel满了之后，则把消息写到磁盘文件中。他监听了两个tcp端口，一个用来服务客 户端，一个用来提供http的接口 ，nsqd 启动时置顶下nsqlookupd地址即可： 在一个 shell 中，运行 nsqlookupd:
+nsqlookupd： 主要负责服务发现 负责nsqd的心跳、状态监测，给客户端、nsqadmin提供nsqd地址与状态
+➜nsqlookupd [nsqlookupd] 2017/11/27 22:48:11.186029 nsqlookupd v1.0.0-compat (built w/go1.8) [nsqlookupd] 2017/11/27 22:48:11.186266 TCP: listening on [::]:4160 [nsqlookupd] 2017/11/27 22:48:11.186314 HTTP: listening on [::]:4161 再开启一个 shell，运行 nsqd:
+➜ bin ./nsqd --lookupd-tcp-address=127.0.0.1:4160 [nsqd] 2017/11/27 22:49:11.433686 nsqd v1.0.0-compat (built w/go1.8) [nsqd] 2017/11/27 22:49:11.433755 ID: 280 [nsqd] 2017/11/27 22:49:11.433797 NSQ: persisting topic/channel metadata to nsqd.dat [nsqd] 2017/11/27 22:49:11.</description>
+    </item>
+    
+    <item>
+      <title>golang etcd watch</title>
+      <link>http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/</guid>
+      <description>package etcd import ( &amp;#34;context&amp;#34; &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;LearnEtcd/tailf&amp;#34; &amp;#34;strings&amp;#34; &amp;#34;time&amp;#34; &amp;#34;github.com/astaxie/beego/logs&amp;#34; etcd_client &amp;#34;github.com/coreos/etcd/clientv3&amp;#34; &amp;#34;github.com/coreos/etcd/mvcc/mvccpb&amp;#34; &amp;#34;LearnEtcd/Ip&amp;#34; ) type EtcdClient struct { Client *etcd_client.Client Keys []string } var ( etcdClient *EtcdClient ) func InitEtcd(addr string, key string) (collectConf []tailf.CollectConf, err error) { cli, err := etcd_client.New(etcd_client.Config{ Endpoints: []string{&amp;#34;localhost:2379&amp;#34;, &amp;#34;localhost:22379&amp;#34;, &amp;#34;localhost:32379&amp;#34;}, DialTimeout: 5 * time.Second, }) if err != nil { logs.Error(&amp;#34;connect etcd failed, err:&amp;#34;, err) return } etcdClient = &amp;amp;EtcdClient{ Client: cli, } if strings.</description>
+    </item>
+    
+    <item>
+      <title>golang kafka</title>
+      <link>http://wxy1688.github.io/post/2017-08-10-go-kafka/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-08-10-go-kafka/</guid>
+      <description>producer package kafka import ( &amp;#34;github.com/Shopify/sarama&amp;#34; &amp;#34;github.com/astaxie/beego/logs&amp;#34; ) var ( client sarama.SyncProducer ) func InitKafka(addr string) (err error) { config := sarama.NewConfig() config.Producer.RequiredAcks = sarama.WaitForAll config.Producer.Partitioner = sarama.NewRandomPartitioner config.Producer.Return.Successes = true client, err = sarama.NewSyncProducer([]string{addr}, config) if err != nil { logs.Error(&amp;#34;init kafka producer failed, err:&amp;#34;, err) return } logs.Debug(&amp;#34;init kafka succ&amp;#34;) return } func SendToKafka(data, topic string) (err error) { msg := &amp;amp;sarama.ProducerMessage{} msg.Topic = topic msg.Value = sarama.</description>
+    </item>
+    
+    <item>
+      <title>golang sync.map</title>
+      <link>http://wxy1688.github.io/post/2017-04-10-go-sync.map/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-04-10-go-sync.map/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) func main() { list := map[string]interface{}{ &amp;#34;name&amp;#34;: &amp;#34;田馥甄&amp;#34;, &amp;#34;birthday&amp;#34;: &amp;#34;1983年3月30日&amp;#34;, &amp;#34;age&amp;#34;: 34, &amp;#34;hobby&amp;#34;: []string{&amp;#34;听音乐&amp;#34;, &amp;#34;看电影&amp;#34;, &amp;#34;电视&amp;#34;, &amp;#34;和姐妹一起讨论私人话题&amp;#34;}, &amp;#34;constellation&amp;#34;: &amp;#34;白羊座&amp;#34;, } var m sync.Map for k, v := range list { m.Store(k, v) } var wg sync.WaitGroup wg.Add(2) go func() { m.Store(&amp;#34;age&amp;#34;, 22) m.LoadOrStore(&amp;#34;tag&amp;#34;, 8888) wg.Done() }() go func() { m.Delete(&amp;#34;constellation&amp;#34;) m.Store(&amp;#34;age&amp;#34;, 18) wg.Done() }() wg.Wait() m.Range(func(key, value interface{}) bool { fmt.Println(key, value) return true }) }  </description>
+    </item>
+    
+    <item>
+      <title>go-colly</title>
+      <link>http://wxy1688.github.io/post/2017-10-18-go-colly/</link>
+      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-10-18-go-colly/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; ) type Collector struct { // UserAgent is the User-Agent string used by HTTP requests 	UserAgent string // MaxDepth limits the recursion depth of visited URLs. 	// Set it to 0 for infinite recursion (default). 	MaxDepth int } func UserAgent(ua string) func(*Collector) { return func(c *Collector) { c.UserAgent = ua } } func (c *Collector) Init() { c.UserAgent = &amp;#34;colly - https://github.com/gocolly/colly&amp;#34; c.</description>
+    </item>
+    
+    <item>
+      <title>golang jsonrpc</title>
+      <link>http://wxy1688.github.io/post/2017-03-14-jsonrpc/</link>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-14-jsonrpc/</guid>
+      <description>client package main import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net/rpc/jsonrpc&amp;#34; &amp;#34;time&amp;#34; ) type Args struct { A, B int } type Arith int func main() { // Create a new jsonrpc client 	// 	// NewClient returns a new rpc.Client to handle requests to the 	// set of services at the other end of the connection. 	// 	// Client will use json as the server&amp;#39;s specified codec 	// to encode requests and decode responses.</description>
+    </item>
+    
+    <item>
+      <title>golang net/rpc</title>
+      <link>http://wxy1688.github.io/post/2017-03-13-rpc/</link>
+      <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-13-rpc/</guid>
+      <description>client package main import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net/rpc&amp;#34; ) type Args struct { A, B int } type Quotient struct { Quo, Rem int } func main() { client, err := rpc.DialHTTP(&amp;#34;tcp&amp;#34;, &amp;#34;127.0.0.1:1234&amp;#34;) if err != nil { log.Fatal(&amp;#34;dialing:&amp;#34;, err) } // Synchronous call 	args := &amp;amp;Args{7, 8} var reply int err = client.Call(&amp;#34;Arith.Multiply&amp;#34;, args, &amp;amp;reply) if err != nil { log.Fatal(&amp;#34;arith error:&amp;#34;, err) } fmt.Printf(&amp;#34;Arith: %d*%d=%d\n&amp;#34;, args.A, args.</description>
+    </item>
+    
+    <item>
+      <title>golang set</title>
+      <link>http://wxy1688.github.io/post/2016-11-20-golang-set/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-20-golang-set/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) type IntSet struct { mu sync.RWMutex m map[int]struct{} } func NewIntSet() *IntSet { return &amp;amp;IntSet{m: make(map[int]struct{})} } // 给定回调函数对原始内容进行遍历 func (this *IntSet) Iterator(f func (v int)) { this.mu.RLock() for k, _ := range this.m { f(k) } this.mu.RUnlock() } // 设置键 func (this *IntSet) Add(item int) *IntSet { this.mu.Lock() this.m[item] = struct{}{} this.mu.Unlock() return this } // 批量添加设置键 func (this *IntSet) BatchAdd(items []int) *IntSet { this.</description>
+    </item>
+    
+    <item>
+      <title>Gin&#43;Mysql简单的Restful风格的API</title>
+      <link>http://wxy1688.github.io/post/2016-11-12-gin&#43;mysql-api/</link>
+      <pubDate>Sat, 12 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-12-gin&#43;mysql-api/</guid>
+      <description>数据库 CREATE TABLE `person` ( `id` int(11) NOT NULL AUTO_INCREMENT, `first_name` varchar(40) NOT NULL DEFAULT &amp;#39;&amp;#39;, `last_name` varchar(40) NOT NULL DEFAULT &amp;#39;&amp;#39;, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8; 组织项目 在项目根目录创建下面三个文件夹，apis，databases和models，并在文件夹内创建文件。此时我们的目录结果如下： myql.go的包代码如下： package database import ( &amp;#34;database/sql&amp;#34; _ &amp;#34;github.com/go-sql-driver/mysql&amp;#34; &amp;#34;log&amp;#34; ) var SqlDB *sql.DB func init() { var err error SqlDB, err = sql.Open(&amp;#34;mysql&amp;#34;, &amp;#34;root:@tcp(127.0.0.1:3306)/test?parseTime=true&amp;#34;) if err != nil { log.Fatal(err.Error()) } err = SqlDB.Ping() if err != nil { log.</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch 入门</title>
+      <link>http://wxy1688.github.io/post/2016-10-15-elasticsearch01/</link>
+      <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-10-15-elasticsearch01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang heap interface实现</title>
+      <link>http://wxy1688.github.io/post/2016-09-15-go-heap/</link>
+      <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-09-15-go-heap/</guid>
+      <description>package main import ( &amp;#34;container/heap&amp;#34; &amp;#34;fmt&amp;#34; ) // An IntHeap is a min-heap of ints. type IntHeap []int func (h IntHeap) Len() int { return len(h) } func (h IntHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i] } func (h IntHeap) Less(i, j int) bool { return h[i] &amp;lt; h[j] } // The following two IntHeap methods Push and Pop use pointer receivers // because they modify the slice&amp;#39;s length, not just its contents.</description>
+    </item>
+    
+    <item>
+      <title>golang redispool</title>
+      <link>http://wxy1688.github.io/post/2016-02-15-golang-redispool/</link>
+      <pubDate>Mon, 15 Feb 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-02-15-golang-redispool/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.com/garyburd/redigo/redis&amp;#34; ) var pool *redis.Pool func init() { pool = &amp;amp;redis.Pool{ MaxIdle: 16, MaxActive: 0, IdleTimeout: 300, Dial: func() (redis.Conn, error) { return redis.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;localhost:6379&amp;#34;) }, } } func main() { c := pool.Get() defer c.Close() _, err := c.Do(&amp;#34;Set&amp;#34;, &amp;#34;abc&amp;#34;, 100) if err != nil { fmt.Println(err) return } r, err := redis.Int(c.Do(&amp;#34;Get&amp;#34;, &amp;#34;abc&amp;#34;)) if err != nil { fmt.Println(&amp;#34;get abc failed,&amp;#34;, err) return } fmt.</description>
+    </item>
+    
+  </channel>
+</rss>

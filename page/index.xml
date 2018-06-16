@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/page/</link>
+    <description>Recent content in Pages on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    
+	<atom:link href="http://wxy1688.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About me</title>
+      <link>http://wxy1688.github.io/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/page/about/</guid>
+      <description>My name is Andy Wu. I have the following qualities:
+ 后端工程师 极客，热爱学习，热爱开源,涉猎范围广 理念:Keep It Simple and Stupid  我的技能树 Python Golang Java
+DB: mysql, mongodb,redis,elasticsearch,etcd
+Web: Gin,Beego,Flask,Django,SpringBoot
+MQ: Kafka
+任务调度：Celery,APScheduler
+大数据：Spark/Pyspark,Pandas,ELK Stack, Hadoop,Hive,Flume
+爬虫：Scarpy,Pyspider,Colly,Pholcus,Pyquery,Goquery
+DevOps: Docker,Ansible,Vagrant</description>
+    </item>
+    
+  </channel>
+</rss>

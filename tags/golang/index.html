@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Golang</title>
+  <meta property="og:title" content="Golang" />
+  <meta name="twitter:title" content="Golang" />
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/tags/golang/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/tags/golang/" />
+  <link rel="alternate" href="http://wxy1688.github.io/tags/golang/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  <header class="header-section ">
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="page-heading">
+              <h1>#Golang</h1>
+              <hr class="small">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2018-05-21-gorm/">
+                <h2 class="post-title">GORM</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on May 21, 2018
+              </p>
+              <div class="post-entry">
+                
+                  <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">%</span><span class="nx">like</span><span class="o">%</span><span class="nx">查询</span>
+<span class="nx">result</span> <span class="o">:=</span><span class="p">[]</span><span class="o">*</span><span class="nx">dao</span><span class="p">.</span><span class="nx">Product</span><span class="p">{}</span>
+
+<span class="nx">dao</span><span class="p">.</span><span class="nx">DB</span><span class="p">().</span><span class="nx">Table</span><span class="p">(</span><span class="s2">&#34;product&#34;</span><span class="p">).</span><span class="nx">Where</span><span class="p">(</span><span class="s2">&#34;name like ?&#34;</span><span class="p">,</span><span class="s2">&#34;%提高%&#34;</span><span class="p">).</span><span class="nx">Find</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">result</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</code></pre></div>
+
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2018-05-25-mysql/">
+                <h2 class="post-title">MySQL 乐观锁与悲观锁</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on May 21, 2018
+              </p>
+              <div class="post-entry">
+                
+                  
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2018-04-10-coupon/">
+                <h2 class="post-title">Coupon 商品优惠券 API</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 10, 2018
+              </p>
+              <div class="post-entry">
+                
+                  <p>##coupon_temp 优惠券模板</p>
+<div class="highlight"><pre class="chroma">CREATE TABLE `coupon_temp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `utime` timestamp NOT NULL DEFAULT &#39;0000-00-00 00:00:00&#39; ON UPDATE CURRENT_TIMESTAMP,
+  `start_time` timestamp NOT NULL DEFAULT &#39;0000-00-00 00:00:00&#39;,
+  `end_time` timestamp NOT NULL DEFAULT &#39;0000-00-00 00:00:00&#39;,
+  `type` tinyint(1) NOT NULL,
+  `metadata` varchar(11) DEFAULT NULL,
+  `amount_available` bigint(16) DEFAULT NULL,
+  `amount_off` bigint(16) DEFAULT NULL,
+  `percent_off` bigint(16) DEFAULT NULL,
+  `max_circulation` int(8) DEFAULT NULL,
+  `max_user_circulation` int(8) DEFAULT NULL,
+  `duration` bigint(16) DEFAULT NULL,
+  `name` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=100003 DEFAULT CHARSET=utf8mb4;</pre></div>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2018-04-01-gin/">
+                <h2 class="post-title">Gin API 设计</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 1, 2018
+              </p>
+              <div class="post-entry">
+                
+                  package main import ( &#34;fmt&#34; &#34;net/http&#34; &#34;reflect&#34; &#34;github.com/gin-gonic/gin&#34; xutil &#34;hdutil&#34; &#34;logic/pkg/dao&#34; &#34;logic/pkg/service&#34; ) func main() { r := gin.Default() rt := r.Group(`/homeworks`) rt.POST( ``, xutil.GRequestBodyObject(reflect.TypeOf(dao.Homework{}), &#34;json&#34;), CreateHomework, ) rt.PUT( `/:homeworkId`, xutil.GPathRequireInt(&#34;homeworkId&#34;), xutil.GRequestBodyMap, UpdateHomework, ) r.GET( `/homeworksByFilter`, xutil.GQueryRequireString(&#34;filter&#34;), xutil.GQueryOptionalIntDefault(&#34;current&#34;, 1), xutil.GQueryOptionalIntDefault(&#34;pageSize&#34;, 10), GetHomeworkByFilter, ) rt.POST( `/notify`, xutil.GRequestBodyObject(reflect.TypeOf([]int64{}), &#34;json&#34;), BatchSendRemark, ) rt.GET( `/:homeworkId/thumb`, xutil.GPathRequireInt(&#34;homeworkId&#34;), xutil.GQueryRequireString(&#34;sessionId&#34;), ThumbUp, ) rt.GET( `/:homeworkId/sharetimeline`, xutil.GPathRequireInt(&#34;homeworkId&#34;), ShareTimeline, ) rt.GET( `/:homeworkId/sharefriend`, xutil.GPathRequireInt(&#34;homeworkId&#34;), ShareFriend, ) r.Run(&#34;:5000&#34;) } func CreateHomework(c *gin.Context) { u := c.
+                  <a href="http://wxy1688.github.io/post/2018-04-01-gin/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2018-03-27-order-api/">
+                <h2 class="post-title">商品订单系统API</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on March 27, 2018
+              </p>
+              <div class="post-entry">
+                
+                  订单 Order{ Amount:	integer ($int64) 商品总金额 = 商品单价 * 购买的商品数量 （填购买几件，1，2，3等等） CancelUrl:	string 取消订单后的回调url（不用填） Channel:	string 订单渠道 alipay, wx_pub_qr 微信公众号扫码支付（必填，当前支持alipay或者wx_pub_qr） Ctime:	string ($string) 订单创建时间 默认自动生成当前时间（不用填） Id:	integer ($int64) 订单编号主键自增 （不用填） PingId:	integer ($int64) ping++ 自动生成的订单编号 （不用填） PingInfo:	string ping++ 自动生成的 支付凭证信息 （不用填） Price:	integer ($int64) 商品单价 （必填） ProductId:	integer ($int64) 商品id (必填) Status:	string 订单状态 待支付:&#39;CREATED&#39;,已支付:&#39;PAID&#39;,支付失败:&#39;FAIL&#39;,存在退款:&#39;REFUNDED&#39;,订单已取消&#39;CANCELED&#39; （不用填，默认是待支付，服务端根据ping++的通知 更改状态） SuccessUrl:	string 支付成功的回调url(不用填) UserId:	integer ($int64) 用户id(必填) Utime:	string ($string) 订单更改时间(默认自动生成当前时间，不用填) } 商品 Product{ Avatar:	string 商品图片(必填，例如http://img.
+                  <a href="http://wxy1688.github.io/post/2018-03-27-order-api/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-11-27-go-nsq/">
+                <h2 class="post-title">golang nsq</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on November 27, 2017
+              </p>
+              <div class="post-entry">
+                
+                  安装 brew install nsq nsqd ： 负责接收消息，存储队列和将消息发送给客户端，nsqd 可以多机器部署，当你使用客户端向一个topic发送消息时，可以配置多个nsqd地址，消息会随机的 分配到各个nsqd上，nsqd优先把消息存储到内存channel中，当内存channel满了之后，则把消息写到磁盘文件中。他监听了两个tcp端口，一个用来服务客 户端，一个用来提供http的接口 ，nsqd 启动时置顶下nsqlookupd地址即可： 在一个 shell 中，运行 nsqlookupd:
+nsqlookupd： 主要负责服务发现 负责nsqd的心跳、状态监测，给客户端、nsqadmin提供nsqd地址与状态
+➜nsqlookupd [nsqlookupd] 2017/11/27 22:48:11.186029 nsqlookupd v1.0.0-compat (built w/go1.8) [nsqlookupd] 2017/11/27 22:48:11.186266 TCP: listening on [::]:4160 [nsqlookupd] 2017/11/27 22:48:11.186314 HTTP: listening on [::]:4161 再开启一个 shell，运行 nsqd:
+➜ bin ./nsqd --lookupd-tcp-address=127.0.0.1:4160 [nsqd] 2017/11/27 22:49:11.433686 nsqd v1.0.0-compat (built w/go1.8) [nsqd] 2017/11/27 22:49:11.433755 ID: 280 [nsqd] 2017/11/27 22:49:11.433797 NSQ: persisting topic/channel metadata to nsqd.dat [nsqd] 2017/11/27 22:49:11.
+                  <a href="http://wxy1688.github.io/post/2017-11-27-go-nsq/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/">
+                <h2 class="post-title">golang etcd watch</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on November 21, 2017
+              </p>
+              <div class="post-entry">
+                
+                  package etcd import ( &#34;context&#34; &#34;encoding/json&#34; &#34;fmt&#34; &#34;LearnEtcd/tailf&#34; &#34;strings&#34; &#34;time&#34; &#34;github.com/astaxie/beego/logs&#34; etcd_client &#34;github.com/coreos/etcd/clientv3&#34; &#34;github.com/coreos/etcd/mvcc/mvccpb&#34; &#34;LearnEtcd/Ip&#34; ) type EtcdClient struct { Client *etcd_client.Client Keys []string } var ( etcdClient *EtcdClient ) func InitEtcd(addr string, key string) (collectConf []tailf.CollectConf, err error) { cli, err := etcd_client.New(etcd_client.Config{ Endpoints: []string{&#34;localhost:2379&#34;, &#34;localhost:22379&#34;, &#34;localhost:32379&#34;}, DialTimeout: 5 * time.Second, }) if err != nil { logs.Error(&#34;connect etcd failed, err:&#34;, err) return } etcdClient = &amp;EtcdClient{ Client: cli, } if strings.
+                  <a href="http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                    #<a href="http://wxy1688.github.io//tags/etcd/">etcd</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-08-10-go-kafka/">
+                <h2 class="post-title">golang kafka</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 10, 2017
+              </p>
+              <div class="post-entry">
+                
+                  producer package kafka import ( &#34;github.com/Shopify/sarama&#34; &#34;github.com/astaxie/beego/logs&#34; ) var ( client sarama.SyncProducer ) func InitKafka(addr string) (err error) { config := sarama.NewConfig() config.Producer.RequiredAcks = sarama.WaitForAll config.Producer.Partitioner = sarama.NewRandomPartitioner config.Producer.Return.Successes = true client, err = sarama.NewSyncProducer([]string{addr}, config) if err != nil { logs.Error(&#34;init kafka producer failed, err:&#34;, err) return } logs.Debug(&#34;init kafka succ&#34;) return } func SendToKafka(data, topic string) (err error) { msg := &amp;sarama.ProducerMessage{} msg.Topic = topic msg.Value = sarama.
+                  <a href="http://wxy1688.github.io/post/2017-08-10-go-kafka/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-04-10-go-sync.map/">
+                <h2 class="post-title">golang sync.map</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 10, 2017
+              </p>
+              <div class="post-entry">
+                
+                  <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">package</span> <span class="nx">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s2">&#34;fmt&#34;</span>
+	<span class="s2">&#34;sync&#34;</span>
+<span class="p">)</span>
+
+<span class="nx">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">list</span> <span class="o">:=</span> <span class="nx">map</span><span class="p">[</span><span class="nx">string</span><span class="p">]</span><span class="kr">interface</span><span class="p">{}{</span>
+		<span class="s2">&#34;name&#34;</span><span class="o">:</span>          <span class="s2">&#34;田馥甄&#34;</span><span class="p">,</span>
+		<span class="s2">&#34;birthday&#34;</span><span class="o">:</span>      <span class="s2">&#34;1983年3月30日&#34;</span><span class="p">,</span>
+		<span class="s2">&#34;age&#34;</span><span class="o">:</span>           <span class="mi">34</span><span class="p">,</span>
+		<span class="s2">&#34;hobby&#34;</span><span class="o">:</span>         <span class="p">[]</span><span class="nx">string</span><span class="p">{</span><span class="s2">&#34;听音乐&#34;</span><span class="p">,</span> <span class="s2">&#34;看电影&#34;</span><span class="p">,</span> <span class="s2">&#34;电视&#34;</span><span class="p">,</span> <span class="s2">&#34;和姐妹一起讨论私人话题&#34;</span><span class="p">},</span>
+		<span class="s2">&#34;constellation&#34;</span><span class="o">:</span> <span class="s2">&#34;白羊座&#34;</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="kd">var</span> <span class="nx">m</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nx">range</span> <span class="nx">list</span> <span class="p">{</span>
+		<span class="nx">m</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+	<span class="nx">go</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">m</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s2">&#34;age&#34;</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+		<span class="nx">m</span><span class="p">.</span><span class="nx">LoadOrStore</span><span class="p">(</span><span class="s2">&#34;tag&#34;</span><span class="p">,</span> <span class="mi">8888</span><span class="p">)</span>
+		<span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+	<span class="p">}()</span>
+
+	<span class="nx">go</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">m</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="s2">&#34;constellation&#34;</span><span class="p">)</span>
+		<span class="nx">m</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s2">&#34;age&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+		<span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+	<span class="p">}()</span>
+
+	<span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+
+	<span class="nx">m</span><span class="p">.</span><span class="nx">Range</span><span class="p">(</span><span class="nx">func</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kr">interface</span><span class="p">{})</span> <span class="nx">bool</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+		<span class="k">return</span> <span class="kc">true</span>
+	<span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="http://wxy1688.github.io/post/2017-10-18-go-colly/">
+                <h2 class="post-title">go-colly</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    装饰器
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on March 20, 2017
+              </p>
+              <div class="post-entry">
+                
+                  package main import ( &#34;fmt&#34; ) type Collector struct { // UserAgent is the User-Agent string used by HTTP requests 	UserAgent string // MaxDepth limits the recursion depth of visited URLs. 	// Set it to 0 for infinite recursion (default). 	MaxDepth int } func UserAgent(ua string) func(*Collector) { return func(c *Collector) { c.UserAgent = ua } } func (c *Collector) Init() { c.UserAgent = &#34;colly - https://github.com/gocolly/colly&#34; c.
+                  <a href="http://wxy1688.github.io/post/2017-10-18-go-colly/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="http://wxy1688.github.io//tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+        </div>
+        
+          <ul class="pager main-pager">
+            
+            
+              <li class="next">
+                <a href="/tags/golang/page/2/">Older Posts &rarr;</a>
+              </li>
+            
+          </ul>
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/tags/golang/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

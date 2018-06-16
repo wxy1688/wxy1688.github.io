@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Etcd on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/etcd/</link>
+    <description>Recent content in Etcd on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/etcd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>golang etcd watch</title>
+      <link>http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-11-21-go-etcd-watcd/</guid>
+      <description>package etcd import ( &amp;#34;context&amp;#34; &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;LearnEtcd/tailf&amp;#34; &amp;#34;strings&amp;#34; &amp;#34;time&amp;#34; &amp;#34;github.com/astaxie/beego/logs&amp;#34; etcd_client &amp;#34;github.com/coreos/etcd/clientv3&amp;#34; &amp;#34;github.com/coreos/etcd/mvcc/mvccpb&amp;#34; &amp;#34;LearnEtcd/Ip&amp;#34; ) type EtcdClient struct { Client *etcd_client.Client Keys []string } var ( etcdClient *EtcdClient ) func InitEtcd(addr string, key string) (collectConf []tailf.CollectConf, err error) { cli, err := etcd_client.New(etcd_client.Config{ Endpoints: []string{&amp;#34;localhost:2379&amp;#34;, &amp;#34;localhost:22379&amp;#34;, &amp;#34;localhost:32379&amp;#34;}, DialTimeout: 5 * time.Second, }) if err != nil { logs.Error(&amp;#34;connect etcd failed, err:&amp;#34;, err) return } etcdClient = &amp;amp;EtcdClient{ Client: cli, } if strings.</description>
+    </item>
+    
+    <item>
+      <title>Confd&#43;etcd实现高可用自动发现</title>
+      <link>http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/</link>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-08-etcd&#43;confd/</guid>
+      <description>Confd是一个轻量级的配置管理工具。通过查询Etcd，结合配置模板引擎，保持本地配置最新，同时具备定期探测机制，配置变更自动reload。其后端支持的 数据类型有：etcd、consul、vault、environment variables、redis、zookeeper、dynamodb、stackengine、rancher。不过一般使用Confd和 etcd的配合使用比较多。其常用架构如下： 一、简单配置 1、配置etcd数据 具体步骤这里略过，这里只配置两条数据
+etcdctl set /myapp/database/url www.qq.com etcdctl set /myapp/database/user rob 2、confd安装 confd比较简单就一个文件，拿过来就可以执行，可以从github上下载：https://github.com/kelseyhightower/confd/releases ，并将其放到 /usr/local/bin目录下即可。不过使用前需要创建相应的配置目录：
+[root@etcd1 bin]# mkdir -p /etc/confd/{conf.d,templates} 3、创建confd配置文件 vim /etc/confd/conf.d/myconfig.toml [template] src = &amp;#34;myconfig.conf.tmpl&amp;#34; dest = &amp;#34;/tmp/myconfig.conf&amp;#34; keys = [ &amp;#34;/myapp/database/url&amp;#34;, &amp;#34;/myapp/database/user&amp;#34;, ] 4、创建模板文件 vim /etc/confd/templates/myconfig.conf.tmpl [myconfig] database_url = {{getv &amp;#34;/myapp/database/url&amp;#34;}} database_user = {{getv &amp;#34;/myapp/database/user&amp;#34;}} 5、执行生成配置文件 confd -onetime -backend etcd -node http://127.0.0.1:2379 #只一次 confd -interval=60 -backend etcd -node http://127.0.0.1:2379 &amp;amp; #按时间轮询 6、验证文件生成 [root@etcd1 tmp]# cat /tmp/myconfig.</description>
+    </item>
+    
+  </channel>
+</rss>

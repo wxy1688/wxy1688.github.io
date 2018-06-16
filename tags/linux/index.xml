@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/linux/</link>
+    <description>Recent content in Linux on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Thu, 15 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AriaNg&#43;Caddy FileManager打造自己的离线下载网盘</title>
+      <link>http://wxy1688.github.io/post/2017-06-13-ariang-filemanerger/</link>
+      <pubDate>Thu, 15 Jun 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-06-13-ariang-filemanerger/</guid>
+      <description>简单介绍 Aria2 是一个命令行下运行、多协议、多来源下载工具，支持磁力链接、BT 种子、HTTP、FTP 等下载协议，当然因为它是命令行下载工具，所以我们想下载一个东西还需要去敲命令自然是不方便，于是就有一些人根据 Aria2 的 API 开发了一些在线管理面板，可以直接在网页上面添加管理任务。
+本教程介绍的是 AriaNg，Github 项目：https://github.com/mayswind/AriaNg
+Aria2 是一个后端 (服务端) 的程序，而 AriaNg 是一个前端 (HTML+JS 静态) 控制面板，不需要和 Aria2(后端 / 服务端)放在一个服务器或者设备中，你甚至可以只在服务器上面搭建 Aria2 后端，然后访问别人建好的 AriaNg 前端面板，也可以远程操作 Aria2 后端！
+centos6 安装Aria2 wget http://repository.it4i.cz/mirrors/repoforge/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm rpm -ivh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm yum -y install aria2 # 测试 aria2c -v  配置后端 # 创建Aria2配置文件夹 mkdir /root/.aria2 &amp;amp;&amp;amp; cd /root/.aria2 # 下载Aria2配置文件、DHT文件(BT有没有速度就靠这个) wget --no-check-certificate https://softs.fun/Other/Aria2/aria2.conf wget --no-check-certificate https://softs.fun/Other/Aria2/dht.dat # 创建一个空的 Aria2 下载任务保存文件 echo &amp;#39;&amp;#39; &amp;gt; /root/.</description>
+    </item>
+    
+    <item>
+      <title>caddy nginx 对比</title>
+      <link>http://wxy1688.github.io/post/2017-06-10-caddy-nginx/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-06-10-caddy-nginx/</guid>
+      <description>Caddy 是什么？ Caddy 是一个多功能的 HTTP web服务器，并且使用Let&amp;rsquo;s Encrypt提供的免费证书，自动让网站升级到HTTPS
+Every Site on HTTPS Caddy is a general-purpose HTTP/2 web server that serves HTTPS by default. Fork Caddy On Github
+为什么要使用 Caddy 安全 Caddy 是一个默认使用https协议的web服务器 无依赖 Caddy 使用 Go 语言编写，编译好的二进制文件能够运行在任何支持Go语言的平台，不需要自己安装任何库。 使用简单 Caddy 的配置简单，不管你是新的web开发者，还是专业人士，都能够快速上手
+Caddy 一键安装脚本
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/caddy_install.sh &amp;amp;&amp;amp; chmod +x caddy_install.sh &amp;amp;&amp;amp; bash caddy_install.sh  这里我们看一下官网的例子说明 Caddy Documentation  :2015 # Host: (any), Port: 2015 localhost # Host: localhost; Port: 2015 localhost:8080 # Host: localhost; Port: 8080 example.</description>
+    </item>
+    
+    <item>
+      <title>使用 rclone 将文件同步至 Google Dirve</title>
+      <link>http://wxy1688.github.io/post/2017-05-10-rclone/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-05-10-rclone/</guid>
+      <description>首先是下载文件 yum install unzip wget -y wget -O https://downloads.rclone.org/rclone-current-linux-amd64.zip unzip rclone-current-linux-amd64.zip cd rclone-*-linux-amd64 然后复制文件到相关路径 cp rclone /usr/bin/ chown root:root /usr/bin/rclone chmod 755 /usr/bin/rclone 新建一个配置 rclone config n) New remote d) Delete remote q) Quit config e/n/d/q&amp;gt; n name&amp;gt; google(你的配置名称,此处随意填写但之后需要用到) Type of storage to configure. Choose a number from below, or type in your own value 1 / Amazon Drive \ &amp;#34;amazon cloud drive&amp;#34; 2 / Amazon S3 (also Dreamhost, Ceph, Minio) \ &amp;#34;s3&amp;#34; 3 / Backblaze B2 \ &amp;#34;b2&amp;#34; 4 / Dropbox \ &amp;#34;dropbox&amp;#34; 5 / Encrypt/Decrypt a remote \ &amp;#34;crypt&amp;#34; 6 / Google Cloud Storage (this is not Google Drive) \ &amp;#34;google cloud storage&amp;#34; 7 / Google Drive \ &amp;#34;drive&amp;#34; 8 / Hubic \ &amp;#34;hubic&amp;#34; 9 / Local Disk \ &amp;#34;local&amp;#34; 10 / Microsoft OneDrive \ &amp;#34;onedrive&amp;#34; 11 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH) \ &amp;#34;swift&amp;#34; 12 / SSH/SFTP Connection \ &amp;#34;sftp&amp;#34; 13 / Yandex Disk \ &amp;#34;yandex&amp;#34; Storage&amp;gt; 7(根据网盘类型选择Google Dirve) Google Application Client Id - leave blank normally.</description>
+    </item>
+    
+    <item>
+      <title>宝塔linux 控制面板</title>
+      <link>http://wxy1688.github.io/post/2017-04-10-baota-linux/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-04-10-baota-linux/</guid>
+      <description>Centos安装命令：
+yum install -y wget &amp;amp;&amp;amp; wget -O install.sh http://download.bt.cn/install/install.sh &amp;amp;&amp;amp; sh install.sh Ubuntu/Deepin安装命令：
+wget -O install.sh http://download.bt.cn/install/install-ubuntu.sh &amp;amp;&amp;amp; sudo bash install.sh 重启
+service bt restart</description>
+    </item>
+    
+    <item>
+      <title>mysql 安装配置</title>
+      <link>http://wxy1688.github.io/post/2014-07-10-mysql-setup/</link>
+      <pubDate>Thu, 10 Jul 2014 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014-07-10-mysql-setup/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

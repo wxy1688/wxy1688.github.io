@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vagrant on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/vagrant/</link>
+    <description>Recent content in Vagrant on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Fri, 12 Jun 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vagrant 入门</title>
+      <link>http://wxy1688.github.io/post/2014-11-10-vagrant/</link>
+      <pubDate>Fri, 12 Jun 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2014-11-10-vagrant/</guid>
+      <description>基础镜像 centos7 http://pan.baidu.com/s/1o7BSmoU centos6 http://pan.baidu.com/s/1o81Zb9C ubuntu http://pan.baidu.com/s/1pLzVhnP 添加本地box vagrant box add 自定义你的box名称 box路径 vagrant box add my_first_box D:/centos-7.0-x86_64.box 查看已添加的box vagrant box list 删除box vagrant box remove your_box_name vagrant虚拟机优化 虚拟机名称 config.vm.hostname = &amp;#34;test&amp;#34; 虚拟机主机名 vb.name = &amp;#34;ubuntu_test&amp;#34; 配置虚拟机内存 vb.memory = &amp;#34;512&amp;#34; 配置虚拟机CPU vb.cpus = 1 完整示例 先复制一份Vagrantfile为Vagrantfile.bak作为备份 Vagrantfile Vagrant.configure(&amp;#34;2&amp;#34;) do |config| config.vm.box = &amp;#34;centos&amp;#34; config.vm.network &amp;#34;forwarded_port&amp;#34;, guest:80, host:80 config.vm.network &amp;#34;forwarded_port&amp;#34;, guest:8080, host:8080 config.vm.synced_folder &amp;#34;/Users/andy/data&amp;#34;, &amp;#39;/data&amp;#39;, :smb =&amp;gt; true config.vm.network &amp;#34;private_network&amp;#34;, ip: &amp;#34;192.</description>
+    </item>
+    
+  </channel>
+</rss>

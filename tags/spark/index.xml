@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/spark/</link>
+    <description>Recent content in Spark on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Thu, 23 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>spark dataframe</title>
+      <link>http://wxy1688.github.io/post/2017-03-24-spark-dataframe/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-24-spark-dataframe/</guid>
+      <description>from pyspark.sql import SparkSession from pyspark.sql import Row spark = SparkSession.builder.appName(&amp;#39;test&amp;#39;).getOrCreate() sc = spark.sparkContext spark.conf.set(&amp;#34;spark.sql.shuffle.partitions&amp;#34;, 6) l = [(&amp;#39;Ankit&amp;#39;,25),(&amp;#39;Jalfaizy&amp;#39;,22),(&amp;#39;saurabh&amp;#39;,20),(&amp;#39;Bala&amp;#39;,26)] rdd = sc.parallelize(l) people = rdd.map(lambda x: Row(name=x[0], age=int(x[1]))) schemaPeople = spark.createDataFrame(people) df = spark.read.format(&amp;#34;csv&amp;#34;). \ option(&amp;#34;header&amp;#34;, &amp;#34;true&amp;#34;) \ .load(&amp;#34;iris.csv&amp;#34;) df.printSchema() df.show(10) df.count() df.columns df.withColumn(&amp;#39;newWidth&amp;#39;,df.SepalWidth * 2).show() df.drop(&amp;#39;Name&amp;#39;).show() df.describe().show() df.describe(&amp;#39;Name&amp;#39;).show() #分类变量 df.select(&amp;#39;Name&amp;#39;,&amp;#39;SepalLength&amp;#39;).show() df.select(&amp;#39;Name&amp;#39;).distinct().count() ### 分组统计 groupby(colname).agg({&amp;#39;col&amp;#39;:&amp;#39;fun&amp;#39;,&amp;#39;col2&amp;#39;:&amp;#39;fun2&amp;#39;}) df.groupby(&amp;#39;Name&amp;#39;).agg({&amp;#39;SepalWidth&amp;#39;:&amp;#39;mean&amp;#39;,&amp;#39;SepalLength&amp;#39;:&amp;#39;max&amp;#39;}).show() ### 自定义的汇总方法 import pyspark.sql.functions as fn df.agg(fn.count(&amp;#39;SepalWidth&amp;#39;).alias(&amp;#39;width_count&amp;#39;), fn.countDistinct(&amp;#39;id&amp;#39;).alias(&amp;#39;distinct_id_count&amp;#39;)).collect() ### 数据集拆成两部分 trainDF, testDF = df.randomSplit([0.6, 0.</description>
+    </item>
+    
+    <item>
+      <title>spark2.x</title>
+      <link>http://wxy1688.github.io/post/2017-03-23-spark-01/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-23-spark-01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spark basic</title>
+      <link>http://wxy1688.github.io/post/2017-02-15-spark-basic/</link>
+      <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-15-spark-basic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spark sql优化原理图</title>
+      <link>http://wxy1688.github.io/post/2017-02-12-spark-pic/</link>
+      <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-12-spark-pic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spark streaming</title>
+      <link>http://wxy1688.github.io/post/2017-02-11-sparkstreaming/</link>
+      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-11-sparkstreaming/</guid>
+      <description>from pyspark.sql import SparkSession from pyspark.streaming.kafka import KafkaUtils from pyspark.streaming import StreamingContext if __name__ == &amp;#39;__main__&amp;#39;: topic =&amp;#34;test&amp;#34; spark = SparkSession.builder.appName(&amp;#34;Python Spark &amp;#34;).master(&amp;#34;local[2]&amp;#34;).getOrCreate() sc = spark.sparkContext ssc = StreamingContext(sc, 10) kvs = KafkaUtils.createDirectStream(ssc,[topic],{&amp;#34;metadata.broker.list&amp;#34;:&amp;#34;127.0.0.1:9092&amp;#34;}) lines = kvs.map(lambda x: x[1]) counts = lines.flatMap(lambda line: line.split(&amp;#34; &amp;#34;)) \ .map(lambda word: (word, 1)) \ .reduceByKey(lambda a, b: a + b) counts.pprint() ssc.start() ssc.awaitTermination() </description>
+    </item>
+    
+    <item>
+      <title>sparksql</title>
+      <link>http://wxy1688.github.io/post/2017-02-10-sparksql/</link>
+      <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-02-10-sparksql/</guid>
+      <description>from pyspark.sql import SparkSession if __name__ == &amp;#39;__main__&amp;#39;: spark = SparkSession.builder.appName(&amp;#34;Python Spark &amp;#34;).master(&amp;#34;local[2]&amp;#34;).getOrCreate() jdbcDF = spark.read.format(&amp;#34;jdbc&amp;#34;).option(&amp;#34;url&amp;#34;, &amp;#34;jdbc:mysql://localhost:3306/video&amp;#34;).option(&amp;#34;driver&amp;#34;,&amp;#34;com.mysql.jdbc.Driver&amp;#34;).option(&amp;#34;dbtable&amp;#34;, &amp;#34;baidu&amp;#34;).option(&amp;#34;user&amp;#34;, &amp;#34;root&amp;#34;).option(&amp;#34;password&amp;#34;, &amp;#34;123456&amp;#34;).load() jdbcDF.show() </description>
+    </item>
+    
+  </channel>
+</rss>

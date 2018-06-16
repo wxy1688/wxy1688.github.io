@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elasticsearch on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/elasticsearch/</link>
+    <description>Recent content in Elasticsearch on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Fri, 10 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ElasticSearch 智障 使用模板</title>
+      <link>http://wxy1688.github.io/post/2017-03-10-elastic-model/</link>
+      <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2017-03-10-elastic-model/</guid>
+      <description>from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body) # mapping 示例 &amp;#34;&amp;#34;&amp;#34; self.es.indices.put_mapping( index=self.index, doc_type=&amp;#34;spider_status&amp;#34;, body={ &amp;#34;_all&amp;#34;: { &amp;#34;enabled&amp;#34;: True #准许动态插入 }, &amp;#34;properties&amp;#34;: { &amp;#34;table_name&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;keyword&amp;#34; }, &amp;#34;source&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;keyword&amp;#34; }, &amp;#34;monitoring_time&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;date&amp;#34;, &amp;#34;format&amp;#34;: &amp;#34;epoch_second&amp;#34; }, &amp;#34;total_count&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;long&amp;#34; }, &amp;#34;new_count&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;long&amp;#34; } } }) &amp;#34;&amp;#34;&amp;#34; #批量插入 def put_data(self, inputdata): &amp;#34;&amp;#34;&amp;#34; 批量传入数据---写入数据库 :param inputdata: [] 列表数据 :return: 无 &amp;#34;&amp;#34;&amp;#34; helpers.</description>
+    </item>
+    
+    <item>
+      <title>python elasticsearch</title>
+      <link>http://wxy1688.github.io/post/2015-07-14-python-elastic-utils/</link>
+      <pubDate>Tue, 14 Jul 2015 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2015-07-14-python-elastic-utils/</guid>
+      <description>from elasticsearch import Elasticsearch from elasticsearch import helpers class ESutill(): def __init__(self,hosts,index,doc_type,body): self.index = index self.body = body self.doc_type = doc_type self.hosts = hosts self.es = Elasticsearch(hosts=self.hosts) if not self.es.indices.exists(index=self.index): self.es.indices.create(index=self.index) self.es.indices.put_mapping(index=self.index,doc_type=self.doc_type,body=self.body)  </description>
+    </item>
+    
+  </channel>
+</rss>

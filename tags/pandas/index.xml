@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pandas on 大王派我来搬砖</title>
+    <link>http://wxy1688.github.io/tags/pandas/</link>
+    <description>Recent content in Pandas on 大王派我来搬砖</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>1031846289@qq.com (wxy1688)</managingEditor>
+    <webMaster>1031846289@qq.com (wxy1688)</webMaster>
+    <lastBuildDate>Tue, 20 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://wxy1688.github.io/tags/pandas/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pandas basic</title>
+      <link>http://wxy1688.github.io/post/2016-12-20-pandas-pic/</link>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-12-20-pandas-pic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas 分组聚合</title>
+      <link>http://wxy1688.github.io/post/2016-11-23-python-pandas03/</link>
+      <pubDate>Wed, 23 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-23-python-pandas03/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas to sql</title>
+      <link>http://wxy1688.github.io/post/2016-11-21-pandas_to_sql/</link>
+      <pubDate>Mon, 21 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-21-pandas_to_sql/</guid>
+      <description>## pandas json 转sql，直接存入mysql import requests import pandas as pd from sqlalchemy import create_engine yconnect = create_engine(&amp;#39;mysql+pymysql://root:123456@localhost:3306/video?charset=utf8&amp;#39;) if __name__ == &amp;#39;__main__&amp;#39;: url = &amp;#34;http://app.video.baidu.com/app?word=北京&amp;amp;pn=1&amp;amp;rn=50&amp;amp;order=1&amp;#34; r = requests.get(url) data = r.json()[&amp;#34;result&amp;#34;] df = pd.DataFrame(data) del df[&amp;#39;nsclick_v&amp;#39;] # 表名baidu,数据库名video, 如果表以存在，追加数据 pd.io.sql.to_sql(df, &amp;#39;baidu&amp;#39;, yconnect, schema=&amp;#39;video&amp;#39;, if_exists=&amp;#39;append&amp;#39;)  </description>
+    </item>
+    
+    <item>
+      <title>pandas to dict</title>
+      <link>http://wxy1688.github.io/post/2016-11-20-python-pandas01/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      <author>1031846289@qq.com (wxy1688)</author>
+      <guid>http://wxy1688.github.io/post/2016-11-20-python-pandas01/</guid>
+      <description>python pandas to dict import pandas as pd import json b = [{&amp;#39;source&amp;#39;: &amp;#39;baidu&amp;#39;, &amp;#39;num&amp;#39;: 61}, {&amp;#39;source&amp;#39;: &amp;#39;cctv&amp;#39;, &amp;#39;num&amp;#39;: 14}, {&amp;#39;source&amp;#39;: &amp;#39;cntv&amp;#39;, &amp;#39;num&amp;#39;: 3}, {&amp;#39;source&amp;#39;: &amp;#39;cntv&amp;#39;, &amp;#39;num&amp;#39;: 1}, {&amp;#39;source&amp;#39;: &amp;#39;cntv&amp;#39;, &amp;#39;num&amp;#39;: 1}] if __name__ == &amp;#39;__main__&amp;#39;: df =pd.DataFrame(b) c = df[&amp;#34;num&amp;#34;].groupby(df[&amp;#39;source&amp;#39;]).sum()[:5] gg = pd.DataFrame(c) pandas_to_dict = gg.to_dict() pandas_to_json = gg.to_json() x = {&amp;#39;baidu&amp;#39;: 61, &amp;#39;cctv&amp;#39;: 14, &amp;#39;cntv&amp;#39;: 5} y = {&amp;#34;微信&amp;#34;: 0, &amp;#34;微博&amp;#34;: 0,&amp;#34;头条&amp;#34;: 0} #合并两个字典 z = dict(x,**y) print(z) q= [] dd ={&amp;#39;微信&amp;#39;: 40, &amp;#39;微博&amp;#39;: 0, &amp;#39;头条&amp;#39;: 156, &amp;#39;baidu&amp;#39;: 610, &amp;#39;cntv&amp;#39;: 10} for v in dd: q.</description>
+    </item>
+    
+  </channel>
+</rss>

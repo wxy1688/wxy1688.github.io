@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>APScheduler</title>
+  <meta property="og:title" content="APScheduler" />
+  <meta name="twitter:title" content="APScheduler" />
+  <meta name="description" content="定时任务框架APScheduler学习详解 APScheduler简介
+APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型 的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。
+APScheduler有四种组成部分： 触发器(trigger)包含调度逻辑，每一个作业有它自己的触发器，用于决定接下来哪一个作业会运行。除了他们自己初始配置意外，触发器完全是无状态的。
+作业存储(job store)存储被调度的作业，默认的作业存储是简单地把作业保存在内存中，其他的作业存储是将作业保存在数据库中。一个作业的数据讲在保 存在持久化作业存储时被序列化，并在加载时被反序列化。调度器不能分享同一个作业存储。
+执行器(executor)处理作业的运行，他们通常通过在作业中提交制定的可调用对象到一个线程或者进城池来进行。当作业完成时，执行器将会通知调度器。
+调度器(scheduler)是其他的组成部分。你通常在应用只有一个调度器，应用的开发者通常不会直接处理作业存储、调度器和触发器，相反，调度器提供了 处理这些的合适的接口。配置作业存储和执行器可以在调度器中完成，例如添加、修改和移除作业。　简单应用：
+import time from apscheduler.schedulers.blocking import BlockingScheduler
+def my_job(): print time.strftime(&lsquo;%Y-%m-%d %H:%M:%S&rsquo;, time.localtime(time.time()))
+sched = BlockingScheduler() sched.add_job(my_job, &lsquo;interval&rsquo;, seconds=5) sched.start() 上面的例子表示每隔5s执行一次my_job函数，输出当前时间信息
+操作作业 1. 添加作业 上面是通过add_job()来添加作业，另外还有一种方式是通过scheduled_job()修饰器来修饰函数
+import time from apscheduler.schedulers.blocking import BlockingScheduler
+sched = BlockingScheduler()
+@sched.scheduled_job(&lsquo;interval&rsquo;, seconds=5) def my_job(): print time.strftime(&lsquo;%Y-%m-%d %H:%M:%S&rsquo;, time.localtime(time.time()))
+sched.start() 2. 移除作业
+job = scheduler.add_job(myfunc, &lsquo;interval&rsquo;, minutes=2) job.remove() ###如果有多个任务序列的话可以给每个任务设置ID号，可以根据ID号选择清除对象，且remove放到start前才有效 sched.add_job(myfunc, &lsquo;interval&rsquo;, minutes=2, id=&lsquo;my_job_id&rsquo;) sched.remove_job(&lsquo;my_job_id&rsquo;) 3.">
+  <meta property="og:description" content="定时任务框架APScheduler学习详解 APScheduler简介
+APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型 的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。
+APScheduler有四种组成部分： 触发器(trigger)包含调度逻辑，每一个作业有它自己的触发器，用于决定接下来哪一个作业会运行。除了他们自己初始配置意外，触发器完全是无状态的。
+作业存储(job store)存储被调度的作业，默认的作业存储是简单地把作业保存在内存中，其他的作业存储是将作业保存在数据库中。一个作业的数据讲在保 存在持久化作业存储时被序列化，并在加载时被反序列化。调度器不能分享同一个作业存储。
+执行器(executor)处理作业的运行，他们通常通过在作业中提交制定的可调用对象到一个线程或者进城池来进行。当作业完成时，执行器将会通知调度器。
+调度器(scheduler)是其他的组成部分。你通常在应用只有一个调度器，应用的开发者通常不会直接处理作业存储、调度器和触发器，相反，调度器提供了 处理这些的合适的接口。配置作业存储和执行器可以在调度器中完成，例如添加、修改和移除作业。　简单应用：
+import time from apscheduler.schedulers.blocking import BlockingScheduler
+def my_job(): print time.strftime(&lsquo;%Y-%m-%d %H:%M:%S&rsquo;, time.localtime(time.time()))
+sched = BlockingScheduler() sched.add_job(my_job, &lsquo;interval&rsquo;, seconds=5) sched.start() 上面的例子表示每隔5s执行一次my_job函数，输出当前时间信息
+操作作业 1. 添加作业 上面是通过add_job()来添加作业，另外还有一种方式是通过scheduled_job()修饰器来修饰函数
+import time from apscheduler.schedulers.blocking import BlockingScheduler
+sched = BlockingScheduler()
+@sched.scheduled_job(&lsquo;interval&rsquo;, seconds=5) def my_job(): print time.strftime(&lsquo;%Y-%m-%d %H:%M:%S&rsquo;, time.localtime(time.time()))
+sched.start() 2. 移除作业
+job = scheduler.add_job(myfunc, &lsquo;interval&rsquo;, minutes=2) job.remove() ###如果有多个任务序列的话可以给每个任务设置ID号，可以根据ID号选择清除对象，且remove放到start前才有效 sched.add_job(myfunc, &lsquo;interval&rsquo;, minutes=2, id=&lsquo;my_job_id&rsquo;) sched.remove_job(&lsquo;my_job_id&rsquo;) 3.">
+  <meta name="twitter:description" content="定时任务框架APScheduler学习详解 APScheduler简介
+APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型 的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。
+APScheduler有四种组成部分： 触发器(trigger) …">
+  <meta name="author" content="wxy1688"/>
+  <link href='http://wxy1688.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://wxy1688.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@1031846289" />
+  <meta name="twitter:creator" content="@1031846289" />
+  <meta property="og:url" content="http://wxy1688.github.io/post/2015-06-10-python-apscheduler/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="大王派我来搬砖" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="http://wxy1688.github.io/post/2015-06-10-python-apscheduler/" />
+  <link rel="alternate" href="http://wxy1688.github.io/index.xml" type="application/rss+xml" title="大王派我来搬砖">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://wxy1688.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://wxy1688.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://wxy1688.github.io/">大王派我来搬砖</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Home" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="post" href="/post/">post</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">samples</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-03-07-bigimg-sample">Big Image Sample</a>
+                
+                  <a href="/post/2017-03-05-math-sample">Math Sample</a>
+                
+                  <a href="/post/2016-03-08-code-sample">Code Sample</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="大王派我来搬砖" href="http://wxy1688.github.io/">
+            <img class="avatar-img" src="http://wxy1688.github.io/img/avatar-icon.png" alt="大王派我来搬砖" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>APScheduler</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 20, 2016
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 3 minutes (472 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<p>定时任务框架APScheduler学习详解
+APScheduler简介</p>
+
+<p>APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型
+的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。</p>
+
+<p>APScheduler有四种组成部分：
+触发器(trigger)包含调度逻辑，每一个作业有它自己的触发器，用于决定接下来哪一个作业会运行。除了他们自己初始配置意外，触发器完全是无状态的。</p>
+
+<p>作业存储(job store)存储被调度的作业，默认的作业存储是简单地把作业保存在内存中，其他的作业存储是将作业保存在数据库中。一个作业的数据讲在保
+存在持久化作业存储时被序列化，并在加载时被反序列化。调度器不能分享同一个作业存储。</p>
+
+<p>执行器(executor)处理作业的运行，他们通常通过在作业中提交制定的可调用对象到一个线程或者进城池来进行。当作业完成时，执行器将会通知调度器。</p>
+
+<p>调度器(scheduler)是其他的组成部分。你通常在应用只有一个调度器，应用的开发者通常不会直接处理作业存储、调度器和触发器，相反，调度器提供了
+处理这些的合适的接口。配置作业存储和执行器可以在调度器中完成，例如添加、修改和移除作业。　</p>
+
+<p>简单应用：</p>
+
+<p>import time
+from apscheduler.schedulers.blocking import BlockingScheduler</p>
+
+<p>def my_job():
+    print time.strftime(&lsquo;%Y-%m-%d %H:%M:%S&rsquo;, time.localtime(time.time()))</p>
+
+<p>sched = BlockingScheduler()
+sched.add_job(my_job, &lsquo;interval&rsquo;, seconds=5)
+sched.start()
+上面的例子表示每隔5s执行一次my_job函数，输出当前时间信息</p>
+
+<p>操作作业
+1. 添加作业
+上面是通过add_job()来添加作业，另外还有一种方式是通过scheduled_job()修饰器来修饰函数</p>
+
+<p>import time
+from apscheduler.schedulers.blocking import BlockingScheduler</p>
+
+<p>sched = BlockingScheduler()</p>
+
+<p>@sched.scheduled_job(&lsquo;interval&rsquo;, seconds=5)
+def my_job():
+    print time.strftime(&lsquo;%Y-%m-%d %H:%M:%S&rsquo;, time.localtime(time.time()))</p>
+
+<p>sched.start()
+2. 移除作业</p>
+
+<p>job = scheduler.add_job(myfunc, &lsquo;interval&rsquo;, minutes=2)
+job.remove()
+###如果有多个任务序列的话可以给每个任务设置ID号，可以根据ID号选择清除对象，且remove放到start前才有效
+sched.add_job(myfunc, &lsquo;interval&rsquo;, minutes=2, id=&lsquo;my_job_id&rsquo;)
+sched.remove_job(&lsquo;my_job_id&rsquo;)
+3. 暂停和恢复作业
+ 暂停作业:</p>
+
+<p>apsched.job.Job.pause()
+apsched.schedulers.base.BaseScheduler.pause_job()
+ 恢复作业:</p>
+
+<p>apsched.job.Job.resume()
+apsched.schedulers.base.BaseScheduler.resume_job()
+4. 获得job列表
+ 获得调度作业的列表，可以使用get_jobs()来完成，它会返回所有的job实例。或者使用print_jobs()来输出所有格式化的作业列表。也可以利用
+ get_job(任务ID)获取指定任务的作业列表</p>
+
+<p>job = sched.add_job(my_job, &lsquo;interval&rsquo;, seconds=2 ,id=&lsquo;123&rsquo;)
+print sched.get_job(job_id=&lsquo;123&rsquo;)
+print sched.get_jobs()
+5. 关闭调度器
+ 默认情况下调度器会等待所有正在运行的作业完成后，关闭所有的调度器和作业存储。如果你不想等待，可以将wait选项设置为False。</p>
+
+<p>sched.shutdown()
+sched.shutdown(wait=False)
+ 作业运行的控制（trigger）
+add_job的第二个参数是trigger，它管理着作业的调度方式。它可以为date, interval或者cron。对于不同的trigger，对应的参数也相同。</p>
+
+<p>(1). cron定时调度（某一定时时刻执行）</p>
+
+<p>(int|str) 表示参数既可以是int类型，也可以是str类型
+(datetime | str) 表示参数既可以是datetime类型，也可以是str类型</p>
+
+<p>year (int|str) – 4-digit year -（表示四位数的年份，如2008年）
+month (int|str) – month (1-12) -（表示取值范围为1-12月）
+day (int|str) – day of the (1-31) -（表示取值范围为1-31日）
+week (int|str) – ISO week (1-53) -（格里历2006年12月31日可以写成2006年-W52-7（扩展形式）或2006W527（紧凑形式））
+day_of_week (int|str) – number or name of weekday (0-6 or mon,tue,wed,thu,fri,sat,sun) - （表示一周中的第几天，既可以用0-6表
+示也可以用其英语缩写表示）
+hour (int|str) – hour (0-23) - （表示取值范围为0-23时）
+minute (int|str) – minute (0-59) - （表示取值范围为0-59分）
+second (int|str) – second (0-59) - （表示取值范围为0-59秒）
+start_date (datetime|str) – earliest possible date/time to trigger on (inclusive) - （表示开始时间）
+end_date (datetime|str) – latest possible date/time to trigger on (inclusive) - （表示结束时间）
+timezone (datetime.tzinfo|str) – time zone to use for the date/time calculations (defaults to scheduler timezone) -
+（表示时区取值）
+参数的取值格式：</p>
+
+<h2 id="表示2017年3月22日17时19分07秒执行该程序">表示2017年3月22日17时19分07秒执行该程序</h2>
+
+<p>sched.add_job(my_job, &lsquo;cron&rsquo;, year=2017,month = 03,day = 22,hour = 17,minute = 19,second = 07)</p>
+
+<h2 id="表示任务在6-7-8-11-12月份的第三个星期五的00-00-01-00-02-00-03-00-执行该程序">表示任务在6,7,8,11,12月份的第三个星期五的00:00,01:00,02:00,03:00 执行该程序</h2>
+
+<p>sched.add_job(my_job, &lsquo;cron&rsquo;, month=&lsquo;6-8,11-12&rsquo;, day=&lsquo;3rd fri&rsquo;, hour=&lsquo;0-3&rsquo;)</p>
+
+<h2 id="表示从星期一到星期五5-30-am-直到2014-05-30-00-00-00">表示从星期一到星期五5:30（AM）直到2014-05-30 00:00:00</h2>
+
+<p>sched.add_job(my_job(), &lsquo;cron&rsquo;, day_of_week=&lsquo;mon-fri&rsquo;, hour=5, minute=30,end_date=&lsquo;2014-05-30&rsquo;)</p>
+
+<h2 id="表示每5秒执行该程序一次-相当于interval-间隔调度中seconds-5">表示每5秒执行该程序一次，相当于interval 间隔调度中seconds = 5</h2>
+
+<p>sched.add_job(my_job, &lsquo;cron&rsquo;,second = &lsquo;*/5&rsquo;)
+(2). interval 间隔调度（每隔多久执行）</p>
+
+<p>weeks (int) – number of weeks to wait
+days (int) – number of days to wait
+hours (int) – number of hours to wait
+minutes (int) – number of minutes to wait
+seconds (int) – number of seconds to wait
+start_date (datetime|str) – starting point for the interval calculation
+end_date (datetime|str) – latest possible date/time to trigger on
+timezone (datetime.tzinfo|str) – time zone to use for the date/time calculations
+例子：</p>
+
+<h2 id="表示每隔3天17时19分07秒执行一次任务">表示每隔3天17时19分07秒执行一次任务</h2>
+
+<p>sched.add_job(my_job, &lsquo;interval&rsquo;,days  = 03,hours = 17,minutes = 19,seconds = 07)
+(3). date 定时调度（作业只会执行一次）</p>
+
+<p>run_date (datetime|str) – the date/time to run the job at  -（任务开始的时间）
+timezone (datetime.tzinfo|str) – time zone for run_date if it doesn’t have one already
+例子：</p>
+
+<h2 id="the-job-will-be-executed-on-november-6th-2009">The job will be executed on November 6th, 2009</h2>
+
+<p>sched.add_job(my_job, &lsquo;date&rsquo;, run_date=date(2009, 11, 6), args=[&lsquo;text&rsquo;])</p>
+
+<h2 id="the-job-will-be-executed-on-november-6th-2009-at-16-30-05">The job will be executed on November 6th, 2009 at 16:30:05</h2>
+
+<p>sched.add_job(my_job, &lsquo;date&rsquo;, run_date=datetime(2009, 11, 6, 16, 30, 5), args=[&lsquo;text&rsquo;])</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">from</span> <span class="nx">apscheduler</span><span class="p">.</span><span class="nx">schedulers</span><span class="p">.</span><span class="nx">blocking</span> <span class="k">import</span> <span class="nx">BlockingScheduler</span>
+<span class="k">import</span> <span class="nx">apscheduler</span><span class="p">.</span><span class="nx">events</span>
+<span class="err">#</span><span class="nx">需要引用日志</span>
+<span class="nx">from</span> <span class="nx">log_demo</span> <span class="k">import</span> <span class="nx">get_log</span>
+<span class="nx">err_logger</span> <span class="o">=</span> <span class="nx">get_log</span><span class="p">()</span>
+
+
+<span class="nx">def</span> <span class="nx">err_listener</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span><span class="o">:</span>
+    <span class="err">#</span><span class="nx">异常监听</span>
+    <span class="k">if</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">exception</span><span class="o">:</span>
+        <span class="nx">err_logger</span><span class="p">.</span><span class="nx">exception</span><span class="p">(</span><span class="s1">&#39;%s error.&#39;</span><span class="o">%</span><span class="p">(</span><span class="nx">str</span><span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">jobstore</span><span class="p">)))</span>
+    <span class="k">else</span><span class="o">:</span>
+        <span class="nx">err_logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;%s miss&#39;</span><span class="o">%</span><span class="p">(</span><span class="nx">str</span><span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">job_id</span><span class="p">)))</span>
+
+
+<span class="nx">def</span> <span class="nx">days</span><span class="p">()</span><span class="o">:</span>
+    <span class="err">#</span><span class="nx">每天</span>
+    <span class="nx">pass</span>
+<span class="nx">def</span> <span class="nx">minutes</span><span class="p">()</span><span class="o">:</span>
+    <span class="err">#</span><span class="nx">每分钟</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">&#34;hahha&#34;</span><span class="p">)</span>
+<span class="nx">def</span> <span class="nx">always</span><span class="p">()</span><span class="o">:</span>
+    <span class="err">#</span><span class="nx">直接运行</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">&#34;1234&#34;</span><span class="p">)</span>
+<span class="nx">def</span> <span class="nx">hours1</span><span class="p">()</span><span class="o">:</span>
+    <span class="err">#</span><span class="nx">每小时</span>
+    <span class="nx">pass</span>
+
+
+<span class="k">if</span> <span class="nx">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="o">:</span>
+    <span class="nx">sched</span> <span class="o">=</span> <span class="nx">BlockingScheduler</span><span class="p">()</span>
+    <span class="err">#</span><span class="nx">天</span>
+    <span class="nx">sched</span><span class="p">.</span><span class="nx">add_job</span><span class="p">(</span><span class="nx">days</span><span class="p">,</span> <span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="nx">days</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nx">start_date</span><span class="o">=</span><span class="s1">&#39;2017-01-01 00:07:00&#39;</span><span class="p">)</span>
+    <span class="err">#</span><span class="nx">分钟</span> <span class="nx">范围</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">59</span><span class="p">)</span>
+    <span class="nx">sched</span><span class="p">.</span><span class="nx">add_job</span><span class="p">(</span><span class="nx">minutes</span><span class="p">,</span> <span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="nx">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nx">start_date</span><span class="o">=</span><span class="s1">&#39;2017-01-01 00:07:00&#39;</span><span class="p">)</span>
+    <span class="err">#</span><span class="nx">小时</span>
+    <span class="err">#</span><span class="nx">直接运行</span>
+    <span class="nx">sched</span><span class="p">.</span><span class="nx">add_job</span><span class="p">(</span><span class="nx">always</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="o">:</span>
+        <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;开始咯&#39;</span><span class="p">)</span>
+        <span class="nx">sched</span><span class="p">.</span><span class="nx">add_listener</span><span class="p">(</span><span class="nx">err_listener</span><span class="p">,</span>
+                           <span class="nx">apscheduler</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">EVENT_JOB_ERROR</span> <span class="o">|</span> <span class="nx">apscheduler</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">EVENT_JOB_MISSED</span> <span class="o">|</span> <span class="nx">apscheduler</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">EVENT_JOB_EXECUTED</span><span class="p">)</span>
+        <span class="nx">sched</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+    <span class="nx">except</span> <span class="nx">Exception</span> <span class="nx">as</span> <span class="nx">ex</span><span class="o">:</span>
+        <span class="nx">err_logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span>
+</code></pre></div>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://wxy1688.github.io/post/2016-11-20-golang-set/" data-toggle="tooltip" data-placement="top" title="golang set">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://wxy1688.github.io/post/2016-11-21-pandas_to_sql/" data-toggle="tooltip" data-placement="top" title="pandas to sql">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:1031846289@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wxy1688" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/1031846289" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://wxy1688.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="gopherday.com">wxy1688</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://wxy1688.github.io/">大王派我来搬砖</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/main.js"></script>
+<script src="http://wxy1688.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://wxy1688.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
